@@ -1,0 +1,114 @@
+<div class="detailProduct mt 5 pt-5">
+    <div class="row">
+        <div class="col-md-7 col-sm-12 detailProduct__img">
+            <div class="detailProduct__img--list">
+                
+                {{#activeFirstProuctImg}}
+                    {{productInfor}}
+                {{/activeFirstProuctImg}}
+
+                   
+            </div>
+            <div class="detailProduct__img--main">
+                     <img src="{{productInfor.productImg.[0]}}" alt="">
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-12 detailProduct__content">
+            <h1 class="detailProduct__content--name border-bottom">
+                {{productInfor.productName}}
+            </h1>
+            <h1 class="detailProduct__content--price border-bottom">
+                   {{#if productInfor.sale includeZero=false}}
+                        <span class='product__newPrice'>{{number
+                            productInfor.productSalePrice
+                          }}₫</span>
+                        <span class='product__oldPrice'>{{number productInfor.productPrice}}₫</span>
+                        {{else}}
+                        <span class='product__oldPrice--notsale'>{{number productInfor.productPrice}}₫</span>
+
+                      {{/if}}
+            </h1>
+
+            <div class="promotion border-bottom ">
+                <h6 class="promotion__title detailProduct__content--title">Khuyến mãi :</h6>
+
+                <div class="promotion__content ">
+                     <p>
+                        <a class="btn btn-primary promotion__btn bg-orange" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Nhập mã FREESHIP miễn phí giao hàng >
+                        </a>
+             
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        Nhập mã <span class='text-orange'>FREESHIP</span> miễn phí giao hàng khi mua đơn hàng từ 400,000 đ áp dụng từ ngày 22/08 - 31/08. Chương trình không áp dụng với các chương trình khuyến mãi khác.
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="selectSize border-bottom">
+                <h6 class="selectSize__title detailProduct__content--title">Chọn size</h6>
+                <ul class="selectSize__btn--list">
+
+                        {{#activeFirstSize}}{{productInfor}}{{/activeFirstSize}}
+
+
+                </ul>
+            </div>
+            <div class="productColor border-bottom d-flex">
+                <h6 class="productColor__title detailProduct__content--title">Màu sắc</h6>
+                <div class="productColor__content">
+                    <div class='w-100'>
+
+                      <p class="bg-black productColor__text text-center m-0 p-2 text-uppercase font-weight-bold" >{{productInfor.productColor}}</p>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class='mt-4'>
+             {{> slideBtn title="Thêm vào giỏ hàng"}}
+            </div>
+
+        
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    const selectSizeBtns = document.querySelectorAll('.selectSize__btn--item');
+   
+    //Select size
+    selectSizeBtns.forEach((item)=> {
+        item.addEventListener('click',(e)=> {
+            document.querySelector('.selectSize__btn--item.active').classList.remove('active');
+            e.target.classList.add('active');
+        })
+    })
+
+    // Change IMG main
+
+    const productImgList = document.querySelectorAll('.detailProduct__img--item');
+   
+    //Select size
+    productImgList.forEach((item)=> {
+        item.addEventListener('mouseover',(e)=> {
+            e.stopPropagation();
+            const imgActiveElement = document.querySelector('.detailProduct__img--item.active');
+
+            imgActiveElement && imgActiveElement.classList.remove('active');
+
+            e.target.classList.add('active');
+            document.querySelector('.detailProduct__img--main img').src=e.target.src;
+            console.log([e.target])
+
+           
+
+        })
+    })
+
+</script>

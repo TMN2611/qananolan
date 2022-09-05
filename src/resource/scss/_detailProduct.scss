@@ -1,0 +1,128 @@
+.detailProduct {
+    &__img {
+        display: flex;
+        &--list {
+            width: 10%;
+        }
+        &--item {
+            margin-bottom: 10px;
+            width: 100%;
+
+            cursor: pointer;
+            &.active {
+                border:0.2px solid rgba(0, 0, 0, 0.447);
+            }
+            img {
+            width: 100%;
+            object-fit: cover;
+
+            }
+        }
+        &--main {
+            width: 90%;
+            padding-left: 10px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    &__content{
+        &--title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            padding: 15px 0;
+            text-transform: uppercase;
+            width: 40%;
+
+
+        }
+        &--name {
+            padding: 10px 0;
+            font-size: 2.4rem;
+            font-weight:bold;
+            margin-bottom: 3rem;
+        }
+        &--price {
+            padding: 10px 0;
+            font-size: 2rem;
+            display:flex;
+            gap:0 30px;
+            font-weight:bold;
+        }
+    }
+}
+
+.promotion {
+    display:flex;
+
+
+    &__title {
+        flex-shrink: 0;
+    }
+    &__btn {
+        font-size: 1.5rem;
+        margin: 15px 0;
+    }
+}
+
+.selectSize {
+    display:flex;
+    align-items: center;
+
+    &__btn {
+        &--list {
+            display:flex;
+            gap:0 8px;
+        }
+        &--item {
+            padding: 6px 10px;
+            border:1px solid $border-color;
+            cursor: pointer;
+            &.active {
+                background-color:black;
+                color:white;
+                border-radius: 5px;
+            }
+
+        }
+    }
+}
+.productColor {
+    &__content {
+        flex:1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__text {
+        width:100%;
+        border-radius: 5px;
+
+    }
+}
+.product__detail--footer {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    gap:20px;
+}
+.product__rating {
+    &--list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap:0 3px;
+    }
+    &--item {
+
+    }
+    &--icon {
+        font-size: 1.2rem;
+        color:$brand-color;
+    }
+}
+.product__sold {
+    p {
+        font-weight: bold;
+        font-size: 1.3rem;
+    }
+}

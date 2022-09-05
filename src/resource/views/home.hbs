@@ -1,0 +1,274 @@
+<div class='main'>
+  <div class='slider__Img'>
+      <ul class='slider__Img-list'>
+        <li data-index='0' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_1.webp' alt='' srcset='' />
+          </a>
+        </li>
+        <li data-index='1' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_2.jpg' alt='' srcset='' />
+          </a>
+        </li>
+        <li data-index='2' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_3.jpg' alt='' srcset='' />
+          </a>
+        </li>
+        <li data-index='3' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_4.jpg' alt='' srcset='' />
+          </a>
+        </li>
+        <li data-index='4' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_5.jpg' alt='' srcset='' />
+          </a>
+        </li>
+        <li data-index='5' class='slider__Img-item'>
+          <a href='#' class='slider__Img-link'>
+            <img src='/img/Slider_img/slideshow_6.webp' alt='' srcset='' />
+          </a>
+        </li>
+
+      </ul>
+  </div>
+  <div class='main__collection'>
+    <div class='container'>
+
+      <h2 class='collection__header'>
+        <a href='#' class='collection__header-link'>
+          SPECIAL OFFERS
+        </a>
+      </h2>
+      <div class='collection__product'>
+        <div class='row'>
+           {{#each products}}
+               <div class='col-6 col-lg-3 col-md-4'>
+                <a href='/products/{{this.slug}}'>
+                  <div class='product__area'>
+                    <div class='product__IMG'>
+                      <img src='{{this.productImg.[0]}}' alt='' />
+                      {{#if this.sale includeZero=false}}
+                        <div class='product__sale'> 
+                              <span>-{{this.sale}}%</span>
+                        </div>
+                      {{/if}} 
+                    </div>
+                    <div class='product__detail'>
+                      <a href='/products/{{this.slug}}' class='product__name'>{{this.productName}}
+                      </a>
+                    <div class='product__price'>
+                      {{#if this.sale includeZero=false}}
+                        <span class='product__newPrice'>{{number
+                            this.productSalePrice
+                          }}₫</span>
+                        <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
+                        {{else}}
+                        <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
+
+                      {{/if}}
+
+
+                      </div>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+           {{/each}}
+        </div>
+      </div>
+      <div class='collection__btns'>
+        <div class='row'>
+          <div class='col-12 text-center'>
+              <a href="/collections/sale">
+                {{> slideBtn title="Xem thêm"}}
+              </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class='main__featured'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <div class='featured__img'>
+            <h2><i>NEW</i></h2>
+            <img src='/img/Featured/pro_featured_img.png' alt='' />
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class='featured__detail'>
+            <h3>Native Jefferson Print</h3>
+            <div class='detail__nav'>
+              <ui class='detail__nav-list'>
+                <li class='detail__nav-item nav__product-featured active'>
+                  <a href='#tab1'>Đặc tính sản phẩm</a>
+                </li>
+                <li class='detail__nav-item nav__product-size'>
+                  <a href='#tab2'>Size</a>
+                </li>
+              </ui>
+            </div>
+            <div class='detail__content'>
+              <ui class='detail__content-list'>
+                <li class='detail__content-item active'>
+                  <p>27/04/2021, NATIVE SHOES chính thức ra mắt bộ sưu tập rực
+                    rỡ sắc màu hợp tác cùng thương hiệu BÚT MÀU CRAYOLA, USA. Bộ
+                    sưu tập lần này mang đậm nét trẻ trung, năng động và đầy
+                    chất sáng tạo từ những điều thật đơn giản và gần gũi với
+                    tinh thần NATIVE - Luôn đồng hành cùng bạn đi khắp mọi nơi.
+                    <br /><br />
+                    Native Jefferson Print được sản xuất bằng chất liệu nhựa EVA
+                    êm ái, trọng lượng siêu nhẹ, không thấm nước và có thể vệ
+                    sinh một cách dễ dàng.<br />
+                    Bề mặt với thiết kế đục lỗ đặc trưng thương hiệu mang đến sự
+                    thoáng mát, thoải mái.<br />
+                    Sản phẩm có thể có khả năng chống sốc & chống mùi hiệu quả.<br
+                    /><br />
+
+                    Trong sự kết hợp lần này,
+                    <span>NATIVE SHOES x CRAYOLA</span>
+                    mong muốn sẽ cùng bạn khơi gợi nguồn cảm hứng sáng tạo bay
+                    bổng bên trong bạn và làm cho cuộc sống rực rỡ hơn cùng
+                    những sắc màu thời trang.
+                  </p>
+                </li>
+                <li class='detail__content-item'>
+                  <p>EU: 24 - 43</p>
+                </li>
+              </ui>
+            </div>
+            <div class='col-md-12 text-center'>
+              <div class='featured__detail-btn'>
+                  {{> slideBtn title="Xem ngay"}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="main__partner">
+      <div class="main__partner-list">
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_1.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_2.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_3.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_4.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_5.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_6.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_7.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_8.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_9.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_10.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_11.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_12.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_13.webp" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/logo_image_14.webp" alt="">
+        </a>
+      </div>
+      
+      </div>
+  </div>
+
+
+</div>
+
+<script>
+
+const collectionFeatured = document.querySelector(".main__featured");
+const featuredImg = document.querySelector(".featured__img img");
+
+const featuredNavItems = document.querySelectorAll(".detail__nav-item");
+
+// tab UI featuredContentItem
+    featuredNavItems.forEach(function (item, index) {
+      item.onclick = function (e) {
+        const featuredcontentItemActive = doc(".detail__content-item.active");
+        doc(".detail__nav-item.active").classList.remove("active");
+        featuredcontentItemActive.classList.remove("active");
+
+        e.target.closest(".detail__nav-item").classList.add("active");
+        docs(".detail__content-item")[index].classList.add("active");
+      };
+    });
+    window.onscroll = function () {
+      // featured__img scroll
+      const h2Height = document.querySelector(".featured__img h2").clientHeight;
+      const imgHeight = document.querySelector(".featured__img img").clientHeight;
+      const featured__imgHeight = h2Height + imgHeight;
+      const B_collectionFeaturedOffsetTop =
+        collectionFeatured.offsetTop + featured__imgHeight / 2;
+      const A_windowScrollTop =
+        window.scrollY + window.innerHeight - featured__imgHeight / 2;
+      const distanceAB = B_collectionFeaturedOffsetTop - A_windowScrollTop;
+
+      if (distanceAB < 0) {
+        document.querySelector(".featured__img").classList.add("active");
+      }
+      if (distanceAB > -100) {
+        document.querySelector(".featured__img").classList.remove("active");
+      }
+    };
+</script>

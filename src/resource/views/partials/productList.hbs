@@ -1,0 +1,12 @@
+<div class='col-md-9 col-sm-12 col-xs-12'>
+  <h2 class='collections__type'>{{collectionType}}</h2>
+  <div class='product'>
+    <ul class='product__list'>
+      <div class='row'>
+        {{#each products}}
+            {{> productItem}}
+        {{/each}}
+      </div>
+    </ul>
+  </div>
+</div>
