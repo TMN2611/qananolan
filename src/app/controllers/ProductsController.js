@@ -19,7 +19,7 @@ const ProductModel = require('../../app/models/Product');
     // [GET] /product/id
     async productInfor(req, res) {
       const id = req.params.id;
-      const productInfor = await ProductModel.findOne({id:id});
+      const productInfor = await ProductModel.findOne({_id:id});
       res.json(productInfor);
     
     }

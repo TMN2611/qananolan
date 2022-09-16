@@ -272,11 +272,17 @@ outline: 0;
     grid-template-columns: 30% 70%;
     grid-gap:0 20px;
     position: relative;
+    margin-bottom: 10px;
 
     &--img {
         display: flex;
         justify-content: center;
         align-items: center;
+         img {
+            width: 123px;
+            height: 123px;
+
+         }
     }
 
     &--content {
@@ -307,4 +313,44 @@ outline: 0;
         gap:10px;
     }
 
+}
+
+.cart{
+    &__body{
+        &--note {
+            & #note {
+
+                width: 100%;
+            }
+        }
+        & .cart__total--money {
+            margin-left: 20px;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        & #note {
+            border-radius: 0;
+            -webkit-appearance: none;
+            background: #ededed;
+            resize: none;
+            color: #000000;
+            font-size: 15px;
+            padding: 20px;
+            outline: none;
+            width: 100%;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 150ms linear;
+        }
+        & .cart__item--bottom {
+            justify-content:space-between;
+        }
+        & .cart__item {
+            display: flex;
+            gap:10px;
+        }
+        & .cart__item--content {
+            flex:1;
+        }
+    }
 }

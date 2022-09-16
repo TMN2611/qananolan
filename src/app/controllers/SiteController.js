@@ -17,6 +17,11 @@ class SiteController {
   search(req, res) {
     res.render('search');
   }
+
+  // [GET] /cart
+  cart(req, res) {
+    res.render('cart');
+  }
 }
 
 module.exports = new SiteController();

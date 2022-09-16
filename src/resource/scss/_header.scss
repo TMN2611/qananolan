@@ -83,6 +83,9 @@
 }
 .header__icon__link {
   line-height: var(--width--height-size);
+  display: inline-block;
+  cursor: pointer;
+  flex:1;
 }
 .cart-icon,
 .search-icon {
