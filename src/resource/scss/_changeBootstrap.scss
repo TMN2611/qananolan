@@ -2,3 +2,6 @@
 .btn-primary.focus, .btn-primary:focus {
     box-shadow: none;
   }
+button:focus {
+  outline: none;
+}

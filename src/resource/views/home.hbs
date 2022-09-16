@@ -45,7 +45,7 @@
       <div class='collection__product'>
         <div class='row'>
            {{#each products}}
-               <div class='col-6 col-lg-3 col-md-4'>
+               <div class='product__item col-6 col-lg-3 col-md-4'>
                 <a href='/products/{{this.slug}}'>
                   <div class='product__area'>
                     <div class='product__IMG'>
@@ -72,6 +72,32 @@
 
 
                       </div>
+
+
+                      <div class="product__detail--footer">
+                        <div class="product__rating">
+                          <div class="product__rating--list">
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                          </div>
+                        </div>
+                    <div class="product__sold">
+                      <p>Đã bán: <span>10</span></p>
+                      </div>
+                   </div>
 
                     </div>
                   </div>
@@ -272,3 +298,5 @@ const featuredNavItems = document.querySelectorAll(".detail__nav-item");
       }
     };
 </script>
+
+

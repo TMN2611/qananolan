@@ -7,7 +7,7 @@ var ProductSchema = mongoose.Schema(
     productName: String,
     productPrice: Number,
     productSalePrice: Number,
-    productDescription: String,
+    productDescription: [{type:Object}],
     productColor:String,
     productGender:String,
     productSize:[{type:Number}],

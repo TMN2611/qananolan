@@ -14,22 +14,26 @@
             </div>
         </div>
         <div class="col-md-5 col-sm-12 detailProduct__content">
+            <input type="hidden" id='productId' value='{{productInfor._id}}'>
             <h1 class="detailProduct__content--name border-bottom">
                 {{productInfor.productName}}
             </h1>
             <h1 class="detailProduct__content--price border-bottom">
                    {{#if productInfor.sale includeZero=false}}
-                        <span class='product__newPrice'>{{number
+                        <span class='product__newPrice detailProduct__price' data-price='{{productInfor.productSalePrice}}'>{{number
                             productInfor.productSalePrice
                           }}₫</span>
-                        <span class='product__oldPrice'>{{number productInfor.productPrice}}₫</span>
+                        <span class='product__oldPrice detailProduct__price'>{{number productInfor.productPrice}}₫</span>
+                        <div class="productDetail__sale--percent p-2 bg-orange">
+                            <span class=''>{{productInfor.sale}} % Giảm</span>
+                        </div>
                         {{else}}
-                        <span class='product__oldPrice--notsale'>{{number productInfor.productPrice}}₫</span>
+                        <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫</span>
 
                       {{/if}}
             </h1>
 
-            <div class="promotion border-bottom ">
+            <div class="promotion py-3 border-bottom ">
                 <h6 class="promotion__title detailProduct__content--title">Khuyến mãi :</h6>
 
                 <div class="promotion__content ">
@@ -48,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="selectSize border-bottom">
+            <div class="selectSize py-3 border-bottom">
                 <h6 class="selectSize__title detailProduct__content--title">Chọn size</h6>
                 <ul class="selectSize__btn--list">
 
@@ -57,7 +61,7 @@
 
                 </ul>
             </div>
-            <div class="productColor border-bottom d-flex">
+            <div class="productColor py-3 border-bottom d-flex">
                 <h6 class="productColor__title detailProduct__content--title">Màu sắc</h6>
                 <div class="productColor__content">
                     <div class='w-100'>
@@ -68,11 +72,110 @@
               
             </div>
 
-            <div class='mt-4'>
-             {{> slideBtn title="Thêm vào giỏ hàng"}}
-            </div>
+            
+
+            <div class="selector-actions py-3">
+                <div class="quantity-area clearfix">
+                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
+                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector"  disabled="disabled">
+                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                </div>
+                
+                {{!-- <div class='mt-4'>
+                    {{> slideBtn title="Thêm vào giỏ hàng"}}
+                </div> --}}
+                <button type="button" class="addToCart-btn btn btn-demo btn-lg btn-warning" data-toggle="modal" data-target="#cartModal" data-whatever="{{productInfor}}">
+			            Thêm vào giỏ hàng
+		        </button>
+
+                <!-- Modal -->
+                    <div class="modal right fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel2">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="cartModalLabel2">Giỏ hàng</h4>
+                                    <button type="button" class="close close-cartModal-btn" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                                    <button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <ul class="cart__list">
+                                    </ul>
+                                    <div class="d-flex justify-content-between my-5">
+                                        <span class='font-weight-bold'>TỔNG TIỀN</span> <span class='cart__total--money'>adad</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <a href="/collections/sale">{{> slideBtn title="Tiếp tục mua hàng"}}</a>
+                                        {{> slideBtn title="Thanh toán"}}
+                                    </div>
+
+                                </div>
+
+                            </div><!-- modal-content -->
+                        </div><!-- modal-dialog -->
+                    </div>
+                <!-- modal -->
+                
+                <p class='mt-4'>Đối với các sản phẩm đã hết hàng, bạn có thể liên hệ qua <strong><a href="#">Fanpage QanaNolan</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
+
+                <a href='#' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
+                <p >
+                    
+                    Gọi 0902779414 - 1900 63 6641 (Nhấn phím số 2) để mua hàng nhanh hơn
+                    Miễn phí giao hàng từ 800.000VNĐ
+                </p>
+			</div>
+
+            
 
         
+        </div>
+
+        <div class="col-12 mt-5">
+            <div class="product__desc--tabs">
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="productDesc-tab" data-toggle="pill" data-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Mô tả sản phẩm</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="returnPolicy-tab" data-toggle="pill" data-target="#returnPolicy" type="button" role="tab" aria-controls="returnPolicy" aria-selected="false">Chính sách đổi trả</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pstorageInstructions-tab" data-toggle="pill" data-target="#pstorageInstructions" type="button" role="tab" aria-controls="pstorageInstructions" aria-selected="false">Hướng dẫn bảo quản</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabCotent">
+                <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="productDesc-tab">
+                    <div class="description-productdetail">
+                        {{#each productInfor.productDescription}}
+                            <p> 
+                            {{#if this.emoji}}
+                              <span> 
+                                {{this.emoji}}
+                              </span>
+                            {{/if}}
+                              {{this.descText}}
+                            </p>
+                            
+                            
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
+                    <div class="description-productdetail">
+                        <p>Chính sách đổi trả của Công Ty Cổ Phần Thời Trang Hạ Vàng được áp dụng với mong muốn mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất tại website Gosumo.vn và Shooz.vn. Các sản phẩm của Hạ Vàng khi đến với khách hàng luôn được đảm bảo là hàng chính hãng, hàng nguyên mới chưa qua sử dụng, chất lượng và uy tín đến từ các thương hiệu nổi tiếng trên thế giới.</p><p><strong>I. CHÍNH SÁCH TRẢ HÀNG</strong></p><p>· Chỉ áp dụng trả sản phẩm khi sản phẩm bị lỗi chất lượng từ Hạ Vàng.</p><p>· Ngoài ra, không áp dụng trả hàng với bất kỳ lý do nào.</p><p><strong>II. CHÍNH SÁCH ĐỔI HÀNG</strong></p><p>· Không áp dụng cho các mặt hàng Đồ lót, Đồ bơi, Đồ thể thao, Phụ Kiện (đồng hồ, mắt kính, nón, khẩu trang, vớ, trang sức, cài áo, băng đô/kẹp tóc, khăn, nắp túi, chăm sóc/vệ sinh giày…).</p><p>· Chấp nhận đổi size, không đổi kiểu. Chỉ đổi kiểu trong trường hợp sản phẩm đó không còn size trên toàn hệ thống.</p><p>· Áp dụng cho hàng nguyên giá và giảm giá dưới 40%.</p><p>· Trường hợp đổi sản phẩm khác có chênh lệch giá, khách hàng sẽ thanh toán thêm phần chênh lệch thiếu và Hạ Vàng sẽ không hoàn trả phần chênh lệch dư.</p><p>· Trong trường hợp khách hàng không chọn được sản phẩm thay thế khác, Hạ Vàng sẽ gửi cho khách hàng một Coupon tương đương với số tiền đơn hàng khách hàng đã mua trước đó (không bao gồm phí vận chuyển). Thời hạn sử dụng coupon là 30 ngày kể từ ngày phát hành.</p><p>· Giá của sản phẩm đã mua là giá trên hóa đơn, giá của sản phẩm đổi là giá niêm yết tại thời điểm đổi hàng.</p><p><strong>III. THỜI GIAN ĐỔI TRẢ HÀNG</strong></p><p>Trong vòng 7 ngày tính từ ngày khách nhận được hàng, đến ngày Hạ Vàng nhận được sản phẩm từ khách hàng (không tính trên dấu bưu điện hoặc thời gian đăng ký hoàn trả).</p><p><strong>IV. ĐIỀU KIỆN ĐỔI TRẢ HÀNG</strong></p><p>· Sản phẩm còn nguyên tem, nhãn, túi vải và hộp giấy và bao bì có dán mã sản phẩm của Gosumo / Shooz.</p><p>· Sản phẩm không có dấu hiệu đã qua sử dụng hay giặt, không bị dơ bẩn (khi thử sản phẩm giày dép, khách hàng nên mang vớ và thử giày trên bề mặt sạch).</p><p>· Mỗi sản phẩm chỉ được đổi hàng 01 lần.</p><p>· Đối với sản phẩm Furla: 01 sản phẩm chỉ được đổi tối đa 02 sản phẩm khác.</p><p>· Đối với sản phẩm khác: 01 sản phẩm chỉ được đổi 01 sản phẩm.</p><p><strong>V. CHI PHÍ ĐỔI TRẢ HÀNG</strong></p><p>· Hạ Vàng miễn phí đổi hàng nếu do lỗi bị trầy xước khi vận chuyển, giao nhầm sản phẩm.</p><p>· Khách hàng vui lòng thanh toán phí vận chuyển trong các trường hợp đổi sản phẩm vì lí do chủ quan: không vừa size hoặc các lý do phù hợp trong chính sách này.</p><p><strong>VI. PHƯƠNG THỨC HOÀN TIỀN (ÁP DỤNG KHI TRẢ HÀNG)</strong></p><p>· Phương thức 1: Đối với trường hợp Thanh toán online qua ứng dụng ví điện tử OnePay/VN Pay bằng QR Code, ATM nội địa, thẻ Visa, Mastercard, JCB: Hạ Vàng sẽ hoàn trả 07-10 ngày làm việc kể từ lúc nhân viên CSKH xác nhận đơn hàng đã hủy trên hệ thống.</p><p>· Đối với trường hợp Thanh toán COD, chuyển khoản trực tiếp vào tài khoản Công ty: Hạ Vàng sẽ hoàn trả vào tài khoản ngân hàng của khách hàng từ 07-10 ngày làm việc kể từ lúc nhân viên CSKH xác nhận đơn hàng đã hủy trên hệ thống.</p><p>· Đối với trường hợp Coupon: Thanh toán qua hình thức Coupon bằng với giá trị tương đương và Khách hàng đã thanh toán (không bao gồm chi phí giao hàng) với thời hạn sử dụng là 30 ngày kể từ ngày phát hành.</p><p><strong>VII. QUY TRÌNH ĐỔI TRẢ</strong></p><p>· Bước 1: Liên hệ Hotline 1900 63 6641 hoặc Fanpage Gosumo / Shooz để thông báo yêu cầu đổi trả.</p><p>· Bước 2: Hạ Vàng tiếp nhận thông tin và phản hồi trong vòng 24h.</p><p>· Bước 3: Nếu yêu cầu đổi trả được chấp nhận, Khách hàng cung cấp hình ảnh / video clip về tình trạng sản phẩm cho nhân viên tiếp nhận thông tin thông qua Email / Tin nhắn Messenger hoặc Zalo.</p><p>· Bước 4: Khách hàng gửi sản phẩm về địa chỉ được Hạ Vàng cung cấp khi xác nhận thông tin.</p><p>· Bước 5: Hạ Vàng kiểm tra tình trạng sản phẩm khi nhận được hàng.</p><p>· Bước 6: Thông báo đến khách hàng và hoàn tiền theo quy định. Trường hợp sản phẩm không đạt yêu cầu đổi hàng, Hạ Vàng sẽ chuyển hoàn lại địa chỉ đăng ký trên đơn hàng.</p><p><strong>LƯU Ý:</strong></p><p>· Khách hàng chịu trách nhiệm về trạng thái nguyên vẹn của sản phẩm khi gửi về cho Hạ Vàng.</p><p>· Bưu phẩm gửi về cần ghi rõ những thông tin của đơn hàng.</p><p>Công ty luôn cố gắng nỗ lực mang đến sự hài lòng trong mua sắm đến Khách hàng, bảo vệ hình ảnh của sản phẩm, thương hiệu. Tuy nhiên, khi có những trường hợp không như mong muốn xảy ra, quyết định của Công ty là quyết định cuối cùng. Mọi ý kiến đóng góp xin liên hệ:</p><p>Công Ty Cổ Phần Thời Trang Hạ Vàng</p><p>Địa chỉ: 36/9 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam</p><p>Hotline: 1900 63 6641</p><p>Giấy CNDKKD: 0303083083, do Sở kế hoạch và Đầu tư TP. HCM cấp ngày 11/09/2003</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pstorageInstructions" role="tabpanel" aria-labelledby="pstorageInstructions-tab">
+                    <div class="description-productdetail">
+                        <p style="text-align: justify;"><strong>ĐỐI VỚI GIÀY DA, VẢI</strong></p><p style="text-align: justify;">- Định kỳ vệ sinh giày, khi giày bẩn nên dùng vải sạch thấm nước xà phòng lau nhẹ nhàng, không dùng bàn chải để chà, không sử dụng thuốc tẩy để giặt bạn nên sử dụng các loại xà phòng dịu nhẹ như dầu gội và nước rửa chén,.... Đối với giày da và da lộn nên sửa dụng kem và dụng cụ chùi da giày chuyên dụng.</p><p style="text-align: justify;">- Tránh để nước thấm vào giày, nếu giày bị thấm nước, nên nhét giấy vào trong giày để nước thấm vào trong giấy. Sau đó, phơi giày nơi khô ráo, không phơi giày trước ánh nắng trực tiếp.</p><p style="text-align: justify;">- Khi sử dụng, tránh tiếp xúc đế giày với dầu khí và các loại hóa chất dễ gây hư hỏng giày. Chẳng may giày bị dính, nên rửa ngay bằng nước sạch. Cũng nên tránh để giày tiếp xúc vật nhọn.</p><p style="text-align: justify;">- Dây giày không nên thắt quá chặt và không đè ép giày.</p><p style="text-align: justify;">- Trong thời gian dài không mang, nên vệ sinh giày sạch sẽ, lấy miếng lót giày ra, phơi nơi khô thoáng, gói giày lại bằng giấy và sử dụng cốt giày hoặc giấy độn vào giày để tránh mất form giày.</p><p style="text-align: justify;"><strong>ĐỐI VỚI GIÀY NHỰA:</strong></p><p style="text-align: justify;">- Định kỳ vệ sinh giày, khi giày bẩn nên dùng vải sạch thấm nước xà phòng lau nhẹ nhàng, không dùng bàn chải để chà, không sử dụng thuốc tẩy để giặt bạn nên sử dụng các loại xà phòng dịu nhẹ như dầu gội và nước rửa chén,.... Đối với giày da và da lộn nên sửa dụng kem và dụng cụ chùi da giày chuyên dụng.</p><p>- Khi sử dụng, tránh tiếp xúc đế giày với dầu khí và các loại hóa chất dễ gây hư hỏng giày. Chẳng may giày bị dính, nên rửa ngay bằng nước sạch. Cũng nên tránh để giày tiếp xúc vật nhọn.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -94,7 +197,7 @@
 
     const productImgList = document.querySelectorAll('.detailProduct__img--item');
    
-    //Select size
+    // Active img main
     productImgList.forEach((item)=> {
         item.addEventListener('mouseover',(e)=> {
             e.stopPropagation();
@@ -104,11 +207,310 @@
 
             e.target.classList.add('active');
             document.querySelector('.detailProduct__img--main img').src=e.target.src;
-            console.log([e.target])
-
-           
 
         })
     })
+
+    //changeProductQuantity
+     
+       
+        function plusQuantity() {
+            const currentQuantity = document.getElementById('quantity').value;
+
+            document.getElementById('quantity').value = Number(currentQuantity) + 1;
+            
+        }
+        function minusQuantity() {
+
+        
+            const currentQuantity = Number(document.getElementById('quantity').value);
+            
+            if(currentQuantity > 1) {
+                document.getElementById('quantity').value =currentQuantity - 1;
+
+            }
+            
+        }
+
+    function numberToMoney (price) {
+          const stringPrice = `${price}`;
+         return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' đ';
+    }
+
+   
+    // show modal cart
+    $('#cartModal').on('show.bs.modal',async function (event) {
+        var button = $(event.relatedTarget) 
+
+       
+
+        const cartItemId = document.querySelector('#productId').value;
+
+        const productInfor =await fetch(`/products/infor/${cartItemId}`).then((res)=> {
+            return res.json();
+        }).then(productInfor=> {
+            return productInfor
+        })
+
+        const cartItemImgUrl = document.querySelectorAll('.detailProduct__img--item')[0].src;
+
+        const cartItemName = document.querySelector('.detailProduct__content--name').innerText;
+
+        const cartItemSize = Number(document.querySelector('.selectSize__btn--item.active').textContent);
+
+        const cartItemColor = document.querySelector('.productColor__text').textContent;
+
+        const cartItemAmount = Number(document.getElementById('quantity').value);
+
+        const cartItemPrice = Number(document.querySelector('.detailProduct__price').dataset.price);
+
+      
+
+        const cartItemPriceString =  numberToMoney(cartItemPrice);
+
+
+
+        const cartItemInfor = {
+            cartItemId,
+            cartItemImgUrl,
+            cartItemName,
+            cartItemSize,
+            cartItemColor,
+            cartItemAmount,
+            cartItemPrice,
+            cartItemSlug: productInfor.slug,
+            cartItemPriceString,
+        }
+
+        // Add item to cart list in localstorage
+
+
+           const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+           if(localListCart !== null) {
+                const haveStoraged = localListCart.some((item)=> item.cartItemId === cartItemInfor.cartItemId && item.cartItemSize === cartItemInfor.cartItemSize);
+
+
+                if(haveStoraged) {
+                        localListCart.map(item=> {
+                            if(item.cartItemId === cartItemInfor.cartItemId) {
+                                item.cartItemAmount = item.cartItemAmount + cartItemAmount
+                            }
+                            return item
+                        })
+                }
+                else {
+                    localListCart.push(cartItemInfor)
+                }
+
+                // save to store
+                localStorage.setItem('cartProductList',JSON.stringify(localListCart))
+
+                // render UI
+                renderListCart(localListCart)
+           }
+                
+           else {
+              localStorage.setItem('cartProductList',JSON.stringify([cartItemInfor]))
+              renderListCart([cartItemInfor])
+           }
+
+        
+
+        var modal = $(this)
+        // modal.find('.modal-title').text('New message to ' + recipient)
+
+      //  modal.find('.modal-body input').val(productInfor)
+
+        })
+
+    // Auto update cart item when have change
+
+    window.addEventListener('DOMContentLoaded', ()=> {
+
+        const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+        if(localListCart !== null) {
+            renderListCart(localListCart);
+        }
+
+
+    })
+
+    
+    
+
+    // Render list cart function
+    function renderListCart (localListCart) {
+        const cartListElement = document.querySelector('.cart__list');
+
+        function render(localListCart) {
+                localStorage.setItem('cartProductList',JSON.stringify(localListCart));
+
+                const cartList = localListCart.map(item=> {
+
+                return  `<li class="cart__item">
+                                <div class="cart__item--img">
+                                    <img src="${item.cartItemImgUrl}" alt="">
+                                </div>
+
+                                <div class="cart__item--content">
+
+                                    <img src="/img/—Pngtree—cancel vector icon_4236963.png" alt="" class="cart__item--deleteItem">
+                                    <a href="/products/${item.cartItemSlug}" class="cart__item--title font-weight-bold">
+                                        ${item.cartItemName}
+                                    </a>
+                                
+                                    <p class="cart__item--desc">
+                                        <span class="cart__item--size">
+                                            ${item.cartItemSize}
+                                        </span>
+                                        /
+                                        <span class="cart__item--color text-capitalize">
+                                            ${item.cartItemColor}
+                                        </span>
+                                    </p>
+                                    <div class="cart__item--bottom">
+                                        {{!-- <div class="cart__item--amount">
+                                            ${item.cartItemAmount}
+                                        </div> --}}
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="quantity-area my-0 clearfix">
+                                                <input type="button" value="-" 
+                                                data-id="${item.cartItemId}"
+                                                data-size="${item.cartItemSize}"
+                                                 class="qty-btn minusQuantityCartBtn">
+                                                <div class="cart__item--amount">
+                                                    ${item.cartItemAmount}
+                                                </div>
+                                                <input type="button" value="+" 
+                                                data-id="${item.cartItemId}"
+                                                data-size="${item.cartItemSize}"
+                                                class="qty-btn plusQuantityCartBtn">
+                                            </div>
+                                        </div>
+                                        <p class="cart__item--price">
+                                            ${item.cartItemPriceString}
+                                        </p>
+                                    </div>
+                                    
+                            </div>
+                        </li>`
+                });
+
+            const cartListHtml = cartList.join('');
+            cartListElement.innerHTML = cartListHtml;
+
+            // total money
+            const totalMoney = localListCart.reduce((total,curr,index)=> {
+                return total + (curr.cartItemPrice * curr.cartItemAmount);
+            },0)
+
+            
+
+             document.querySelector('.cart__total--money').textContent = numberToMoney(totalMoney);
+
+            deleteCartItem();
+            changeProductQuantityCart();
+             
+
+        }
+        
+        render(localListCart);
+         // Remove cart item 
+
+         
+        const deleteCartItemBtns = document.querySelectorAll('.cart__item--deleteItem');
+        
+        
+        function deleteCartItem () {
+            const deleteCartItemBtns = document.querySelectorAll('.cart__item--deleteItem');
+
+                deleteCartItemBtns.forEach((item,index)=> {
+                    item.addEventListener('click', ()=> {
+                        const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+                    localListCart.splice(index,1);
+                    render(localListCart);
+                    });
+                })
+            }
+
+
+             //changeProductQuantityCart
+     
+
+          
+
+            function changeProductQuantityCart() {
+                const minusQuantityCartBtnsElement = document.querySelectorAll('.minusQuantityCartBtn');
+
+                minusQuantityCartBtnsElement.forEach((item,index)=> {
+                    item.addEventListener('click', function(e){
+
+                        const currentCartItemId = e.target.dataset.id;
+                        const currentCartItemSize = e.target.dataset.size;
+
+                        const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+                        const newlocalListCart = localListCart.map((item,index)=> {
+                            if (currentCartItemId == item.cartItemId && item.cartItemAmount > 1 && currentCartItemSize == item.cartItemSize) {
+                                item.cartItemAmount = item.cartItemAmount - 1;
+                            }
+                            return item;
+                        })
+                        render(newlocalListCart);
+                        
+                    })
+                })
+                const plusQuantityCartBtnsElement = document.querySelectorAll('.plusQuantityCartBtn');
+
+                plusQuantityCartBtnsElement.forEach((item,index)=> {
+                    item.addEventListener('click', function(e){
+
+                        const currentCartItemId = e.target.dataset.id;
+                        const currentCartItemSize = e.target.dataset.size;
+
+
+                        const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+                        const newlocalListCart = localListCart.map((item,index)=> {
+                            if (currentCartItemId == item.cartItemId && currentCartItemSize == item.cartItemSize) {
+                                item.cartItemAmount = item.cartItemAmount + 1;
+                            }
+                            return item;
+                        })
+                        render(newlocalListCart);
+                        
+                    })
+                })
+
+            }
+
+
+          
+
+
+        }
+
+
+
+
+        
+
+        
+        function minusQuantityCart() {
+
+        
+            const currentQuantity = Number(document.querySelector('quantityCartCart').value);
+            
+            if(currentQuantity > 1) {
+                document.querySelector('quantityCart').value =currentQuantity - 1;
+
+            }
+            
+        }
+
 
 </script>

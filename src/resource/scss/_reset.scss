@@ -44,4 +44,14 @@ ul {
 }
 a {
   display:inline-block;
+  color:black;
+}
+
+button {
+  border:none;
+  cursor: pointer;
+  background-color: transparent;
+}
+button:active {
+  border:none;
 }

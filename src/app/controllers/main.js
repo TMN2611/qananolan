@@ -6,14 +6,8 @@ const cors = require('cors');
 var methodOverride = require('method-override');
 // override with POST having ?_method=DELETE
 const port = 3000;
+
 const app = express();
-
-var corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200 // For legacy browser support
-}
-
-app.use(cors(corsOptions));
 
 app.use(methodOverride('_method'));
 
@@ -50,7 +44,6 @@ route(app);
 
 // Connect to MongoDB
 db.connect();
-// CORS
 
 // Handlebar numberal
 var Handlebars = require("handlebars");
@@ -60,7 +53,7 @@ NumeralHelper.registerHelpers(Handlebars);
 // Handlebar helper
 Handlebars.registerHelper('activeFirstSize', (productInforObject) => {
   const productSizeList = productInforObject.data.root.productInfor.productSize;
-  console.log(productSizeList);
+  $border-color(productSizeList);
   const selectBtnHtml =  productSizeList.map((size, index) => {
       if(index === 0 ) {          
         return `<li class="selectSize__btn--item active">${size}</li>`
@@ -94,6 +87,6 @@ Handlebars.registerHelper('activeFirstProuctImg', (productInforObject) => {
     
  });
 
- app.listen(port, () => {
-  console.log('Listen in 127.0.0.1:3000');
+app.listen(port, () => {
+  $border-color('Listen in 127.0.0.1:3000');
 });
