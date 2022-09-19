@@ -1,7 +1,81 @@
 <div class="col-md-3 col-sm-12 col-xs-12">
-    <ul>
-        <li>filter</li>
-        <li>filter</li>
-        <li>filter</li>
-    </ul>
+
+    
+    <form class='filter'>
+        <div class="group__filter">
+
+            <p class="group__filter--title">
+                Giới tính 
+            </p>
+            <ul>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name='gender' value='Nam' id='genderMale'>
+                        <label class="form-check-label" for="genderMale">
+                        Nam
+                    </label>
+                    </div>
+                </li>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name='gender' value='Nữ' id='genderFeMale'>
+                        <label class="form-check-label" for="genderFeMale">
+                        Nữ
+                    </label>
+                    </div>
+                </li>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
+                        <label class="form-check-label" for="genderUnisex">
+                        Unisex
+                    </label>
+                    </div>
+                </li>
+            </ul>
+
+
+
+        </div>
+        <div class="group__filter">
+
+            <p class="group__filter--title">
+                Thương hiệu
+            </p>
+            <ul>
+
+                {{#each brandList}}
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name='brand' value='{{this.brandName}}' id='brand{{this.brandName}}'>
+                        <label class="form-check-label" for="brand{{this.brandName}}">
+                            {{this.brandName}}
+                    </label>
+                    </div>
+                </li>
+                {{/each}}
+                
+            </ul>
+
+
+
+        </div>
+
+        <button type='submit'>Lọc sản phẩm</button>
+    </form>
+
 </div>
+
+<script>
+        const allCheckbox = document.querySelectorAll('.group__filter input[type="checkbox"]');
+        allCheckbox.forEach((item)=> {
+            item.addEventListener('click',()=> {
+                 const allCheckedbox = document.querySelectorAll('.group__filter input[type="checkbox"]:checked');
+
+                 allCheckedbox.forEach((item)=> {
+
+                 })
+
+            })
+        })
+</script>

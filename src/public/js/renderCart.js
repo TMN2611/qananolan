@@ -23,8 +23,17 @@ function numberToMoney (price) {
 function renderListCart (localListCart) {
     const cartListElement = document.querySelector('.cart__list');
 
+   
+
+
+
+
+    
+
     function render(localListCart) {
             localStorage.setItem('cartProductList',JSON.stringify(localListCart));
+
+
 
             const cartList = localListCart.map(item=> {
 
@@ -87,6 +96,14 @@ function renderListCart (localListCart) {
         
 
          document.querySelector('.cart__total--money').textContent = numberToMoney(totalMoney);
+
+         // total product
+         const totalProduct = localListCart.reduce((total,curr,index)=> {
+            return total + curr.cartItemAmount;
+        },0)
+
+
+        document.querySelector('.cart__quality--number').textContent = totalProduct;
 
         deleteCartItem();
         changeProductQuantityCart();

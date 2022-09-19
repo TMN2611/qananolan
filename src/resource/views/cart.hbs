@@ -1,6 +1,7 @@
 <div class="cart">
-    <h1 class='text-center mt-5 font-weight-bold'>GIỎ HÀNG CỦA BẠN</h1>
-    <p class='cart__quality text-center  mt-4'>Bạn có <span class='cart__quality--number'></span> sản phẩm trong giỏ hàng</p>
+    <h1 class='text-center mt-5 font-weight-bold pageTitle__center'>GIỎ HÀNG CỦA BẠN</h1>
+    <p class='cart__quality text-center  mt-4 mb-5'>Bạn có 
+        <span class='cart__quality--number'></span> sản phẩm trong giỏ hàng</p>
 
 
     <div class="cart__body container">
@@ -22,7 +23,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="/collections/sale">
                         {{> slideBtn title="Tiếp tục mua hàng"}}</a>
-                        {{> slideBtn title="Thanh toán"}}
+                        {{> slideBtn title="Thanh toán" class='payBtn'}}
                     </div>
             </div>
 
@@ -35,3 +36,26 @@
 
 
 <script src='/js/renderCart.js'></script>
+
+<script>
+    const payBtn = document.getElementById('payBtn');
+    const noteElement = document.getElementById('note');
+
+    payBtn.addEventListener('click', function() {
+        const cartProductList = JSON.parse(localStorage.getItem('cartProductList'));
+
+        const totalMoney = cartProductList.reduce((total,curr,index)=> {
+            return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
+        },0)
+            const dataForPost = {
+                products:cartProductList,
+                totalMoney:totalMoney,
+                note:noteElement.value,
+            }
+            console.log(dataForPost);
+    })
+
+
+
+
+</script>

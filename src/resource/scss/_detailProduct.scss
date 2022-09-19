@@ -204,7 +204,7 @@
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-    padding: 80px  15px  50px;
+    padding: 50px  15px  50px;
 }
 
 
@@ -352,5 +352,13 @@ outline: 0;
         & .cart__item--content {
             flex:1;
         }
+    }
+}
+
+.cart__quality  {
+    font-size: 1.7rem;
+    &--number {
+        font-weight: bold;
+
     }
 }

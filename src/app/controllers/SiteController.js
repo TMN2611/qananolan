@@ -13,10 +13,7 @@ class SiteController {
     res.render('home',{products:mutipleMongooseToObject(products)});
   }
 
-  // [GET] /search
-  search(req, res) {
-    res.render('search');
-  }
+
 
   // [GET] /cart
   cart(req, res) {

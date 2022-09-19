@@ -36,7 +36,7 @@
           <nav class='header__navigation'>
             <ul class='header__navigation-list'>
               <li class='header__navigation-item nav--level1__brand'>
-                <a href='/collections/tat-ca-san-pham' class='header__navigation-link'>Thương hiệu</a>
+                <a href='/collections/tat-ca-san-pham' class='header__navigation-link'>Sản phẩm</a>
                 <div class=''>
                   <div class='row nav--level2__brand'>
                     <div class='col-md-3 brand__menu'>
@@ -185,7 +185,7 @@
 
               </li>
               <li class='header__navigation-item'>
-                <a href='#' class='header__navigation-link'>Hàng mới</a>
+                <a href='/collections/san-pham-moi' class='header__navigation-link'>Hàng mới</a>
               </li>
               <li class='header__navigation-item'>
                 <a href='/collections/san-pham-nam' class='header__navigation-link'>Nam</a>
@@ -194,7 +194,7 @@
                 <a href='/collections/san-pham-nu' class='header__navigation-link'>Nữ</a>
               </li>
               <li class='header__navigation-item'>
-                <a href='#' class='header__navigation-link'>Unisex</a>
+                <a href='/collections/unisex' class='header__navigation-link'>Unisex</a>
               </li>
               <li class='header__navigation-item'>
                 <a href='/collections/sale' class='header__navigation-link'><span class='text-orange'>Sale</span></a>
@@ -210,17 +210,18 @@
                 <a href='#' class='header__icon__link'>
                   <i class='search-icon fas fa-search-minus'></i>
                 </a>
-                <div class='form__search'>
+                <form  class='form__search' action="/search">
+                <input type="hidden" name='type' value='product'>
                   <input
                     type='text'
-                    name=''
+                    name='text'
                     placeholder='Search'
                     id='search__input'
                   />
-                  <button id='search__submit'>
+                  <button type='submit' id='search__submit'>
                     <i class='search__submit__icon fas fa-search'></i>
                   </button>
-                </div>
+                </form>
               </li>
 
 

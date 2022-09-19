@@ -17,6 +17,9 @@ var ProductSchema = mongoose.Schema(
         default:0,
     },
     isSpecial: Boolean,
+    quantitySold:Number,
+    numberOfClicks:Number,
+    brand:String,
     slug: { type: String, slug: `productName`, unique: true },
   },
   { timestamps: true, versionKey: false }

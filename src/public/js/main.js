@@ -43,3 +43,18 @@ async function getProductWithIdInCart () {
 
 }
 getProductWithIdInCart();
+
+async function searchProduct() {
+    const searchBtnElement = document.getElementById('search__submit');
+    searchBtnElement.addEventListener('click',()=> {
+        const searchInput = document.getElementById('search__input');
+        fetch('/search?' + new URLSearchParams({
+            type: 'product',
+            text:searchInput.value ,
+        })).then(()=>{
+            
+        })
+
+    })
+}
+searchProduct();

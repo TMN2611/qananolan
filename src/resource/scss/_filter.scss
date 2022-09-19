@@ -1,0 +1,22 @@
+.group__filter {
+    margin-bottom: 20px;
+    &--title {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    ul {
+        margin-left: 20px;
+    }
+    & .form-check {
+        display:flex;
+        align-items: center;
+        gap:10px;
+    }
+    & .form-check-input {
+        position: static;
+        margin-top: 0;
+    }
+    & .form-check-label {
+        cursor: pointer;
+    }
+}

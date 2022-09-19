@@ -140,18 +140,19 @@
   width: 100%;
 }
 .product__detail {
-  padding: 20px 0;
+  padding: 0px 0 20px;
 }
 .product__name {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   color: $text-color;
   font-size: 1.4rem;
   font-weight: bold;
   overflow: hidden;
   cursor: pointer;
   transition: color 0.2s linear;
+  min-height:42px;
 }
 .product__name:hover {
   color: $brand-color;
