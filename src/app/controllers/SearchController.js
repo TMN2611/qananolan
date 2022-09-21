@@ -4,7 +4,7 @@ const {
 } = require('../../util/mongoose');
 const ProductModel = require('../models/Product');
 
-class CollectionsController {
+class SearchsController {
   //  [GET]  / search
   async index(req, res) {
 
@@ -44,4 +44,4 @@ class CollectionsController {
   }
 }
 
-module.exports = new CollectionsController();
+module.exports = new SearchsController();

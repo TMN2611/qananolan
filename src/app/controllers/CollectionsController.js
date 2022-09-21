@@ -39,7 +39,7 @@ function getPathName (req) {
 class CollectionsController {
   //  [GET]  /
   async maleProduct(req, res) {
-    let products = await ProductModel.find({ productGender: 'Nam' });
+    let products = await ProductModel.find({ productGender: 'Male' });
 
     const {sortBy} = req.query;
     if(sortBy) {
@@ -54,7 +54,7 @@ class CollectionsController {
     });
   }
   async femaleProduct(req, res) {
-    let products = await ProductModel.find({ productGender: 'Nữ' });
+    let products = await ProductModel.find({ productGender: 'Female' });
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
@@ -102,12 +102,32 @@ class CollectionsController {
     if(sortBy) {
       products= sort(products,sortBy);
     }
+    // Get list brand
     const brandList = await BrandModel.find();
+    //  Get List color
+    let uniqueColor = [];
+    products.forEach((c) => {
+        if (!uniqueColor.includes(c.productColor)) {
+            uniqueColor.push(c.productColor);
+        }
+    });
+    // Price range
+    let priceRange = [
+      {from:0, to:200000,valueString:"Dưới 200.000đ"},
+      {from:200000, to:400000,valueString:"200.000đ-400.000đ"},
+      {from:400000, to:1000000,valueString:"400.000đ-1.000.000đ"}, 
+      {from:1000000, to:99999999999,valueString:"Trên 1000000đ"}
+    ];
+
+    
+
   
     res.render('collections/allProduct', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      brandList:mutipleMongooseToObject(brandList)
+      brandList:mutipleMongooseToObject(brandList),
+      listColor:uniqueColor,
+      priceRange
     });
   }
 

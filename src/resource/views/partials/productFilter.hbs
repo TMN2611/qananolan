@@ -10,7 +10,7 @@
             <ul>
                 <li>  
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='gender' value='Nam' id='genderMale'>
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
                         <label class="form-check-label" for="genderMale">
                         Nam
                     </label>
@@ -18,7 +18,7 @@
                 </li>
                 <li>  
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='gender' value='Nữ' id='genderFeMale'>
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
                         <label class="form-check-label" for="genderFeMale">
                         Nữ
                     </label>
@@ -26,7 +26,7 @@
                 </li>
                 <li>  
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
                         <label class="form-check-label" for="genderUnisex">
                         Unisex
                     </label>
@@ -47,7 +47,7 @@
                 {{#each brandList}}
                 <li>  
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='brand' value='{{this.brandName}}' id='brand{{this.brandName}}'>
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='brand' value='{{this.brandName}}' id='brand{{this.brandName}}'>
                         <label class="form-check-label" for="brand{{this.brandName}}">
                             {{this.brandName}}
                     </label>
@@ -60,22 +60,211 @@
 
 
         </div>
+        <div class="group__filter">
 
-        <button type='submit'>Lọc sản phẩm</button>
+            <p class="group__filter--title">
+                Giá sản phẩm
+            </p>
+            <ul>
+
+                {{#each priceRange}}
+                    <li>  
+                        <div class="form-check">
+                            <input class="form-check-input checkAndRadio" type="radio" name='price' value='{{this.from}}-{{this.to}}' id='range{{this.from}}'>
+                            <label class="form-check-label" for="range{{this.from}}">
+                                {{this.valueString}}
+                            </label>
+                        </div>
+                    </li>
+                {{/each}}
+                
+            </ul>
+
+
+
+        </div>
+        <div class="group__filter filter__color">
+
+            <p class="group__filter--title">
+                Màu sắc
+            </p>
+            <ul>
+
+                {{#each listColor}}
+                <li >  
+                        <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
+                        <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
+                </li>
+                {{/each}}
+                
+            </ul>
+
+
+
+        </div>
+
+        <button type = 'button' class='filter__btn'>Lọc sản phẩm</button>
     </form>
 
 </div>
 
 <script>
-        const allCheckbox = document.querySelectorAll('.group__filter input[type="checkbox"]');
-        allCheckbox.forEach((item)=> {
-            item.addEventListener('click',()=> {
-                 const allCheckedbox = document.querySelectorAll('.group__filter input[type="checkbox"]:checked');
+        const allCheckbox = document.querySelectorAll('.group__filter input.checkAndRadio');
+        console.log("🚀 ~ file: productFilter.hbs ~ line 113 ~ allCheckbox", allCheckbox)
+        
+        function checkBoxListenEvent () {
+            allCheckbox.forEach((item)=> {
+                item.addEventListener('click',()=> {
+                    const allCheckedbox = document.querySelectorAll('.group__filter input.checkAndRadio:checked');
+                    let getProductWithFilterUrl = `/apis/productsWithFilter`;
+                    if(allCheckedbox.length === 0) {
+                        fetchProductWithQuery(getProductWithFilterUrl);
+                    };
+                    allCheckedbox.forEach((item)=> {
+                            //  Get List color
+                        let params = [];
+                        allCheckedbox.forEach((c) => {
+                            if (!params.includes(c.name)) {
+                                params.push(c.name);
+                            }
+                        });
 
-                 allCheckedbox.forEach((item)=> {
+                        // Get gender param
+                        function renderParams (param) {
+                              const CheckedElement = document.querySelectorAll(`input[name="${param}"]:checked`);
 
-                 })
+                                return  [...CheckedElement].map((e)=> {
+                                    console.log(e.value)
+                                   return e.value;
+                                })
+                        }
+                       
+                        const genderParamString = renderParams('gender');
+                        const brandParamString =  renderParams('brand');
+                        const priceParamString =renderParams('price');
+                        const colorParamString = renderParams('color');
 
+                    
+                      
+
+                        const dataForPost =
+                         {
+                            gender:genderParamString,
+                            brand:brandParamString,
+                            price:priceParamString,
+                            color:colorParamString,
+                        }
+
+                        fetchProductWithQuery(getProductWithFilterUrl,dataForPost);
+                    
+                    })
+
+                })
             })
-        })
+        }
+        checkBoxListenEvent();
+        async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'POST', 
+                mode: 'cors', 
+                cache: 'no-cache', 
+                credentials: 'same-origin', 
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json();
+            }
+
+        function fetchProductWithQuery (getProductWithFilterUrl,dataForPost) {
+            postData(getProductWithFilterUrl,dataForPost)
+            .then(data=> {
+                        const {products} = data;
+                       const productListRowElement = document.querySelector('.product__list .row');
+                       productListRowElement.innerHTML = '';
+
+                       function renderProductList() {
+                            const ProductListHtml = products.map((product)=> {
+                            const isSale = product.sale;
+                            let saleHtml ;
+                            let priceHtml;
+
+                            if(isSale) {
+                                saleHtml = `<div            class='product__sale'><span>-${product.sale}%</span>
+                                </div>`
+
+                                priceHtml = `<div class='product__price'>
+                                                    <span class='product__newPrice'>${numberToMoney(product.productPrice)}</span>
+                                                    <span class='product__oldPrice'>${numberToMoney(product.productSalePrice)}</span>
+                                        
+                                        
+                                                </div>`
+                            }
+                            else {
+                                saleHtml='';
+                                priceHtml = `<div class='product__price'>
+                                                    <span class='product__oldPrice--notsale'>${numberToMoney(product.productPrice)}</span>
+                                             </div>`
+                            }
+
+                            return  `<div class='product__item col-6 col-md-4'>
+                                        <a href='/products/${product.slug}'>
+                                            <div class='product__area'>
+                                                <div class='product__IMG'>
+                                                <img src='${product.productImg[0]}' alt='' />
+
+                                                ${saleHtml}
+
+
+                                                </div>
+                                                <div class='product__detail'>
+                                                <a href='/products/${product.slug}' class='product__name'>${product.productName}</a>
+                                                </a>
+
+                                                ${priceHtml}
+
+                                          
+                                        
+                                                <div class="product__detail--footer">
+                                                    <div class="product__rating">
+                                                        <div class="product__rating--list">
+                                                            <div class="product__rating--item">
+                                                            <i class="product__rating--icon fa-solid fa-star"></i>
+                                                            </div>
+                                                            <div class="product__rating--item">
+                                                            <i class="product__rating--icon fa-solid fa-star"></i>
+                                                            </div>
+                                                            <div class="product__rating--item">
+                                                            <i class="product__rating--icon fa-solid fa-star"></i>
+                                                            </div>
+                                                            <div class="product__rating--item">
+                                                            <i class="product__rating--icon fa-solid fa-star"></i>
+                                                            </div>
+                                                            <div class="product__rating--item">
+                                                            <i class="product__rating--icon fa-solid fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__sold">
+                                                        <p>Đã bán: <span>${product.quantitySold}</span></p>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </a>  
+                                    </div>`
+                            })
+                            productListRowElement.innerHTML = ProductListHtml.join("");
+                       }
+                       renderProductList()
+
+                    }).catch(error=> {
+                        console.log(error);
+                    })
+        }
 </script>

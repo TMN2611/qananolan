@@ -23,8 +23,6 @@ const ProductModel = require('../../app/models/Product');
       res.json(productInfor);
     
     }
-
-
   }
   
   module.exports = new ProductsController();
