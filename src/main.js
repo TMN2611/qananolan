@@ -4,6 +4,7 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const cors = require('cors');
 var methodOverride = require('method-override');
+require('dotenv').config();
 // override with POST having ?_method=DELETE
 const port = 3000;
 const app = express();
@@ -80,10 +81,10 @@ Handlebars.registerHelper('activeFirstProuctImg', (productInforObject) => {
   const productImgList = productInforObject.data.root.productInfor.productImg;
   const productImgsHtml =  productImgList.map((url, index) => {
       if(index === 0 ) {          
-        return `<img class="detailProduct__img--item active" src="${url}" alt="">`
+        return `<img class="detailProduct__img--item active" data-index=${index} src="${url}" alt="">`
     }
       else {
-        return `<img class="detailProduct__img--item" src="${url}" alt="">`
+        return `<img class="detailProduct__img--item" data-index=${index} src="${url}" alt="">`
 
       }
       // <img class="detailProduct__img--item" src="{{this}}" alt="">

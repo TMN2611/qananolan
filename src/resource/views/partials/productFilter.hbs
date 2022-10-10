@@ -2,6 +2,7 @@
 
     
     <form class='filter'>
+
         <div class="group__filter">
 
             <p class="group__filter--title">
@@ -103,14 +104,13 @@
 
         </div>
 
-        <button type = 'button' class='filter__btn'>Lọc sản phẩm</button>
     </form>
 
 </div>
 
 <script>
         const allCheckbox = document.querySelectorAll('.group__filter input.checkAndRadio');
-        console.log("🚀 ~ file: productFilter.hbs ~ line 113 ~ allCheckbox", allCheckbox)
+  
         
         function checkBoxListenEvent () {
             allCheckbox.forEach((item)=> {

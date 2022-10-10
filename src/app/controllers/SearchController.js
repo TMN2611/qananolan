@@ -38,7 +38,8 @@ class SearchsController {
     return  res.render('search',{
       products:mutipleMongooseToObject(searchResult),
       quatity:searchResult.length,
-      resultSearchedFor:text
+      resultSearchedFor:text,
+      pageTitle:`Kết quả tìm kiếm "${text}" - ${process.env.DOMAINNAME}`
     });
 
   }

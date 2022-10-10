@@ -11,7 +11,7 @@
         <div class='cart__body--bottom row'>
 
             <div class="cart__body--note col-6">
-                <textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea>
+                {{!-- <textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea> --}}
             </div>
 
             <div class='col-6'>
@@ -23,7 +23,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="/collections/sale">
                         {{> slideBtn title="Tiếp tục mua hàng"}}</a>
-                        {{> slideBtn title="Thanh toán" class='payBtn'}}
+                        {{> slideBtn title="Thanh toán" class="pay__btn"}}
                     </div>
             </div>
 
@@ -32,30 +32,11 @@
         
     </div>
 
+{{>modalUserInfor}}
 </div>
+
 
 
 <script src='/js/renderCart.js'></script>
 
-<script>
-    const payBtn = document.getElementById('payBtn');
-    const noteElement = document.getElementById('note');
-
-    payBtn.addEventListener('click', function() {
-        const cartProductList = JSON.parse(localStorage.getItem('cartProductList'));
-
-        const totalMoney = cartProductList.reduce((total,curr,index)=> {
-            return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
-        },0)
-            const dataForPost = {
-                products:cartProductList,
-                totalMoney:totalMoney,
-                note:noteElement.value,
-            }
-            console.log(dataForPost);
-    })
-
-
-
-
-</script>
+<script src='/js/payment.js'></script>

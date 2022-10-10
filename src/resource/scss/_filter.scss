@@ -2,7 +2,9 @@
     margin-bottom: 20px;
     &--title {
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
     }
     ul {
         margin-left: 20px;
@@ -27,9 +29,14 @@
             display: grid;
             grid-template-columns: 25% 25% 25% 25%;
             margin-top: 10px;
+            gap: 10px;
         }
         label {
             cursor: pointer;
+        }
+        label {
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+
         }
         input:checked+label {
             border: 5px solid rgba(0,0,0,0.5);

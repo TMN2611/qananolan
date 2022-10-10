@@ -1,0 +1,410 @@
+<div class="order">
+			<h1 class='text-uppercase my-3'>Thanh toán</h1>
+	<div class="container mt-5">
+			<div class="order__deco">
+
+			</div>
+			<div class="order__content">
+					<div class="order__container">
+						<p class="order__title">
+							<i class="order__title--icon fa-solid fa-location-dot"></i>Địa chỉ nhận hàng
+						</p>
+						<div>
+							<div class="order__user">
+								<span class="order__user--name font-weight-bold">--</span>
+								<p>
+										<span class='font-weight-bold'>(+84)</span> <span class="order__user--phone font-weight-bold">--</span>
+
+								</p>
+								
+								<span class="order__user--address">----------------------</span>
+
+								<button class='text-orange' data-target="#modalUserInfor" data-toggle="modal">Thay đổi</button>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class="order__container">
+						<p class="order__title">
+							<i class="order__title--icon fa-solid fa-box-open"></i>Sản phẩm
+
+						</p>
+						<div class="cart__list">
+
+							<div class="cart__table">
+									<div class="cart__row cart__header--row">
+											<div></div>
+											<div></div>
+											<div>Đơn giá</div>
+											<div>Số lượng</div>
+											<div>Thành tiền</div>
+									</div>
+									<div class="cart__body">
+										<div class="cart__row cart__body--row">
+											<div class="cart__item--main">
+												<div>
+													<img src="https://cf.shopee.vn/file/c4bc02a04d2d28259b9cd3821b465f54_tn" alt="">
+												</div>
+
+												<div>
+													<p>Lót giày chống rộng, chống rớt gót cao cấp, bảo vệ chân khi mang giày - lót giày giá sỉ - C03</p>
+												</div>
+											
+
+												
+											</div>
+
+											<div class="cart__item--type">
+												<div>
+													Màu: <span class="cart__item--color">black</span>
+												</div>
+												
+												<div>
+													Size: <span class="cart__item--size">46</span>
+												</div>
+
+												
+											</div>
+
+											<div>12.000</div>
+											<div>2</div>
+											<div>24.000</div>
+										</div>
+									</div>
+							</div>
+
+							
+						</div>
+						<div class="cart__body">
+							<div class='cart__body--bottom row'>
+									<div class="cart__body--note col-6">
+										<textarea id="note" name="note" rows="5" cols="10" placeholder="Ghi chú"></textarea>
+									</div>
+
+									<div class='col-6'>
+											<div class="d-flex justify-content-between align-items-center my-3">
+												<span class=''>Đơn vị vận chuyển</span> 
+												<p class='font-weight-bold text-green'>Giao hàng tiết kiệm</p>
+											</div>
+
+											<div class="d-flex justify-content-between align-items-center my-3">
+												<span class=''>Phí bảo hành</span> <span class='insurance__fee'>----</span>
+											</div>
+
+
+											<div class="d-flex justify-content-between">
+												
+
+												<span >Phí vận chuyển</span>
+												<span class='ship__fee'>----</span>
+
+
+												
+											</div>
+
+											<div class="d-flex justify-content-end align-items-center my-4">
+												<span class='font-weight-bold'> TỔNG PHÍ SHIP: </span> <span class='total__ship--fee'></span>
+											</div>
+									</div>
+
+								
+								</div>
+						</div>
+					</div>
+					<div class="order__container">
+						<p class="order__title">
+							<i class="order__title--icon fa-brands fa-cc-amazon-pay"></i>Phương thức thanh toán
+
+						</p>
+						<div class="order__pay--option">
+								 <div class="tabs">
+									<div class="tab__item active">
+										<i class="tab-icon fa-solid fa-money-bill"></i>
+										
+										Thanh toán khi giao hàng (COD)
+										<span class="tab__item--checked">
+											<i class="tab__item--checked-icon fa-solid fa-check"></i>
+										</span>
+									</div>
+
+									<div class="tab__item">
+										<i class="tab-icon fa-solid fa-credit-card"></i>
+										Chuyển khoảng qua ngân hàng
+										<span class="tab__item--checked">
+											<i class="tab__item--checked-icon fa-solid fa-check"></i>
+										</span>
+										
+										
+									</div>
+									<div class="tab__item">
+										<i class="tab-icon fas fa-plus-circle"></i>
+										Ví điện tử : Momo, VNpay
+										<span class="tab__item--checked">
+											<i class="tab__item--checked-icon fa-solid fa-check"></i>
+										</span>
+										
+										
+									</div>
+							
+									<div class="line"></div>
+								</div>
+
+
+								<div class="contents">
+									<div class="tab__content active">
+									<p>
+										Thanh toán khi giao hàng (COD), quý khách sẽ thanh toán <span class='font-weight-bold'>khi</span> shipper <span class='font-weight-bold'>giao hàng</span> đến địa chỉ khách yêu cầu
+									</p>
+									</div>
+									<div class="tab__content">
+									{{!-- <h2>Angular</h2> --}}
+										<p>
+											Khách hàng Thanh toán qua Ngân hàng Vui lòng chuyển khoản theo thông tin sau:
+										</p>
+										<p>
+												Tên Ngân hàng: 
+												<span class='font-weight-bold'>Ngân hàng TMCP Vietcombank (VCB) </span>
+												- Chi nhánh Đức Phổ
+												
+										</p>
+										<p>
+												Tên chủ tài khoản: 
+												<span class='font-weight-bold'>Trần Minh Nhân</span>
+												
+										</p>
+										<p>
+												Số tài khoảng: 
+												<span class='font-weight-bold'>0271001082592</span>
+												
+										</p>
+										<p>
+												Nội dung chuyển khoảng: 
+												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
+												VD: quana#1234__Trần Minh Nhân
+												
+										</p>
+
+										<p>
+											<span class='font-weight-bold'>* Lưu ý:</span>
+											Sau khi chuyển khoản quý khách chụp hình lại và gửi inbox cho fanpage <a  class='font-weight-bold' href="https://www.facebook.com/profile.php?id=100085568778678">Quana Nolan</a>
+										</p>
+									</div>
+
+									<div class="tab__content">
+									{{!-- <h2>Ember</h2> --}}
+										<p>
+											Momo:<span class='font-weight-bold'>0962165085</span> 
+											
+
+										</p>
+										<p>
+											<span class='font-weight-bold'>* Lưu ý:</span>
+											Sau khi chuyển khoản quý khách chụp hình lại và gửi inbox cho fanpage <a  class='font-weight-bold' href="https://www.facebook.com/profile.php?id=100085568778678">Quana Nolan</a>
+										</p>
+									</div>
+							
+								</div>
+						</div>
+
+						<div class="order__pay--summary">
+						
+							<div></div>
+							<div class="order__pay--summary--title">
+								Tổng tiền hàng
+							</div>
+							<div class="total__product--price">
+								 0 vnd
+							</div>
+
+
+							<div></div>
+							<div class="order__pay--summary--title">
+								Phí vận chuyển 
+							</div>
+							<div class="total__feeShip--price">
+								 0 vnd
+							</div>
+						
+
+
+							<div></div>
+							<div class="order__pay--summary--title">
+								Tổng thanh toán 
+							</div>
+							<div class="total__order--price">
+								 0 vnd
+							</div>
+						</div>
+						<div class="order__pay--bottom">
+							<p class="text-gray">
+								Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo <a href="#" class='font-weight-bold'>Điều khoản Qana Nolan</a>
+							</p>
+
+							{{> slideBtn title="Đặt hàng" class="order__btn"}}
+						</div>
+						
+					</div>
+			</div>
+	</div>
+</div>
+
+{{>modalUserInfor}}
+
+
+<script>
+
+
+	 try {
+			const userInfor = JSON.parse(localStorage.getItem('userInfor'));
+			const {name,phone,email,address} = userInfor;
+			function renderUserInfor () {
+					document.querySelector('.order__user--name').textContent = name;
+					document.querySelector('.order__user--phone').textContent = phone;
+					document.querySelector('.order__user--address').textContent = `${address.detailAddress}, ${address.ward}, ${address.district}, ${address.provinces}`;
+
+			}
+
+			renderUserInfor();
+
+	 }catch(err) {
+		console.log(err);
+	 }
+
+
+
+</script>
+
+
+
+
+<script>
+	// RENDER PRODUCT
+	function numberToMoney (price) {
+			const stringPrice = `${price}`;
+		return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' đ';
+		}
+
+	const cartBodyElement = document.querySelector('.cart__body');
+	 try {
+		const cartProductList = JSON.parse(localStorage.getItem('cartProductList'));
+
+		const cartBodyHTML = cartProductList.map((item)=> {
+				return `<div class="cart__row cart__body--row">
+											<div class="cart__item--main">
+												<div>
+													<img src="${item.cartItemImgUrl}" alt="">
+												</div>
+
+												<div>
+													<p>${item.cartItemName}</p>
+												</div>
+											
+
+												
+											</div>
+
+											<div class="cart__item--type">
+												<div>
+													Màu: <span class="cart__item--color">${item.cartItemColor}</span>
+												</div>
+												
+												<div>
+													Size: <span class="cart__item--size">${item.cartItemSize}</span>
+												</div>
+
+												
+											</div>
+
+											<div>${item.cartItemPriceString}</div>
+											<div>${item.cartItemAmount}</div>
+											<div>${numberToMoney(item.cartItemPrice*item.cartItemAmount)}</div>
+										</div>`
+		})
+
+	cartBodyElement.innerHTML = cartBodyHTML.join('')
+
+	 }catch(err) {
+		console.log(err);
+	 }
+
+
+
+	 try {
+		const userInfor = JSON.parse(localStorage.getItem("userInfor"));
+	    const cartProductList = JSON.parse(localStorage.getItem('cartProductList'));
+
+		const cartProductId = cartProductList.map((item)=> 
+		{
+			return {id:item.cartItemId,amount:item.cartItemAmount };
+		})
+
+		async function getData(url , data = {}) {
+
+
+				 const res = await fetch(url, {
+					method: 'POST', 
+					mode: 'cors', 
+					cache: 'no-cache', 
+					credentials: 'same-origin', 
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					redirect: 'follow', 
+					referrerPolicy: 'no-referrer', 
+					body :JSON.stringify(data)
+				})
+
+				return res;
+			}
+
+			getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
+			.then((res) => {
+				return res.json()
+			}).then(data => {
+				console.log(data);
+				const {fee,insurance_fee,ship_fee_only} = data.fee;
+				document.querySelector('.total__ship--fee').innerText = numberToMoney(fee);
+				document.querySelector('.insurance__fee').innerText = numberToMoney(insurance_fee);
+				document.querySelector('.ship__fee').innerText = numberToMoney(ship_fee_only);
+
+				document.querySelector('.total__product--price').innerText = numberToMoney(getTotalPrice());
+				document.querySelector('.total__feeShip--price').innerText = numberToMoney(fee);
+				document.querySelector('.total__order--price').innerText = numberToMoney(fee + getTotalPrice()) ;
+				
+
+				
+			}) 
+
+	 }catch (err) {
+		console.log(err)
+	 }
+
+			
+</script>
+
+
+
+<script>
+	// tabs click
+
+var items = document.querySelectorAll('.tab__item');
+var contents = document.querySelectorAll('.tab__content');
+
+var line = document.querySelector('.line');
+
+items.forEach(function (tab, index) {
+  var content = contents[index];
+  tab.onclick = function (e) {
+    line.style.width = this.offsetWidth + 'px';
+    line.style.left = this.offsetLeft + 'px';
+
+    document.querySelector('.tab__item.active').classList.remove('active');
+    document.querySelector('.tab__content.active').classList.remove('active');
+
+    tab.classList.add('active');
+    content.classList.add('active');
+  };
+});
+
+</script>

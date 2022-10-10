@@ -50,7 +50,8 @@ class CollectionsController {
 
     res.render('collections/maleProduct', {
       products: mutipleMongooseToObject(products),
-      path:getPathName(req)
+      path:getPathName(req),
+      pageTitle:`Sản phẩm Nam - ${process.env.DOMAINNAME}`
     });
   }
   async femaleProduct(req, res) {
@@ -62,7 +63,9 @@ class CollectionsController {
 
     res.render('collections/femaleProduct', {
       products: mutipleMongooseToObject(products),
-      path:getPathName(req)
+      path:getPathName(req),
+      pageTitle:`Sản phẩm Nữ - ${process.env.DOMAINNAME}`
+
 
     });
   }
@@ -75,7 +78,9 @@ class CollectionsController {
 
     res.render('collections/unisexProduct', {
       products: mutipleMongooseToObject(products),
-      path:getPathName(req)
+      path:getPathName(req),
+      pageTitle:`Sản phẩm Unisex - ${process.env.DOMAINNAME}`
+
 
     });
   }
@@ -92,7 +97,9 @@ class CollectionsController {
 
     res.render('collections/saleProduct', {
       products: mutipleMongooseToObject(saleProduct),
-      path:getPathName(req)
+      path:getPathName(req),
+      pageTitle:`Khuyến mãi- ${process.env.DOMAINNAME}`
+
 
     });
   }
@@ -116,7 +123,7 @@ class CollectionsController {
       {from:0, to:200000,valueString:"Dưới 200.000đ"},
       {from:200000, to:400000,valueString:"200.000đ-400.000đ"},
       {from:400000, to:1000000,valueString:"400.000đ-1.000.000đ"}, 
-      {from:1000000, to:99999999999,valueString:"Trên 1000000đ"}
+      {from:1000000, to:99999999999,valueString:"Trên 1.000.000đ"}
     ];
 
     
@@ -127,7 +134,9 @@ class CollectionsController {
       path:getPathName(req),
       brandList:mutipleMongooseToObject(brandList),
       listColor:uniqueColor,
-      priceRange
+      priceRange,
+      pageTitle:`Tất cả sản phẩm - ${process.env.DOMAINNAME}`
+
     });
   }
 
@@ -141,7 +150,9 @@ class CollectionsController {
   
     res.render('collections/newArrival', {
       products: mutipleMongooseToObject(products),
-      path:getPathName(req)
+      path:getPathName(req),
+      pageTitle:`Hàng mới - ${process.env.DOMAINNAME}`
+
     });
   }
 }

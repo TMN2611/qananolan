@@ -13,6 +13,9 @@ const ProductModel = require('../../app/models/Product');
   
       res.render('products/detailProduct', {
         productInfor: mongooseToObject(productInfor),
+        pageTitle:`${productInfor.productName}- ${process.env.DOMAINNAME}`
+
+
       });
     }
 

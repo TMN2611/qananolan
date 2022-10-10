@@ -10,14 +10,20 @@ class SiteController {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     const isSpecial = true;
     const products = await getProducts(isSpecial);
-    res.render('home',{products:mutipleMongooseToObject(products)});
+    res.render('home',
+    {products:mutipleMongooseToObject(products),pageTitle:`QANANOLAN - ${process.env.DOMAINNAME}`});
   }
 
 
 
   // [GET] /cart
   cart(req, res) {
-    res.render('cart');
+    res.render('cart',{pageTitle:`Giỏ hàng của bạn - ${process.env.DOMAINNAME}`});
+  }
+
+  // [GET] /cart
+  checkouts(req, res) {
+    res.render('cart',{pageTitle:`Giỏ hàng của bạn - ${process.env.DOMAINNAME}`});
   }
 }
 
