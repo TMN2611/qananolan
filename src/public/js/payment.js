@@ -12,7 +12,6 @@ const payBtn = document.getElementById('pay__btn');
             products:cartProductList,
             totalMoney:totalMoney,
         }
-        console.log(productInfor);
 
         if(localStorage.getItem('userInfor') === null) {
             $('#modalUserInfor').modal('show')

@@ -1,4 +1,4 @@
-const ProductModel = require("../models/Product")
+const DiscountModel = require("../models/Discount")
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const provincesJSON = require('../../resource/json/provinces.json')
 const { getProducts } = require('../../util/getDataFromDB')
@@ -14,12 +14,10 @@ class OrdersController {
       const token = req.params;
       console.log(token,Math.random);
 
-      // jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
-      //   console.log(decoded.data) // bar
-      // });
-    
+
       res.render('orders/checkouts')
   }
+
 }
 
 module.exports = new OrdersController();

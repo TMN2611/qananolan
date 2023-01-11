@@ -7,7 +7,7 @@ if(localListCart) {
 
 function numberToMoney (price) {
     const stringPrice = `${price}`;
-   return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' đ';
+   return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' +  ' <span class="px-2" style="font-size:10px"> VND </span>';
 }
 // getProductWithIdInCart
 async function getProductWithIdInCart () {
@@ -93,3 +93,10 @@ function getTotalPrice () {
                     },0)
                     return totalMoney;
 }
+
+// reset discount 
+
+function resetDiscount () {
+    localStorage.removeItem('discountCode');
+}
+resetDiscount();

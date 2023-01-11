@@ -428,7 +428,16 @@
 
           localStorage.setItem('userInfor',JSON.stringify(userInfor));
           $('#modalUserInfor').modal('hide');
-           window.location.pathname = `/order/checkouts/${JSON.parse(localStorage.getItem('token'))}`;
+
+           const cartProductList = JSON.parse(localStorage.getItem('cartProductList')) || [];
+           if(cartProductList.length === 0) {
+              window.location.pathname=`/cart`;
+           }
+           else {
+              window.location.pathname = `/order/checkouts/${JSON.parse(localStorage.getItem('token'))}`;
+           }
+
+          
 
       }
   

@@ -1,4 +1,5 @@
-const ProductModel = require("../models/Product")
+const ProductModel = require("../models/Product");
+const BrandModel = require("../models/Brand");
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const provincesJSON = require('../../resource/json/provinces.json')
 const { getProducts } = require('../../util/getDataFromDB')
@@ -9,12 +10,9 @@ class ApisController {
   //  [POST]  / products
   async productsWithFilter(req, res) {
 
-    console.log(req.body);
 
     let {gender="",brand="",color="",price=""} = req.body;
-    console.log(req.query);
 
-    console.log(gender.length)
 
     const products = await getProducts();
 
@@ -61,7 +59,6 @@ class ApisController {
         save = products.filter((product)=> {
           return  product.productPrice > from && product.productPrice <= to ;
         })
-        console.log(save.length);
         newProducts = newProducts.concat(save)
       })
 
@@ -85,12 +82,6 @@ class ApisController {
 
     }
   
-    
-   
-
-
-
-
      res.json({products:newProducts})
     
     // res.render('home',{products:mutipleMongooseToObject(products)});
@@ -136,13 +127,13 @@ class ApisController {
         }
         
       },0)
-      console.log("🚀 ~ file: ApisController.js ~ line 138 ~ ApisController ~ totalPrice ~ totalPrice", totalPrice)
+    
 
       const totalWeight = productInCart.reduce(function(sum,item) {
         const newItem = item[0];
         return sum + Number(newItem.weight * item["amount"]);
       },0)
-      console.log("🚀 ~ file: ApisController.js ~ line 146 ~ ApisController ~ totalWeight ~ totalWeight", totalWeight)
+  
   
     
       var url = `${process.env.GHTKDOMAINNAME}/services/shipment/fee?address=${userAdress.detailAddress}&province=${userAdress.provinces}&district=${userAdress.district}&ward=${userAdress.ward}&pick_street=${pickAdress.street}&pick_province=${pickAdress.provinces}&pick_district=${pickAdress.district}&pick_ward=${pickAdress.ward}&value=${totalPrice}&weight=${totalWeight}&deliver_option=&transport=road&pick__address=${pickAdress.address}`;
@@ -151,21 +142,20 @@ class ApisController {
 
 
       async function  caculateShipPrice (url) {
+				console.log("Thành công");
 
-
-
-    
-
-        const res = await axios.get(url,header )
+        const res = await axios.get(url,header );
         return res.data
       }
       
       
 
       const dataprice = await caculateShipPrice(encodeURI(url));
+  
+      const newdataprice = {...dataprice,orderWeight:totalWeight}
       
 
-      res.json(dataprice)
+      res.json(newdataprice)
 
   }
 
@@ -177,6 +167,13 @@ class ApisController {
       }, process.env.SECRET_KEY);
 
       res.json({token})
+  }
+  // GET /apis/brand-list
+
+  async getBrandList(req, res) {
+      const brandList =await BrandModel.find({});
+
+      res.json(brandList)
   }
 
  

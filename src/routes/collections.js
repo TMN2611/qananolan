@@ -11,5 +11,6 @@ router.get('/san-pham-nam', CollectionsController.maleProduct);
 router.get('/san-pham-nu', CollectionsController.femaleProduct);
 router.get('/unisex', CollectionsController.unisexProduct);
 router.get('/sale', CollectionsController.saleProduct);
+router.get('/brand/:name', CollectionsController.brandProduct);
 
 module.exports = router;

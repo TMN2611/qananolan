@@ -28,7 +28,6 @@ class SearchsController {
 
       });
 
-      console.log(searchedProduct);
 
       searchResult = searchedProduct
 

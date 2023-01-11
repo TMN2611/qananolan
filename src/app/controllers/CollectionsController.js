@@ -8,7 +8,6 @@ const BrandModel = require('../../app/models/Brand');
 
 function sort (products,sortBy) {
 
-  console.log(sortBy);
 
   if(sortBy =='newest') {
     //  ĐỢI LÀM CHỨC NĂNG THÊM SẢN PHẨM ĐỂ CÓ TRƯỜNG CREATEAT
@@ -20,9 +19,7 @@ function sort (products,sortBy) {
     })
   }
   else if(sortBy =='best-sale') {
-    console.log(products,"jaa");
     return products.sort(function(a,b) {
-      console.log(b.quantitySold);
       return b.quantitySold - a.quantitySold;
     })
   }
@@ -152,6 +149,25 @@ class CollectionsController {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
       pageTitle:`Hàng mới - ${process.env.DOMAINNAME}`
+
+    });
+  }
+
+  async brandProduct(req, res) {
+    const brandName = req.params.name;
+
+    let products = await ProductModel.find({ brand: brandName});
+    const {sortBy} = req.query;
+    if(sortBy) {
+      products= sort(products,sortBy);
+    }
+
+    res.render('collections/brandProduct', {
+      products: mutipleMongooseToObject(products),
+      path:getPathName(req),
+      brandName:brandName,
+      pageTitle:`Sản phẩm Unisex - ${process.env.DOMAINNAME}`
+
 
     });
   }

@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 
 
 async function requireToken(req, res, next) {
-    console.log(req.params)
     const {token} = req.params;
 
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {

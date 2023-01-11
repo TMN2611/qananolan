@@ -4,6 +4,7 @@ const productsRouter = require('./products');
 const searchsRouter = require('./search');
 const apisRouter = require('./apis');
 const ordersRouter = require('./order');
+const discountsRouter = require('./discount');
 
 function route(app) {
   // http method
@@ -13,6 +14,7 @@ function route(app) {
   app.use('/search', searchsRouter);
   app.use('/apis', apisRouter);
   app.use('/order', ordersRouter);
+  app.use('/discount', discountsRouter);
 
   app.use('/', siteRouter);
 }

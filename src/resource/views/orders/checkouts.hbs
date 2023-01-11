@@ -42,34 +42,7 @@
 									</div>
 									<div class="cart__body">
 										<div class="cart__row cart__body--row">
-											<div class="cart__item--main">
-												<div>
-													<img src="https://cf.shopee.vn/file/c4bc02a04d2d28259b9cd3821b465f54_tn" alt="">
-												</div>
-
-												<div>
-													<p>Lót giày chống rộng, chống rớt gót cao cấp, bảo vệ chân khi mang giày - lót giày giá sỉ - C03</p>
-												</div>
 											
-
-												
-											</div>
-
-											<div class="cart__item--type">
-												<div>
-													Màu: <span class="cart__item--color">black</span>
-												</div>
-												
-												<div>
-													Size: <span class="cart__item--size">46</span>
-												</div>
-
-												
-											</div>
-
-											<div>12.000</div>
-											<div>2</div>
-											<div>24.000</div>
 										</div>
 									</div>
 							</div>
@@ -206,6 +179,25 @@
 							
 								</div>
 						</div>
+						<div class="order__pay--discount py-5">
+
+							{{!-- <div>
+								<input type="text" id='discount__input'>
+								<button  type="submit" id='discount__submit'>
+									Sử dụng
+								</button>
+							</div>  --}}
+
+							<div>
+								<div class="container my-1">
+									<div class="discount__list row">
+									
+										
+									</div>
+								</div>
+							</div>
+								
+						</div>
 
 						<div class="order__pay--summary">
 						
@@ -229,6 +221,10 @@
 
 
 							<div></div>
+							<div class='discoust--show'></div>
+							<div class='originalTotalPrice'></div>
+							<div></div>
+
 							<div class="order__pay--summary--title">
 								Tổng thanh toán 
 							</div>
@@ -241,7 +237,7 @@
 								Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo <a href="#" class='font-weight-bold'>Điều khoản Qana Nolan</a>
 							</p>
 
-							{{> slideBtn title="Đặt hàng" class="order__btn"}}
+							{{> slideBtn disabled='disabled' title="Đặt hàng" class="order__btn"}}
 						</div>
 						
 					</div>
@@ -282,8 +278,15 @@
 	// RENDER PRODUCT
 	function numberToMoney (price) {
 			const stringPrice = `${price}`;
-		return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' đ';
+		return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' + '<span class="px-2" style="font-size:10px"> VND </span>';
 		}
+
+	let totalPrice = 0;
+	let productPrice = 0;
+	let shipmentFee = 0;
+	let isShipmentFeeRes = false;
+
+
 
 	const cartBodyElement = document.querySelector('.cart__body');
 	 try {
@@ -358,23 +361,42 @@
 				return res;
 			}
 
-			getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
+	 
+		
+getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 			.then((res) => {
 				return res.json()
 			}).then(data => {
-				console.log(data);
 				const {fee,insurance_fee,ship_fee_only} = data.fee;
-				document.querySelector('.total__ship--fee').innerText = numberToMoney(fee);
-				document.querySelector('.insurance__fee').innerText = numberToMoney(insurance_fee);
-				document.querySelector('.ship__fee').innerText = numberToMoney(ship_fee_only);
+				const orderWeight = data.orderWeight / 1000;
+			
+			
+				document.querySelector('.total__ship--fee').innerHTML = `${numberToMoney(fee)} <span class='total-weight'>(${orderWeight}kg)</span>`;
+				document.querySelector('.insurance__fee').innerHTML = numberToMoney(insurance_fee);
+				document.querySelector('.ship__fee').innerHTML = numberToMoney(ship_fee_only);
 
-				document.querySelector('.total__product--price').innerText = numberToMoney(getTotalPrice());
-				document.querySelector('.total__feeShip--price').innerText = numberToMoney(fee);
-				document.querySelector('.total__order--price').innerText = numberToMoney(fee + getTotalPrice()) ;
-				
+				document.querySelector('.total__product--price').innerHTML = numberToMoney(getTotalPrice());
 
-				
+				document.querySelector('.total__feeShip--price').innerHTML = numberToMoney(fee);
+				document.querySelector('.total__order--price').innerHTML = numberToMoney(fee + getTotalPrice()) ;
+				document.querySelector('.originalTotalPrice').innerHTML = numberToMoney(fee + getTotalPrice()) ;
+
+				totalPrice = fee + getTotalPrice();
+				productPrice = getTotalPrice();
+				shipmentFee = fee;
+				isShipmentFeeRes = true;
+
+
+				const orderBtnDisabled = document.querySelector('.btn-container.disabled')
+				orderBtnDisabled.classList.remove('disabled');
+
+				const btn = orderBtnDisabled.querySelector('button');
+				btn.removeAttribute('disabled');
+			
+	
 			}) 
+	 
+	 
 
 	 }catch (err) {
 		console.log(err)
@@ -406,5 +428,234 @@ items.forEach(function (tab, index) {
     content.classList.add('active');
   };
 });
+
+</script>
+
+
+<script>
+	// RENDER DISCOUNT
+
+				const cartProductList = JSON.parse(localStorage.getItem('cartProductList')) || [];
+				const totalPriceForLoadDiscount = cartProductList.reduce((total,curr,index)=> {
+									return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
+								},0)
+
+			
+				fetch(`/discount/discount-list?total=${totalPriceForLoadDiscount}`).then(res=> res.json()).then((data)=> {
+								const {discountList} = data
+								const discountHTML = discountList.map((discount)=> {
+									return `	<div class="col-sm-4">
+													<div class="coupon bg-white rounded mb-3 d-flex justify-content-between">
+																		
+														<div class="kiri p-3">
+																			<div class="icon-container ">
+																				
+																						<div class="icon-container_box">
+																							<img src="data:image/png;base64,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" width="85" alt="totoprayogo.com" class="" />
+																						</div>
+																					</div>
+																				</div>
+																				<div class="tengah py-3 d-flex w-100 justify-content-start">
+																					<div>
+																						<span class="discount__number badge badge-success">${discount.discountName}</span>
+																						<h3 class="lead">Điều kiện</h3>
+																						<p class="text-muted mb-0">${discount.conditionText}</p>
+																					</div>
+																				</div>
+																				<div class="kanan">
+																					<div class="info m-3 d-flex align-items-center">
+																						<div class="w-100">
+																							<div class="block">
+																								<span class="time font-weight-light">
+																									<span>19 days</span>
+																								</span>
+																							</div>
+																							<button class="btn btn-lg btn-outline-success btn-block use-discount-btn"
+																							data-discountId = ${discount._id} data-discountType = ${discount.type}>
+																								
+																								Sử dụng
+																							</button>
+																						</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>`
+								});
+								document.querySelector('.discount__list').innerHTML = discountHTML.join("")
+							
+								
+							}).then(()=> {
+								const useDiscountBtn = document.querySelectorAll('.use-discount-btn');
+						
+								useDiscountBtn.forEach((item)=> {
+									item.addEventListener('click',(e)=> {
+										const id = item.dataset.discountid;
+
+										document.querySelector('.originalTotalPrice').style.textDecoration = 'line-through';
+										
+
+										if(isShipmentFeeRes) {
+											fetch('/discount/get-discount', {
+												method: 'POST',
+												headers: {
+													'Accept': 'application/json',
+													'Content-Type': 'application/json'
+												},
+												body: JSON.stringify(
+													{ 
+														"id": id,
+														"shipmentFee": shipmentFee,
+														"totalPrice":totalPrice,
+														productPrice
+													}
+												)
+											})
+											.then(response => response.json())
+											.then(response => {
+												e.target.disabled = true;
+
+												console.log(response)
+
+												const {decrease,type,unit,currentPrice,newFee,discountName,message} = response;
+
+												if(message) {
+													alert(message);
+													return ;
+												}
+												
+
+												function changePriceView(shipmentFee,productPrice,type) {
+													const totalPriceElement = document.querySelector('.total__order--price');
+
+													const totaFeeShipElement = document.querySelector('.total__feeShip--price');
+
+													const productPriceElement = document.querySelector('.total__product--price');
+
+													totaFeeShipElement.innerHTML = numberToMoney(shipmentFee);
+
+													productPriceElement.innerHTML = numberToMoney(productPrice);
+
+													totalPriceElement.innerHTML = numberToMoney(shipmentFee + productPrice);
+
+													const listUseDiscoutBtn = document.querySelectorAll('.use-discount-btn');
+													console.log("🚀 ~ file: checkouts.hbs:560 ~ changePriceView ~ listUseDiscoutBtn", listUseDiscoutBtn)
+
+													listUseDiscoutBtn.forEach((item)=> {
+														if(item.dataset.discounttype === type ) {
+															console.log("có")
+															item.disabled = true;
+														}
+													})
+
+												} 
+
+												function loadDiscountSelected(id) 
+												
+												{
+
+
+													const discountCode = JSON.parse(localStorage.getItem("discountCode")) || [];
+
+													let isSaved = false; 
+
+													discountCode.forEach((item)=> {
+														if(item.id === id)  {
+															isSaved = true;
+														}
+													});
+
+													if(!isSaved) {
+															localStorage.setItem('discountCode',JSON.stringify([...discountCode,{id,discountName}]));
+													}
+
+													
+													
+																	
+													
+
+													const newDiscountCode = JSON.parse(localStorage.getItem("discountCode")) || [];
+
+													const discountShowElement = document.querySelector('.discoust--show');
+
+													const discountShowHTML = newDiscountCode.map((item)=> {
+														return `<span class="discount__number badge badge-success">${item.discountName}</span>`
+													})
+
+													discountShowElement.innerHTML = discountShowHTML.join('');
+
+
+
+												}
+
+
+												
+											
+
+												if(type=='price') {
+								
+													productPrice = newFee;
+													changePriceView(shipmentFee,productPrice,type);
+
+													loadDiscountSelected(id);
+													
+												}
+												else if(type=='ship') {
+													shipmentFee = newFee;
+													changePriceView(shipmentFee,productPrice,type);
+													
+													loadDiscountSelected(id);
+
+												}
+
+
+											})
+										}
+									})
+									
+								})
+						})
+								
+								
+</script>
+
+
+<script>
+	const orderBtn = document.querySelector('#order__btn');
+
+	orderBtn.addEventListener("click",(e)=> {
+
+		try {
+			const userInfor = JSON.parse(localStorage.getItem("userInfor"));
+			const productInfor = JSON.parse(localStorage.getItem("cartProductList"));
+			const shipmentFee = document.querySelector('.total__feeShip--price').innerHTML;
+			
+
+			const totalPrice = Number(document.querySelector('.total__order--price').innerHTML);
+
+			const orderPayOption = document.querySelector('.order__pay--option .tab__item.active').innerText.trim();
+			
+			const orderData = {
+				userInfor,
+				productInfor,
+				orderPayOption
+
+			}
+			console.log(orderData,"test");
+
+
+		}
+		catch(err) {
+		console.log(err);
+		alert("Có lỗi , vui lòng thử lại");
+
+		}
+	
+	})
+
+</script>
+
+<script>
+	
+
 
 </script>

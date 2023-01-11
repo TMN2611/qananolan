@@ -61,7 +61,6 @@ NumeralHelper.registerHelpers(Handlebars);
 // Handlebar helper
 Handlebars.registerHelper('activeFirstSize', (productInforObject) => {
   const productSizeList = productInforObject.data.root.productInfor.productSize;
-  console.log(productSizeList);
   const selectBtnHtml =  productSizeList.map((size, index) => {
       if(index === 0 ) {          
         return `<li class="selectSize__btn--item active">${size}</li>`

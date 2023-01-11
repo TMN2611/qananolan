@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
 function numberToMoney (price) {
     const stringPrice = `${price}`;
-   return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' đ';
+    return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' + ' <span class="px-2" style="font-size:10px"> VND </span>';
 }
 
 // Render list cart function
@@ -44,7 +44,7 @@ function renderListCart (localListCart) {
 
                             <div class="cart__item--content">
 
-                                <img src="/img/—Pngtree—cancel vector icon_4236963.png" alt="" class="cart__item--deleteItem">
+                                <img src="/img/Icons/cancel--black--circle.png" alt="" class="cart__item--deleteItem">
                                 <a href="/products/${item.cartItemSlug}" class="cart__item--title font-weight-bold">
                                     ${item.cartItemName}
                                 </a>
@@ -95,7 +95,7 @@ function renderListCart (localListCart) {
 
         
 
-         document.querySelector('.cart__total--money').textContent = numberToMoney(totalMoney);
+         document.querySelector('.cart__total--money').innerHTML = numberToMoney(totalMoney);
 
          // total product
          const totalProduct = localListCart.reduce((total,curr,index)=> {

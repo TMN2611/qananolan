@@ -1,7 +1,8 @@
 .order {
     & .container {
-        background-color:#f1f1f191;
+        // background-color:#f1f1f191;
         padding-block :30px;
+        border-radius: 10px;
     }
     &__deco{
         height: 3px;
@@ -20,12 +21,12 @@
         display:flex;
         align-items: center;
         font-size: 2rem;
-        color: #ee4d2d;
+        color: #2B3A55;
         margin-bottom: 20px;
         text-transform: capitalize;
         &--icon {
             margin-right:10px;
-            font-size: 3rem;
+            font-size: 2rem;
         }
     }
     &__user {
@@ -111,7 +112,7 @@
 
 // Tab select order option
 .tabs {
-    --choicePayObtion--color:#c23564;
+    --choicePayObtion--color:#CE7777;
     display: flex;
     color: var(--choicePayObtion--color);
     position: relative;
@@ -235,4 +236,139 @@
     font-size: 29px;
     font-weight: bold;
     color:$price-text--color;
+}
+
+.discount {
+    &__number {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    &__input {
+
+    }
+   
+    &__list {
+        margin-top: 20px;
+        cursor: pointer;
+        display: -webkit-flex;
+        display: flex;
+        align-items: center;
+        gap:10px;
+        flex-wrap: wrap;
+        color: #338dbc;
+
+    }
+    &__item {
+        position: relative;
+        border-radius: 3px;
+        background: #fff;
+        font-weight: 700;
+        color: #338dbc;
+        border: 1px solid #338dbc;
+
+        overflow: hidden;
+        padding: 5px 10px !important;
+        font-size: 1.6rem;
+        span {
+            line-height: 1.5;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        &::before {
+
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #338dbc;
+            background: #fff;
+            z-index: 1;
+            left: -7px;
+            top: 50%;
+            position: absolute;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        &::after {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #338dbc;
+            background: #fff;
+            z-index: 1;
+            right: -7px;
+            top: 50%;
+            position: absolute;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.discount__list.row {
+    & > div {
+        border:1px solid $border-color;
+    }
+}
+
+#discount {
+    &__input {
+        padding:5px 10px;
+    }
+    &__submit {
+        padding: 5px 10px;
+        background-color:$green--color;
+        color:white;
+        border-radius: 3px;
+    }
+}
+
+.kiri  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.coupon .kanan {
+    border-left: 1px dashed #ddd;
+    width: 40% !important;
+    position:relative;
+}
+
+.coupon .kanan .info::after, .coupon .kanan .info::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #dedede;
+    border-radius: 100%;
+}
+.coupon .kanan .info::before {
+    top: -10px;
+    left: -10px;
+}
+
+.coupon .kanan .info::after {
+    bottom: -10px;
+    left: -10px;
+}
+.coupon .time {
+    font-size: 1.6rem;
+}
+
+.discoust--show {
+    justify-content:flex-end;
+    gap:5px;
+}
+.total-weight {
+    color:black;
+    font-size: 1.3rem;
+}
+.originalTotalPrice {
+    justify-content: flex-end;
+    transform:translateY(23px);
+    // font-size: 18px;
+}
+.order__pay--summary {
+    font-size: 1.9rem;
 }
