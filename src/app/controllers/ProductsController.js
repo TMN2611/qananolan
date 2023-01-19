@@ -10,12 +10,12 @@ const ProductModel = require('../../app/models/Product');
     async productDetail(req, res) {
       const slug = req.params.slug;
       const productInfor = await ProductModel.findOne({slug:slug});
+      const productAvatar = mongooseToObject(productInfor).productImg[0];
   
       res.render('products/detailProduct', {
         productInfor: mongooseToObject(productInfor),
-        pageTitle:`${productInfor.productName}- ${process.env.DOMAINNAME}`
-
-
+        pageTitle:`${productInfor.productName}- ${process.env.DOMAINNAME}`,
+        productAvatar
       });
     }
 
@@ -24,7 +24,6 @@ const ProductModel = require('../../app/models/Product');
       const id = req.params.id;
       const productInfor = await ProductModel.findOne({_id:id});
       res.json(productInfor);
-    
     }
   }
   

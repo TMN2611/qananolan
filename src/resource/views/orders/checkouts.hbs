@@ -278,7 +278,7 @@
 	// RENDER PRODUCT
 	function numberToMoney (price) {
 			const stringPrice = `${price}`;
-		return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' + '<span class="px-2" style="font-size:10px"> VND </span>';
+		return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + ' ' + '<span class="px-2" style="font-size:10px"> VND </span>';
 		}
 
 	let totalPrice = 0;
@@ -366,23 +366,28 @@
 getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 			.then((res) => {
 				return res.json()
-			}).then(data => {
+			}).then( async data => {
+
 				const {fee,insurance_fee,ship_fee_only} = data.fee;
 				const orderWeight = data.orderWeight / 1000;
+
+				const totalPriceFromFetch =await getTotalPrice();
 			
 			
 				document.querySelector('.total__ship--fee').innerHTML = `${numberToMoney(fee)} <span class='total-weight'>(${orderWeight}kg)</span>`;
 				document.querySelector('.insurance__fee').innerHTML = numberToMoney(insurance_fee);
 				document.querySelector('.ship__fee').innerHTML = numberToMoney(ship_fee_only);
 
-				document.querySelector('.total__product--price').innerHTML = numberToMoney(getTotalPrice());
+				document.querySelector('.total__product--price').innerHTML = numberToMoney(totalPriceFromFetch);
+
+				
 
 				document.querySelector('.total__feeShip--price').innerHTML = numberToMoney(fee);
-				document.querySelector('.total__order--price').innerHTML = numberToMoney(fee + getTotalPrice()) ;
-				document.querySelector('.originalTotalPrice').innerHTML = numberToMoney(fee + getTotalPrice()) ;
+				document.querySelector('.total__order--price').innerHTML = numberToMoney(fee + totalPriceFromFetch) ;
+				document.querySelector('.originalTotalPrice').innerHTML = numberToMoney(fee + totalPriceFromFetch) ;
 
-				totalPrice = fee + getTotalPrice();
-				productPrice = getTotalPrice();
+				totalPrice = fee + totalPriceFromFetch;
+				productPrice = totalPriceFromFetch;
 				shipmentFee = fee;
 				isShipmentFeeRes = true;
 
@@ -486,6 +491,8 @@ items.forEach(function (tab, index) {
 								
 							}).then(()=> {
 								const useDiscountBtn = document.querySelectorAll('.use-discount-btn');
+								
+
 						
 								useDiscountBtn.forEach((item)=> {
 									item.addEventListener('click',(e)=> {
@@ -622,25 +629,55 @@ items.forEach(function (tab, index) {
 <script>
 	const orderBtn = document.querySelector('#order__btn');
 
-	orderBtn.addEventListener("click",(e)=> {
+	orderBtn.addEventListener("click",async (e)=> {
 
 		try {
 			const userInfor = JSON.parse(localStorage.getItem("userInfor"));
 			const productInfor = JSON.parse(localStorage.getItem("cartProductList"));
+			
+
+			const discountCodeList = JSON.parse(localStorage.getItem("discountCode"))|| [] ;
+			const discountCode=discountCodeList.map((item)=> item.id) ;
+
 			const shipmentFee = document.querySelector('.total__feeShip--price').innerHTML;
 			
 
-			const totalPrice = Number(document.querySelector('.total__order--price').innerHTML);
+			const totalPriceFromFetch =await getTotalPrice();
+
 
 			const orderPayOption = document.querySelector('.order__pay--option .tab__item.active').innerText.trim();
 			
 			const orderData = {
 				userInfor,
 				productInfor,
-				orderPayOption
+				orderPayOption,
+				discountCode,
+				totalPriceFromClient:totalPriceFromFetch 
 
 			}
-			console.log(orderData,"test");
+
+			fetch('/order/handle-order', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(orderData)
+			})
+			.then(response => response.json())
+			.then((response) => {
+
+
+					alert(response.message);
+					if(!response.isError) {
+						window.location.pathname='/home';
+						localStorage.setItem('cartProductList',"[]") 
+						localStorage.setItem('discountCode',"[]")
+					}
+
+
+
+			})
 
 
 		}

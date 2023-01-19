@@ -7,6 +7,7 @@ const ApisController = require('../app/controllers/ApisController');
 router.post('/productsWithFilter', ApisController.productsWithFilter);
 router.get('/provinces', ApisController.getProvinces);
 router.post('/calculate-ship-price', ApisController.calculateShipPrice);
+router.post('/get-total-price', ApisController.getTotalPrice);
 router.get('/brand-list', ApisController.getBrandList);
 
 router.get('/token', ApisController.generateToken);

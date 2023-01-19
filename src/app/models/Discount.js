@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var BrandSchema = mongoose.Schema(
   {
+    isAvailable: Boolean,
     discountName: String,
     decrease: Number,
     condition:String,

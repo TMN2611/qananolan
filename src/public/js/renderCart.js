@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
 function numberToMoney (price) {
     const stringPrice = `${price}`;
-    return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' + ' <span class="px-2" style="font-size:10px"> VND </span>';
+    return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + ' ' + ' <span class="px-2" style="font-size:10px"> VND </span>';
 }
 
 // Render list cart function

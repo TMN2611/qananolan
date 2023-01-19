@@ -5,6 +5,7 @@ const provincesJSON = require('../../resource/json/provinces.json')
 const { getProducts } = require('../../util/getDataFromDB')
 const axios = require('axios').default;
 var jwt = require('jsonwebtoken');
+const {calculateShipPrice} = require('../../util/calculatePriceBeforeSaveToDB')
 
 class ApisController {
   //  [POST]  / products
@@ -92,70 +93,14 @@ class ApisController {
     res.json(provincesJSON);
   }
 
-  // [POST] /apis/calculte-ship-pricef
+  // [POST] /apis/calculte-ship-price
   async calculateShipPrice(req , res) {
 
-
-
    const data =  req.body;
-    const {address:userAdress,cartProductId} = data      
-      const pickAdress = {
-          ward:"Tây Thạnh",
-          district:"Tân Phú",
-          provinces:"Hồ Chí Minh",
-          street: "Lê Trọng Tấn",
-          adress: "140 Lê Trọng Tấn",
-      }
 
-
-      const productInCart = await Promise.all(
-        cartProductId.map(async item => {
-          const res = await ProductModel.find({_id:item.id})
-          const resObject = [...res];
-          resObject.amount = item.amount;
-
-          return resObject
-        })
-      );
-      const totalPrice = productInCart.reduce((sum, item)=> {
-        const newItem = item[0];
-        if(newItem.sale > 0) {
-          return sum + (Number(newItem.productSalePrice)*item["amount"])
-        }
-        else {
-          return sum + (newItem.productPrice * item["amount"])
-        }
-        
-      },0)
-    
-
-      const totalWeight = productInCart.reduce(function(sum,item) {
-        const newItem = item[0];
-        return sum + Number(newItem.weight * item["amount"]);
-      },0)
-  
-  
-    
-      var url = `${process.env.GHTKDOMAINNAME}/services/shipment/fee?address=${userAdress.detailAddress}&province=${userAdress.provinces}&district=${userAdress.district}&ward=${userAdress.ward}&pick_street=${pickAdress.street}&pick_province=${pickAdress.provinces}&pick_district=${pickAdress.district}&pick_ward=${pickAdress.ward}&value=${totalPrice}&weight=${totalWeight}&deliver_option=&transport=road&pick__address=${pickAdress.address}`;
-
-      const header = {"headers":{"Token":process.env.GHTKTOKEN}};
-
-
-      async function  caculateShipPrice (url) {
-				console.log("Thành công");
-
-        const res = await axios.get(url,header );
-        return res.data
-      }
+      const newDataprice =await calculateShipPrice(data);
       
-      
-
-      const dataprice = await caculateShipPrice(encodeURI(url));
-  
-      const newdataprice = {...dataprice,orderWeight:totalWeight}
-      
-
-      res.json(newdataprice)
+      res.json(newDataprice)
 
   }
 
@@ -175,6 +120,22 @@ class ApisController {
 
       res.json(brandList)
   }
+
+
+  //  POST /apis/get-total-price
+
+  async getTotalPrice(req, res) {
+
+    let cartProductList  = req.body;
+
+    const totalMoney = cartProductList.reduce((total,curr,index)=> {
+      return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
+    },0)
+
+    res.json(totalMoney)
+}
+
+
 
  
 }

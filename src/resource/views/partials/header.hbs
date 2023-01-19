@@ -129,6 +129,48 @@
 </div>
 
 
+<header class="header">
+          <div class="header-container">
+            <div class="header-logo">
+              <img srcset="./images/Logo.png 2x" alt="" class="header-logo-img" />
+            </div>
+            <div class="menu-toggle hiddenOnPc">
+              <span></span><span></span><span></span>
+            </div>
+                <div class="overlay">
+                    <ul class="menu">
+                      <li class="menu-item">
+                        <a href="#" class="menu-link">About</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="#" class="menu-link">Features</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="#" class="menu-link">Pricing</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="#" class="menu-link">Testimonials</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="#" class="menu-link">Help</a>
+                      </li>
+
+                      <li class="menu-item menu-item--auth">
+                        <a href="#" class="header-login hiddenOnPc">Login</a>
+                        <a href="#" class="button hiddenOnPc">Signup</a>
+                      </li>
+                    </ul>
+                </div>
+
+
+            <div class="header-auth">
+              <a href="#" class="header-login">Login</a>
+              <a href="#" class="button">Signup</a>
+            </div>
+          </div>
+</header>
+
+
 <script>
 const doc = document.querySelector.bind(document);
 const docs = document.querySelectorAll.bind(document);
@@ -184,4 +226,27 @@ App.start();
       brandListElement.innerHTML = listBrandHTML.join('');
 
     })
+</script>
+
+
+
+{{!-- Toggle header --}}
+<script>
+  
+  (() => {
+    const isShow = 'isShow';
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    toggleBtn.addEventListener('click', e => {
+      e.stopPropagation();
+
+      menu.classList.add(isShow);
+    });
+    window.addEventListener('click', function (e) {
+      if (!menu.contains(e.target)) {
+        console.log(menu.contains(e.target));
+        menu.classList.remove(isShow);
+      }
+    });
+  })();
 </script>

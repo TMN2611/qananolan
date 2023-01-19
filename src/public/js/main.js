@@ -7,7 +7,7 @@ if(localListCart) {
 
 function numberToMoney (price) {
     const stringPrice = `${price}`;
-   return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' ' +  ' <span class="px-2" style="font-size:10px"> VND </span>';
+   return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + ' ' +  ' <span class="px-2" style="font-size:10px"> VND </span>';
 }
 // getProductWithIdInCart
 async function getProductWithIdInCart () {
@@ -85,13 +85,32 @@ getToken();
 
 
 
-function getTotalPrice () {
+async function getTotalPrice () {
 
     const cartProductList = JSON.parse(localStorage.getItem('cartProductList')) || [];
-    const totalMoney = cartProductList.reduce((total,curr,index)=> {
-                        return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
-                    },0)
-                    return totalMoney;
+
+
+   
+
+    let totalMoney = await fetch('/apis/get-total-price', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cartProductList)
+    })
+    .then(response => response.json())
+    .then((response) => {
+    console.log("🚀 ~ file: main.js:103 ~ .then ~ response", response)
+
+        return response;
+
+    })
+    
+
+    return totalMoney;
+    
 }
 
 // reset discount 
