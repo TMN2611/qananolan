@@ -4,12 +4,12 @@
   <div class='header__top'>
     <div class='container'>
       <div class='row'>
-        <div class='col-lg-6 col-sm-9 col-9'>
+        <div class='col-lg-6 col-sm-6 col-6'>
           <div class='header__top-hotline'>
             <a href='tel:0962165084' class='hotline__link'>Hotline: 0962165084</a>
           </div>
         </div>
-        <div class='col-lg-6 col-sm-3 col-3'>
+        <div class='col-lg-6 col-sm-6 col-6'>
           <div class='header__top-systemStore'>
             <a href='#' class='systemStore__link'>Store System</a>
           </div>
@@ -18,110 +18,122 @@
       </div>
     </div>
   </div>
-  <div class='header__main'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-12 col-lg-2'>
-          <div class='header__logo'>
-            <a href='/' class='header__logo-link'>
-              <img
-                class='header__logo-img hiddenonMobile'
-                src='/img/header__logo.png'
-                alt='header__logo'
-              />
-            </a>
-          </div>
-        </div>
-        <div class='col-lg-6 col-sm-12 col-12' style='position:unset'>
-          <nav class='header__navigation'>
-            <ul class='header__navigation-list'>
-              <li class='header__navigation-item nav--level1__brand'>
-                <a href='/collections/tat-ca-san-pham' class='header__navigation-link'>Sản phẩm</a>
-                <div class=''>
-                  <div class='row nav--level2__brand'>
-                    <div class='col-md-3 brand__menu'>
-                      <ul class='brand-menu__list row'>
-                       
-                      </ul>
-                    </div>
 
-                    <div class='col-md-9 brand__imglink'>
-                      <div class='row'>
-                        <div class='col-md-4'>
-                          <a href='#'>
-                            <img
-                              class='brand-img'
-                              src='/img/brand_menu__img/menu_img_1_1.jpg'
-                              alt=''
-                            />
-                          </a>
-                        </div>
-                        <div class='col-md-4'>
-                          <a href='#'>
-                            <img
-                              class='brand-img'
-                              src='/img/brand_menu__img/menu_img_1_2.jpg'
-                              alt=''
-                            />
-                          </a>
+  <div class='header__main'>
+    <div class="container">
+            <div class="header-container">
+              <div class="header-logo">
+                  <a href='/' class='header__logo-link'>
+                  <img
+                    class='header__logo-img'
+                    src='/img/header__logo.png'
+                    alt='header__logo'
+                  />
+                </a>
+              </div>
+
+              <div class="header-right">
+
+                 
+
+                  <div class="menu-toggle hiddenOnPc">
+                    <span></span><span></span><span></span>
+                  </div>
+              
+                  <div class="menu--wrapper">
+                      <div class="menu--overlay">
+
+                      </div>
+                      <ul class="menu">
+                            <li class='menuCloseBtn'>
+                              <i class="fa-solid fa-xmark"></i>
+                            </li>
+                            <li class='header__navigation-item nav--level1__brand'>
+                      <a href='/collections/tat-ca-san-pham' class='header__navigation-link'>Sản phẩm </a>
+                      <i class="fa-solid fa-angle-down"></i>
+                      <div class=''>
+                        <div class='row nav--level2__brand'>
+                          <div class='col-md-3 brand__menu'>
+                            <ul class='brand-menu__list row'>
+                              
+                            </ul>
+                          </div>
+
+                          <div class='col-md-9 brand__imglink'>
+                            <div class='row'>
+                              <div class='col-md-4'>
+                                <a href='#'>
+                                  <img
+                                    class='brand-img'
+                                    src='/img/brand_menu__img/menu_img_1_1.jpg'
+                                    alt=''
+                                  />
+                                </a>
+                              </div>
+                              <div class='col-md-4'>
+                                <a href='#'>
+                                  <img
+                                    class='brand-img'
+                                    src='/img/brand_menu__img/menu_img_1_2.jpg'
+                                    alt=''
+                                  />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+
+                    </li>
+                    <li class='header__navigation-item'>
+                      <a href='/collections/san-pham-moi' class='header__navigation-link'>New</a>
+                    </li>
+                    <li class='header__navigation-item'>
+                      <a href='/collections/san-pham-nam' class='header__navigation-link'>Nam</a>
+                    </li>
+                    <li class='header__navigation-item'>
+                      <a href='/collections/san-pham-nu' class='header__navigation-link'>Nữ</a>
+                    </li>
+                    <li class='header__navigation-item'>
+                      <a href='/collections/unisex' class='header__navigation-link'>Unisex</a>
+                    </li>
+                    <li class='header__navigation-item'>
+                      <a href='/collections/sale' class='header__navigation-link'><span class='text-orange'>Sale</span></a>
+                    </li>
+                      </ul>
+                  </div>
+
+                   <div class='header__icon'>
+                      <ul class='header__icon-list'>
+                        <li class='header__icon-item icon_search'>
+                          <a href='#' class='header__icon__link'>
+                            <i class='search-icon fas fa-search-minus'></i>
+                          </a>
+                          <form  class='form__search' action="/search">
+                          <input type="hidden" name='type' value='product'>
+                            <input
+                              type='text'
+                              name='text'
+                              placeholder='Search'
+                              id='search__input'
+                            />
+                            <button type='submit' id='search__submit'>
+                              <i class='search__submit__icon fas fa-search'></i>
+                            </button>
+                          </form>
+                        </li>
+
+
+                          <li class='header__icon-item icon_cart'>
+                              <a href='/cart' class='header__icon__link'>
+                                <i class='cart-icon fas fa-shopping-bag'></i>
+                              </a>
+                          </li>
+
+                      </ul>
                   </div>
                 </div>
-
-              </li>
-              <li class='header__navigation-item'>
-                <a href='/collections/san-pham-moi' class='header__navigation-link'>New</a>
-              </li>
-              <li class='header__navigation-item'>
-                <a href='/collections/san-pham-nam' class='header__navigation-link'>Nam</a>
-              </li>
-              <li class='header__navigation-item'>
-                <a href='/collections/san-pham-nu' class='header__navigation-link'>Nữ</a>
-              </li>
-              <li class='header__navigation-item'>
-                <a href='/collections/unisex' class='header__navigation-link'>Unisex</a>
-              </li>
-              <li class='header__navigation-item'>
-                <a href='/collections/sale' class='header__navigation-link'><span class='text-orange'>Sale</span></a>
-              </li>
-              
-            </ul>
-          </nav>
-        </div>
-        <div class='col-sm-12 col-12 col-lg-4'>
-          <div class='header__icon'>
-            <ul class='header__icon-list'>
-              <li class='header__icon-item icon_search'>
-                <a href='#' class='header__icon__link'>
-                  <i class='search-icon fas fa-search-minus'></i>
-                </a>
-                <form  class='form__search' action="/search">
-                <input type="hidden" name='type' value='product'>
-                  <input
-                    type='text'
-                    name='text'
-                    placeholder='Search'
-                    id='search__input'
-                  />
-                  <button type='submit' id='search__submit'>
-                    <i class='search__submit__icon fas fa-search'></i>
-                  </button>
-                </form>
-              </li>
-
-
-                <li class='header__icon-item icon_cart'>
-                    <a href='/cart' class='header__icon__link'>
-                      <i class='cart-icon fas fa-shopping-bag'></i>
-                    </a>
-                </li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
+            </div>
     </div>
   </div>
 
@@ -129,46 +141,7 @@
 </div>
 
 
-<header class="header">
-          <div class="header-container">
-            <div class="header-logo">
-              <img srcset="./images/Logo.png 2x" alt="" class="header-logo-img" />
-            </div>
-            <div class="menu-toggle hiddenOnPc">
-              <span></span><span></span><span></span>
-            </div>
-                <div class="overlay">
-                    <ul class="menu">
-                      <li class="menu-item">
-                        <a href="#" class="menu-link">About</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#" class="menu-link">Features</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#" class="menu-link">Pricing</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#" class="menu-link">Testimonials</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#" class="menu-link">Help</a>
-                      </li>
 
-                      <li class="menu-item menu-item--auth">
-                        <a href="#" class="header-login hiddenOnPc">Login</a>
-                        <a href="#" class="button hiddenOnPc">Signup</a>
-                      </li>
-                    </ul>
-                </div>
-
-
-            <div class="header-auth">
-              <a href="#" class="header-login">Login</a>
-              <a href="#" class="button">Signup</a>
-            </div>
-          </div>
-</header>
 
 
 <script>
@@ -236,16 +209,25 @@ App.start();
   (() => {
     const isShow = 'isShow';
     const toggleBtn = document.querySelector('.menu-toggle');
+    const menuWrapper = document.querySelector('.menu--wrapper');
     const menu = document.querySelector('.menu');
-    toggleBtn.addEventListener('click', e => {
-      e.stopPropagation();
+    let menuCloseBtn = document.querySelector('.menuCloseBtn');
+    console.log("🚀 ~ file: header.hbs:212 ~ menuCloseBtn", menuCloseBtn)
 
-      menu.classList.add(isShow);
-    });
+    function showMenu(e) {
+      e.stopPropagation();
+      menuWrapper.classList.add(isShow);
+    }
+    function closeMenu() {
+      menuWrapper.classList.remove(isShow);
+    }
+    toggleBtn.addEventListener('click', showMenu);
+    menuCloseBtn.addEventListener('click', closeMenu);
+
     window.addEventListener('click', function (e) {
       if (!menu.contains(e.target)) {
         console.log(menu.contains(e.target));
-        menu.classList.remove(isShow);
+        closeMenu();
       }
     });
   })();

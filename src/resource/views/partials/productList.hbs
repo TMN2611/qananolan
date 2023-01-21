@@ -1,15 +1,15 @@
 <div  {{#if haveFilter}}class="col-md-9 col-sm-12 col-xs-12"{{/if}} class='col-md-12 col-sm-12 col-xs-12'>
-  <div class='d-flex align-items-center justify-content-between mb-5'>
-    <h2 class='collections__type'>{{collectionType}}</h2>
-    <div class='d-flex align-items-center'>
+  <div class='row d-flex align-items-center justify-content-between mb-5'>
+    <h2 class='collections__type col-md-12 col-sm-12 col-xs-12'>{{collectionType}}</h2>
+    <div class='sortByBtnList--contaiter d-flex align-items-center col-md-12 col-sm-12 col-xs-12'>
       <p>Sắp xếp theo</p>
       <form action="{{path}}">
-        <div class="d-flex">
-            <button class="button-87" role="button" type="submit" value='newest' name='sortBy'>Mới nhất</button>
+        <div class="sortByBtnList">
+            <button class="button-87 sortByBtn" role="button" type="submit" value='newest' name='sortBy'>Mới nhất</button>
 
-            <button class="button-87" role="button" type="submit" value='price-ascending' name='sortBy'>Giá: Thấp tới cao</button>
+            <button class="button-87 sortByBtn" role="button" type="submit" value='price-ascending' name='sortBy'>Giá: Thấp tới cao</button>
 
-            <button class="button-87" role="button" type="submit" value='best-sale' name='sortBy'>Bán chạy nhất</button>
+            <button class="button-87 sortByBtn" role="button" type="submit" value='best-sale' name='sortBy'>Bán chạy nhất</button>
 
 
         </div>

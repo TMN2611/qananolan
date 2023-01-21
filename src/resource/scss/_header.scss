@@ -1,4 +1,7 @@
 /* header  */
+.header {
+  padding: 25px 0 50px;
+}
 /* header-top */
 .header__top {
   padding: 10px 0;
@@ -49,7 +52,7 @@
 .header__navigation-link {
   color: $text-color;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   text-transform: uppercase;
   display: inline-block;
@@ -147,10 +150,10 @@
 /* brand nav level 2  */
 .nav--level2__brand {
   position: absolute;
-  top: 110px;
   left: 0;
+  top:100%;
   right: 0;
-  width: 100%;
+  width: 70vw;
   background-color: $background;
 }
 .nav--level2__brand {
@@ -181,15 +184,19 @@
 .brand-img {
   width: 100%;
 }
+.nav--level1__brand {
+  position: relative;
 
+}
 .nav--level1__brand::before {
   content: "";
   position: absolute;
-  top: 90px;
-  left: 20%;
+  top: 100%;
+  left: 50%;
   width: 164px;
   height: 50px;
   background-color: transparent;
+  transform: translate(-50%,-50%);
 }
 .nav--level1__brand:hover .nav--level2__brand {
   display: flex !important;
@@ -254,13 +261,10 @@
   .header__navigation-item {
     padding: 0 5px;
   }
-  .header__navigation-link {
-    font-size: 1.3rem;
-  }
+  
 }
 @media screen and (max-width: 992px) and (min-width: 576px) {
   .header__main {
-    margin-bottom: 100px;
   }
 }
 @media screen and (max-width: 1200px) and (min-width: 991px) {
@@ -278,8 +282,8 @@
     margin-top: 30px;
   }
   .main {
-    margin-top: 100px;
   }
+
 }
 @media screen and (max-width: 576px) {
   .hiddenonMobile {
@@ -290,13 +294,18 @@
   }
   .hotline__link,
   .systemStore__link {
-    font-size: 1rem;
+    font-size: 1.3rem;
+  }
+  .header {
+    padding: 10px 0 20px;
+  }
+  .header__main {
+      margin-block:15px;
   }
   .header__icon {
     justify-content: flex-end;
   }
   .header__navigation-link {
-    font-size: 1.2rem;
   }
   .area_newsletter {
     justify-content: center;
@@ -311,31 +320,30 @@
     margin-top: 300px;
   }
   .header__navigation-link {
-    font-size: 1rem;
   }
 }
 @media screen and (max-width: 375px) and (min-width: 0px) {
   .header__navigation-link {
-    font-size: 0.8rem;
   }
   .hotline__link,
   .systemStore__link {
-    font-size: 0.9rem;
   }
 }
 .header {
-  padding-top: 50px;
-  padding-bottom: 90px;
+ 
+
 
   &-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
   }
-  &-auth {
+  &-right {
     display: flex;
     align-items: center;
     gap: 0 30px;
+    justify-content: center;
+    flex:1;
   }
   &-login {
     font-weight: 500;
@@ -352,49 +360,85 @@
     display: none;
   }
 }
+
+
+//  MENU
 .menu {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 0 40px;
+  gap: 0 20px;
 
   &-link {
     text-decoration: none;
     color: $text-color;
   }
+  &--wraper {
+    position: relative;
+  }
+  &--overlay {
+    position:fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.391);
+    z-index: 9;
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1023.98px) {
-  .header {
-    padding: 25px 0 50px;
+
+  .menu--wrapper {
+    &.isShow {
+      //   transform: translateX(0);
+      & .menu {
+        right: 0;
+      }
+      & .menu--overlay {
+        display: block;
+        animation: linear 1s;
+      }
+    }
   }
+  
+  
+ 
   .menu {
     position: fixed;
     top: 0;
     right: -100%;
     bottom: 0;
     width: 300px;
-    z-index: 2;
+    z-index: 10;
     background-color: white;
     flex-direction: column;
-    padding-top: 90px;
+    padding-top: 50px;
     border-left: 1px solid $border-color;
     gap: 10px 0;
     align-items: stretch;
     // transform: translateX(100%);
     transition: all 0.2s linear;
 
-    &.isShow {
-      //   transform: translateX(0);
+    & .menuCloseBtn {
+      position: absolute;
+      top: 0;
       right: 0;
+      // width: 10px;
+      // height: 10px;
+      padding: 15px;
+      padding-bottom: 30px;
+      color:black;
+      cursor: pointer;
     }
+
+    
     &-link {
       display: block;
       padding: 20px;
     }
     &-toggle {
-      height: 30px;
-      width: 30px;
+      width: 40px;
+      padding: 5px;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       gap: 6px 0;
@@ -408,5 +452,20 @@
       justify-content: center;
       gap: 0 30px;
     }
+  }
+
+  .header-right {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 0 10px;
+
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .nav--level1__brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

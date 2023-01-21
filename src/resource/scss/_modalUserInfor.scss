@@ -36,9 +36,21 @@
             background-color: black;
             color:white;
     }
-    button {
-      font-size: 1.6rem;
+    & .close {
+      font-size: 2.6rem;
     }
+    button {
+      font-size: 2rem;
+    }
+    & .modal-footer {
+      & button {
+         font-size: 1.6rem;
+       }
+       & #saveUserInforBtn {
+          background-color: $orange--color;
+          border-color: $orange--color;
+       }
+     }
   
  
  }
@@ -141,5 +153,25 @@ form#modalUserInforForm {
             }
         }
     }
+    .address__wrapper  {
+      input[type="button"] {
+        background-color:white;
+        text-align: start;
+      }
+    }
+  
+    
  
   }
+@media screen and (max-width: 767.98px) {
+  #modalUserInfor .nameAndPhoneInput {
+    display:block;
+  }
+  form#modalUserInforForm label input {
+    min-width: 300px;
+  }
+  #modalUserInfor .addressInput {
+    display:block;
+
+  }
+}

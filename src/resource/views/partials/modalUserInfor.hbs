@@ -12,7 +12,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Cập nhật địa chỉ</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Cập Nhật Địa Chỉ</h5>
         <button
           type="button"
           class="close"
@@ -24,7 +24,9 @@
       </div>
       <div class="modal-body">
         <form id="modalUserInforForm">
+          <p>-- Thông tin cơ bản --</p>
           <div class="nameAndPhoneInput">
+
             <div class='form__group'>
               <label>
                 <input name='name' id="fname" type="text" placeholder="Họ và tên" />
@@ -50,14 +52,14 @@
               </label>
             </div>
 
-          <p>- -</p>
+          <p>-- Địa chỉ giao hàng --</p>
           <div class="addressInput">
             <div class="provinces address__wrapper form__group">
               <label>
                 <input
                   name='provinces'
                   id="fprovinces"
-                  type="text"
+                  type="button"
                   placeholder="Tỉnh/Thành Phố"
                 />
                 <span>Tỉnh/Thành Phố</span>
@@ -139,8 +141,9 @@
 </script>
 
 <script>
-  const provincesAPI = `http://127.0.0.1:3000/apis/provinces`;
+  const provincesAPI = `http://192.168.1.9:3000/apis/provinces`;
 
+  console.log("🚀 ~ file: modalUserInfor.hbs:144 ~ provincesAPI", provincesAPI)
 
   function stopEventInput() {
     const addressInput = document.querySelectorAll('.address__wrapper input');

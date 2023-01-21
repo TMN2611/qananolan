@@ -6,7 +6,7 @@ const cors = require('cors');
 var methodOverride = require('method-override');
 require('dotenv').config();
 // override with POST having ?_method=DELETE
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 var corsOptions = {
