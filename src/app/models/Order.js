@@ -10,6 +10,7 @@ var Order = mongoose.Schema(
     userInfor:Object,
     orderPayOption:String,
     productList:[{type:Object}],
+    note:String,
     status:{type:String,default:'Waiting'},
   },
   { timestamps: true, versionKey: false }

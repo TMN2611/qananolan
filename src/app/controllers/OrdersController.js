@@ -28,7 +28,7 @@ class OrdersController {
   async handleOrder(req, res) {
     try {
             
-        const {userInfor,discountCode,orderPayOption,productInfor,totalPriceFromClient} = req.body;
+        const {userInfor,discountCode,orderPayOption,productInfor,totalPriceFromClient,note} = req.body;
         // Tính lại tổng giá đơn hàng và so sánh với giá trị gửi lên từ client ( sau khi giảm giá );
 
         const reViewProductInfor  = productInfor.map(async item=> {
@@ -198,7 +198,8 @@ class OrdersController {
               discount ,
               userInfor,
               orderPayOption,
-              productList          
+              productList,
+              note        
             }
 
             OrderModel.create(dataForSave, async function (err, small) {

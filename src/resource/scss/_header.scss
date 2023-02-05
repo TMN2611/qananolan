@@ -250,6 +250,10 @@
   }
 }
 
+.menuCloseBtn {
+  display:none;
+}
+
 // RESPONSIVE
 @media screen and (max-width: 1024px) {
   .form_newsletter input {
@@ -428,6 +432,7 @@
       padding-bottom: 30px;
       color:black;
       cursor: pointer;
+      display: block;
     }
 
     

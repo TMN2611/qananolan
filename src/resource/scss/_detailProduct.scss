@@ -295,6 +295,7 @@ outline: 0;
          img {
             width: 123px;
             height: 123px;
+            object-fit: contain;
 
          }
     }
@@ -520,5 +521,8 @@ outline: 0;
     }
     .cart__body--whiteSpace {
         // display: none;
+    }
+    #cartModal .modal-content {
+        padding-inline: 10px;
     }
 }

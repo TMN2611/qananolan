@@ -643,38 +643,46 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 
 
 			const orderPayOption = document.querySelector('.order__pay--option .tab__item.active').innerText.trim();
+
+			const note = document.querySelector('#note').value;
 			
 			const orderData = {
 				userInfor,
 				productInfor,
 				orderPayOption,
 				discountCode,
+				note,
 				totalPriceFromClient:totalPriceFromFetch 
 
 			}
-
-			fetch('/order/handle-order', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(orderData)
-			})
-			.then(response => response.json())
-			.then((response) => {
+			console.log(orderData);
 
 
-					alert(response.message);
-					if(!response.isError) {
-						window.location.pathname='/home';
-						localStorage.setItem('cartProductList',"[]") 
-						localStorage.setItem('discountCode',"[]")
-					}
+			function order (orderData) {
+				fetch('/order/handle-order', {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(orderData)
+				})
+				.then(response => response.json())
+				.then((response) => {
+
+
+						alert(response.message);
+						if(!response.isError) {
+							window.location.pathname='/home';
+							localStorage.setItem('cartProductList',"[]") 
+							localStorage.setItem('discountCode',"[]")
+						}
 
 
 
-			})
+				})
+			}
+			order(orderData);
 
 
 		}
