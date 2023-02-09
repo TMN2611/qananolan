@@ -9,12 +9,12 @@ require('dotenv').config();
 const port = process.env.PORT || 3000;
 const app = express();
 
-var corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200 // For legacy browser support
-}
+// var corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200 // For legacy browser support
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(methodOverride('_method'));
 
@@ -95,5 +95,5 @@ Handlebars.registerHelper('activeFirstProuctImg', (productInforObject) => {
  });
 
  app.listen(port, () => {
-  console.log('Listen in 127.0.0.1:3000');
+  console.log('Listen');
 });

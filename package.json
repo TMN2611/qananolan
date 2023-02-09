@@ -2,6 +2,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.2",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3",
@@ -19,11 +20,8 @@
   "version": "1.0.0",
   "description": "learn nodejs in f8",
   "main": "src/main.js",
-  "engine": {
-      "node": "16.x"
-  },
   "scripts": {
-    "start": "node src/main.js",
+    "start": "nodemon --inspect src/main.js",
     "watch-sass": "node-sass --watch src/resource/scss/ -o src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var UserSchema = mongoose.Schema(
   {
     userId: mongoose.Types.ObjectId,
-    userName: String,
+    phone: Number,
     password:String,
   },
   { timestamps: true, versionKey: false }

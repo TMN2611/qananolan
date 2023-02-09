@@ -1,28 +1,56 @@
-const BrandModel = require("../models/Brand");
+const OrderModel = require("../models/Order");
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const { getProducts } = require('../../util/getDataFromDB')
 var jwt = require('jsonwebtoken');
+var {numberToMoney} = require("../../util/numberToMoney");
+
+class AuthCotroller {
+  //  [GET]  / admin/order
+  async order(req, res) {
+    
+    const orderListDocument = await OrderModel.find({});
+
+    const orderList = mutipleMongooseToObject(orderListDocument)
+    
+    
+   orderList.map(async function(order) {
+   
+
+      order.ship = await numberToMoney(order.ship);
+      order.discount = await numberToMoney(order.discount);
+      order.finalPrice = await numberToMoney(order.finalPrice);
+      return order;
+
+    });
 
 
-class AdminCotroller {
-  //  [GET]  / admin/login
-  async login(req, res) {
-        res.render('admin/login',{layout:false})
+
+
+
+    var data = {
+      layout: false, 
+      orderList
+  };
+
+    res.render('admin/order',data)
+    
   }
-  // [ POST ] / admin/handle-login
-  async handleLogin (req, res) {
+  // [ POST ] / admin/order-detail
 
-  }
-  //  [GET]  / admin/signup
-  async signup(req, res) {
-        res.render('admin/signup',{layout:false})
-  }
-  // [ POST ] / admin/handle-signup
-  async handleSignup (req, res) {
+  async orderDetail(req, res) {
+      
+      const order = await OrderModel.findById({_id:req.params.id})
+      console.log("🚀 ~ file: AdminController.js:43 ~ AuthCotroller ~ orderDetail ~ order", order)
+      console.log(req.body)
+      var data = {
+        layout: false, 
+        order:mongooseToObject(order)
+    };
 
+      res.render('admin/orderDetail',data)
   }
-
+  
  
 }
 
-module.exports = new AdminCotroller();
+module.exports = new AuthCotroller();

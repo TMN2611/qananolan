@@ -12,6 +12,7 @@ var Order = mongoose.Schema(
     productList:[{type:Object}],
     note:String,
     status:{type:String,default:'Waiting'},
+    
   },
   { timestamps: true, versionKey: false }
 );

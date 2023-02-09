@@ -34,7 +34,7 @@ class OrdersController {
         const reViewProductInfor  = productInfor.map(async item=> {
 
           
-          const [currItemFromDB] = await ProductModel.find({_id:item.cartItemId});
+          const currItemFromDB = await ProductModel.findById({_id:item.cartItemId});
 
           const {sale,productSalePrice,productPrice} = currItemFromDB
           const currItemPrice = sale ? productSalePrice : productPrice;
@@ -213,6 +213,14 @@ class OrdersController {
               const orderDate = `${date} - ${month} - ${year}  `
               
                 sendEmailAcceptToClient(small._id,orderDate,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
+
+                const productHaveOrder = small.productList;
+
+                productHaveOrder.forEach(product => {
+                  ProductModel.findByIdAndUpdate()
+                })
+
+
                 res.json({isError:false,message:"Đặt hàng thành công, vui lòng kiểm tra email và chờ CSKH liên hệ"});
 
               
