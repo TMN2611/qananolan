@@ -20,6 +20,9 @@
   "version": "1.0.0",
   "description": "learn nodejs in f8",
   "main": "src/main.js",
+  "engine": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node src/main.js",
     "watch-sass": "node-sass --watch src/resource/scss/ -o src/public/css/",
