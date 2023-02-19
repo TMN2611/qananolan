@@ -150,19 +150,19 @@ class OrdersController {
              
               
 
-              const attachmentList = productInfor.map(function (product) {
-                return {   // stream as an attachment
-                  path: `${process.env.DOMAINNAME}${product.cartItemImgUrl}`
-                }
-              });
-              console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
+              // const attachmentList = productInfor.map(function (product) {
+              //   return {   // stream as an attachment
+              //     path: `${process.env.DOMAINNAME}${product.cartItemImgUrl}`
+              //   }
+              // });
+              // console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
               
               var mailOptions = {
                 from: `"QANA NOLAN" ${process.env.EMAILADDRESS}`,
                 to: `${userInfor.email}`,
                 subject: 'XÁC NHẬN ĐẶT HÀNG',
                 text: 'Xin chào bạn',
-                attachments:attachmentList,
+                // attachments:attachmentList,
                 
                 template:'email',
                 context: {
