@@ -13,6 +13,7 @@
 .slider__Img-list {
   display: flex;
   list-style: none;
+  
 }
 .slider__Img-item {
   display: none;
@@ -80,6 +81,8 @@
   height: 100%;
   margin-top: 0px;
   transition: all 0.3s linear;
+  box-shadow: 0 0.5px 2px $border-color;
+
 
 }
 .product__item:hover{
@@ -312,8 +315,11 @@
     padding:10px;
   }
   &-link {
-    display: inline-block
-    
+    display: inline-block;
+    width: 100%;
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -343,4 +349,7 @@
     .product__rating--icon {
       font-size: 1rem;
     }
+ }
+
+ .slick-slide img {
  }

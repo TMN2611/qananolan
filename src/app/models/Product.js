@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-
+const slug = require('mongoose-slug-generator');
+mongoose.plugin(slug);
 
 var ProductSchema = mongoose.Schema(
   {
@@ -11,6 +12,7 @@ var ProductSchema = mongoose.Schema(
     productColor:String,
     productGender:String,
     productSize:[{type:Number}],
+    productImg:[{type:String}],
     url: String,
     weight:Number,
     sale:{
@@ -21,6 +23,7 @@ var ProductSchema = mongoose.Schema(
     quantitySold:Number,
     numberOfClicks:Number,
     brand:String,
+    
     slug: { type: String, slug: `productName`, unique: true },
   },
   { timestamps: true, versionKey: false }

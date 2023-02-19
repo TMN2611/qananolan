@@ -16,9 +16,39 @@
 
 </head>
 <body class='p-2'>
-    <h2>Header</h2>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/orders">Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/products">Sản phẩm</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
+<script>
+    const navItems = document.querySelectorAll('.nav-link');
+    navItems.forEach(function(item) {
+        item.addEventListener('click',(e)=> {
+                e.preventDefault();
+                const href = e.target.href;
+                const adminToken = JSON.parse(sessionStorage.getItem('admin-token'));
+
+                window.location.href = `${href}/${adminToken}`
+
+                console.log("🚀 ~ file: admin-header.hbs:45 ~ item.addEventListener ~ adminToken", adminToken)
+            
+        })
+    })
+</script>
 
     
     

@@ -1,0 +1,145 @@
+
+{{>admin-header}}
+<form>
+  <div class="form-group">
+    <label for="productName">Tên sản phẩm</label>
+    <input type="text" class="form-control" id="productName" name='productName' placeholder="Vui lòng nhập" required>
+  </div>
+  <div class="form-group">
+    <label for="productPrice">Giá sản phẩm</label>
+    <input type="number" class="form-control" id="productPrice" name='productPrice' placeholder="Vui lòng nhập" required>
+  </div>
+  <div class="form-group">
+    <label for="productDescription">Mô tả sản phẩm</label>
+    <textarea  type="text"  class="form-control" id="productDescription" name='productDescription' placeholder="Mỗi mô tả một dòng" rows="10" cols="50" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="sale">Giảm giá bao nhiêu phần trăm</label>
+    <input type="number" class="form-control" id="sale" name='sale' placeholder="Phần trăm giảm giá" min='0' max='100' required>
+  </div>
+
+   <div class="form-group">
+    <label for="productColor">Màu sắc</label>
+    <input type="text" class="form-control" id="productColor" name='productColor' placeholder="Vui lòng nhập" required>
+  </div>
+
+<div class="d-flex">
+    <div class="form-group p-3">
+        <label for="productGenderMale">Nam</label>
+        <input type="radio" class="form-control" id="productGenderMale" name='productGender' placeholder="Màu sắc" value='Male' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="productGenderFemale">Nữ</label>
+        <input type="radio" class="form-control" id="productGenderFemale" name='productGender' placeholder="Màu sắc" value='Female'>
+    </div>
+    <div class="form-group p-3">
+        <label for="productGenderUnisex">Unisex</label>
+        <input type="radio" class="form-control" id="productGenderUnisex" name='productGender' placeholder="Màu sắc" value='Unisex'>
+    </div>
+</div>
+
+  <div class="form-group">
+    <label for="productSize">Nhập size sản phẩm</label>
+    <input  type="text"  class="form-control" id="productSize" name='productSize' placeholder="Sử dụng khoảng trống giữa các size VD: 35 36 37" required>
+  </div>
+
+
+  
+  <div class="form-group">
+    <label for="files">Select files:</label>
+      <input type="file" name="file" id="files" multiple class='form-control' required> 
+
+  </div>
+  <div class="form-group">
+    <label for="weight">Cân nặng</label>
+      <input type="number" name="weight" id="weight" class='form-control' required>
+  </div>
+
+  <div class="form-group">
+    <label for="form-select-brand">Thương hiệu</label>
+
+    <select class="form-select-brand" aria-label="Default select example">
+        
+    </select>
+  </div>
+  
+  
+
+  <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+</form>
+
+<script>
+  const formSelectBrand = document.querySelector('.form-select-brand');
+   fetch(`/apis/brand-list`, {
+        method: 'GET',
+    })
+    .then(res => res.json())
+    .then(data =>  {
+        const html = data.map(el => {
+          return `<option value="${el.brandName}">${el.brandName}</option>`
+        });
+        formSelectBrand.innerHTML = html.join('');
+    });
+</script>
+<script>
+
+
+
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+    
+    e.preventDefault();
+    // Prevents HTML handling submission
+    const productGender = document.querySelector('input[name="productGender"]:checked')?.value || 'Unisex';
+    const productName = document.querySelector('input[name="productName"]');
+    const productPrice = document.querySelector('input[name="productPrice"]');
+    const productDescription = document.querySelector('textarea[name="productDescription"]');
+    const sale = document.querySelector('input[name="sale"]');
+    const productColor = document.querySelector('input[name="productColor"]');
+    const productSize = document.querySelector('input[name="productSize"]');
+    const files = document.getElementById("files");
+    const brand = document.querySelector('.form-select-brand');
+
+    const weight = document.querySelector('input[name="weight"]');
+
+    
+    const formData = new FormData();
+     
+    formData.append('productGender',productGender);
+    formData.append('productName',productName.value);
+    formData.append('productPrice',productPrice.value);
+    formData.append('productDescription',productDescription.value);
+    formData.append('sale',sale.value);
+    formData.append('productColor',productColor.value);
+    formData.append('productSize',productSize.value);
+    formData.append('brand',brand.value);
+    formData.append('weight',weight.value);
+
+
+
+    // Creates empty formData object
+
+    // Appends value of text input
+    for(let i =0; i < files.files.length; i++) {
+        formData.append("files", files.files[i]);
+    }
+
+
+    console.log(...formData);
+    // Appends value(s) of file input
+    // Post data to Node and Express server:
+    const token = JSON.parse(sessionStorage.getItem('admin-token'));
+
+    fetch(`/admin/them-san-pham/${token}`, {
+        method: 'POST',
+        body: formData, // Payload is formData object
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+})
+</script>
+
+{{>admin-footer}}
+
+

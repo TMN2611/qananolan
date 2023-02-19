@@ -14,8 +14,11 @@ class ApisController {
 
     let {gender="",brand="",color="",price=""} = req.body;
 
+    console.log(req.body);
 
-    const products = await getProducts();
+
+    let products = await ProductModel.find({});
+    console.log(products.length);
 
     let newProducts= [];
     if(gender.length !== 0) {
@@ -82,8 +85,10 @@ class ApisController {
       })
 
     }
+    console.log(newProducts);
   
      res.json({products:newProducts})
+     products = [];
     
     // res.render('home',{products:mutipleMongooseToObject(products)});
   }

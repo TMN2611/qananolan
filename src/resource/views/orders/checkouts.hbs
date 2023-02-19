@@ -103,7 +103,7 @@
 
 									<div class="tab__item">
 										<i class="tab-icon fa-solid fa-credit-card"></i>
-										Chuyển khoảng qua ngân hàng
+										Chuyển khoản qua ngân hàng
 										<span class="tab__item--checked">
 											<i class="tab__item--checked-icon fa-solid fa-check"></i>
 										</span>
@@ -147,12 +147,12 @@
 												
 										</p>
 										<p>
-												Số tài khoảng: 
+												Số tài khoản: 
 												<span class='font-weight-bold'>0271001082592</span>
 												
 										</p>
 										<p>
-												Nội dung chuyển khoảng: 
+												Nội dung chuyển khoản: 
 												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
 												VD: quana#1234__Trần Minh Nhân
 												
@@ -395,13 +395,19 @@ getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 				isShipmentFeeRes = true;
 
 
-				const orderBtnDisabled = document.querySelector('.btn-container.disabled')
+				const orderBtnDisabled = document.querySelector('.btn-container.disabled');
 				orderBtnDisabled.classList.remove('disabled');
+				
 
 				const btn = orderBtnDisabled.querySelector('button');
 				btn.removeAttribute('disabled');
+				console.log(productPrice)
+				if(productPrice ===0 ) {
+							orderBtnDisabled.classList.add('disabled');
+
+						btn.setAttribute('disabled',"");
+				}
 			
-	
 			}) 
 	 
 	 
@@ -519,8 +525,9 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 												e.target.disabled = true;
 
 												console.log(response)
+												const {priceWithDiscount} = response
 
-												const {decrease,type,unit,currentPrice,newFee,discountName,message} = response;
+												const {decrease,type,unit,currentPrice,newFee,discountName,message} = priceWithDiscount;
 
 												if(message) {
 													alert(message);

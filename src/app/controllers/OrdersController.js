@@ -28,7 +28,7 @@ class OrdersController {
   async handleOrder(req, res) {
     try {
             
-        const {userInfor,discountCode,orderPayOption,productInfor,totalPriceFromClient,note} = req.body;
+        let {userInfor,discountCode,orderPayOption,productInfor,totalPriceFromClient,note} = req.body;
         // Tính lại tổng giá đơn hàng và so sánh với giá trị gửi lên từ client ( sau khi giảm giá );
 
         const reViewProductInfor  = productInfor.map(async item=> {
@@ -47,7 +47,6 @@ class OrdersController {
 
         })
         Promise.all(reViewProductInfor).then(async (productList) => {
-          console.log(productList,"jaja")
           // Tính tổng giá tiền ( chưa giảm giá );
 
           let totalMoney = productList.reduce((total,curr,index)=> {
@@ -82,13 +81,18 @@ class OrdersController {
 
           // Áp dụng giảm giá
 
+          let isError = false;
           async function ApplyDiscount() {
 
           
             const priceWithDiscountList = await discountCode.map(async (id)=> {
-              const priceWithDiscount = await getDiscountFromId({id,    productPrice:totalMoney,shipmentFee});
-        
+              const {priceWithDiscount,isSuccess} = await getDiscountFromId({id,    productPrice:totalMoney,shipmentFee},req,res);
+                if(isSuccess === false){
+                  isError = true;
+                }
+  
                 return await priceWithDiscount;
+
               });
 
             
@@ -106,132 +110,131 @@ class OrdersController {
           }
           await ApplyDiscount();
 
-        
-            //  Giá hợp lệ
+          if(isError) {
+             console.log("Thất bai")
+          }
+          else {
+           //  Giá hợp lệ
             
-
-
             // Gửi Email
             function sendEmailAcceptToClient(orderId,orderDate,finalPrice,discount) {
 
                 
-                //  Nodejs Email with nodemailer
-                var transporter = nodemailer.createTransport({
-                  service: 'gmail',
-                  host: 'smtp.gmail.com',
-                  port: 465,
-                  secure: true,
-                  auth: {
-                      user: `${process.env.EMAILADDRESS}`,
-                      pass: `${process.env.EMAILPASSWORD}`,
-                  },
-                });
+              //  Nodejs Email with nodemailer
+              var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: `${process.env.EMAILADDRESS}`,
+                    pass: `${process.env.EMAILPASSWORD}`,
+                },
+              });
 
 
-                // point to the template folder
-                const handlebarOptions = {
-                  viewEngine: {
-                    extName: ".hbs",
-                    partialsDir: path.resolve("/.src/resource/views/"),
-                    defaultLayout: false,
-                  },
-                  viewPath: path.resolve('./src/resource/views'),
+              // point to the template folder
+              const handlebarOptions = {
+                viewEngine: {
                   extName: ".hbs",
-                };
+                  partialsDir: path.resolve("/.src/resource/views/"),
+                  defaultLayout: false,
+                },
+                viewPath: path.resolve('./src/resource/views'),
+                extName: ".hbs",
+              };
 
-                // use a template file with nodemailer
-                transporter.use('compile', hbs(handlebarOptions))
+              // use a template file with nodemailer
+              transporter.use('compile', hbs(handlebarOptions))
 
-               
+             
+              
+
+              const attachmentList = productInfor.map(function (product) {
+                return {   // stream as an attachment
+                  path: `${process.env.DOMAINNAME}${product.cartItemImgUrl}`
+                }
+              });
+              console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
+              
+              var mailOptions = {
+                from: `"QANA NOLAN" ${process.env.EMAILADDRESS}`,
+                to: `${userInfor.email}`,
+                subject: 'XÁC NHẬN ĐẶT HÀNG',
+                text: 'Xin chào bạn',
+                attachments:attachmentList,
                 
-
-                const attachmentList = productInfor.map(function (product) {
-                  return {   // stream as an attachment
-                    path: `${process.env.DOMAINNAME}${product.cartItemImgUrl}`
-                  }
-                });
-                console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
-                
-                var mailOptions = {
-                  from: `"QANA NOLAN" ${process.env.EMAILADDRESS}`,
-                  to: `${userInfor.email}`,
-                  subject: 'XÁC NHẬN ĐẶT HÀNG',
-                  text: 'Xin chào bạn',
-                  attachments:attachmentList,
+                template:'email',
+                context: {
+                  username:userInfor.name,
+                  address: userInfor.address,
+                  orderId:orderId,
+                  orderDate,
+                  finalPrice,
+                  discount,
+                  productInfor,
                   
-                  template:'email',
-                  context: {
-                    username:userInfor.name,
-                    address: userInfor.address,
-                    orderId:orderId,
-                    orderDate,
-                    finalPrice,
-                    discount,
-                    productInfor,
-                    
-                  }
+                }
+              
+              };
+
+              transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+              });
+
+             }
+
+
+
+              // Lưu vào Database;
+
+              const priceWithDiscount = totalMoney +  shipmentFee;
+              const discount = (totalPriceFromClient + initshipmentFee) - priceWithDiscount
+              
+              
+              const dataForSave = {
+                price:totalMoney,
+                ship:shipmentFee,
+                finalPrice:priceWithDiscount ,
+                discount ,
+                userInfor,
+                orderPayOption,
+                productList,
+                note        
+              }
+
+              OrderModel.create(dataForSave, async function (err, small) {
+                // if (err) console.log(err);
+                // saved!
+            
+
+                let date = ("0" + small.createdAt.getDate()).slice(-2);
+                let month = ("0" + (small.createdAt.getMonth() + 1)).slice(-2);
+                let year = small.createdAt.getFullYear();
+                const orderDate = `${date} - ${month} - ${year}  `
                 
-                };
+                  sendEmailAcceptToClient(small._id,orderDate,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
 
-                transporter.sendMail(mailOptions, function (error, info) {
-                  if (error) {
-                      console.log(error);
-                  } else {
-                      console.log('Email sent: ' + info.response);
-                  }
-                });
+                  const productHaveOrder = small.productList;
 
-            }
+                  productHaveOrder.forEach(product => {
+                    ProductModel.findByIdAndUpdate()
+                  })
 
 
+                  res.json({isError:false,message:"Đặt hàng thành công, vui lòng kiểm tra email và chờ CSKH liên hệ"});
 
-            // Lưu vào Database;
+                
+              });
 
-            const priceWithDiscount = totalMoney +  shipmentFee;
-            const discount = (totalPriceFromClient + initshipmentFee) - priceWithDiscount
+              }
+
+        
             
-            
-            const dataForSave = {
-              price:totalMoney,
-              ship:shipmentFee,
-              finalPrice:priceWithDiscount ,
-              discount ,
-              userInfor,
-              orderPayOption,
-              productList,
-              note        
-            }
-
-            OrderModel.create(dataForSave, async function (err, small) {
-              // if (err) console.log(err);
-              // saved!
-          
-
-              let date = ("0" + small.createdAt.getDate()).slice(-2);
-              let month = ("0" + (small.createdAt.getMonth() + 1)).slice(-2);
-              let year = small.createdAt.getFullYear();
-              const orderDate = `${date} - ${month} - ${year}  `
-              
-                sendEmailAcceptToClient(small._id,orderDate,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
-
-                const productHaveOrder = small.productList;
-
-                productHaveOrder.forEach(product => {
-                  ProductModel.findByIdAndUpdate()
-                })
-
-
-                res.json({isError:false,message:"Đặt hàng thành công, vui lòng kiểm tra email và chờ CSKH liên hệ"});
-
-              
-            });
-
-            
-            
-
-
-
-          
       
         })
       

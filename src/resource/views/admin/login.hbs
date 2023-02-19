@@ -38,8 +38,15 @@
           const {isSuccess,message,token} = result
           alert(message);
           if(isSuccess) {
-            localStorage.setItem('admin-token',JSON.stringify(token))
-             window.location = `/admin/order/${token}`;
+            if(token) {
+                sessionStorage.setItem('admin-token',JSON.stringify(token))
+                window.location = `/admin/orders/${token}`;
+            }
+            else {
+                window.location = `/`;
+
+            }
+            
           }
 
         })

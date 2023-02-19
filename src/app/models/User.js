@@ -6,6 +6,7 @@ var UserSchema = mongoose.Schema(
     userId: mongoose.Types.ObjectId,
     phone: Number,
     password:String,
+    level:Number,
   },
   { timestamps: true, versionKey: false }
 );

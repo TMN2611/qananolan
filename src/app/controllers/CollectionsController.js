@@ -101,13 +101,13 @@ class CollectionsController {
     });
   }
   async allProduct(req, res) {
-    let products = await ProductModel.find();
+    let products = await ProductModel.find({});
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
     }
     // Get list brand
-    const brandList = await BrandModel.find();
+    const brandList = await BrandModel.find({});
     //  Get List color
     let uniqueColor = [];
     products.forEach((c) => {
@@ -115,6 +115,7 @@ class CollectionsController {
             uniqueColor.push(c.productColor);
         }
     });
+    console.log(uniqueColor);
     // Price range
     let priceRange = [
       {from:0, to:200000,valueString:"Dưới 200.000đ"},
@@ -135,6 +136,8 @@ class CollectionsController {
       pageTitle:`Tất cả sản phẩm - ${process.env.DOMAINNAME}`
 
     });
+
+    uniqueColor = [];
   }
 
   async newArrivalProduct(req, res) {

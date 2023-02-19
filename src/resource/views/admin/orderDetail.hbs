@@ -2,8 +2,32 @@
 {{>admin-header}}
 <form>
   <div class="form-group">
-    <label for="formGroupExampleInput">Example label</label>
-    <input type="text" class="form-control" id="" placeholder="Example input">
+    <label for="formGroupExampleInput">Tên</label>
+    <input type="text" class="form-control" id="name" name='name' placeholder="Example input" value='{{order.userInfor.name}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Số điện thoại</label>
+    <input type="text" class="form-control" id="phone" name='phone' placeholder="Example input" value='{{order.userInfor.phone}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Email</label>
+    <input type="text" class="form-control" id="email" name='email' placeholder="Example input" value='{{order.userInfor.email}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Địa chỉ chi tiết (Số nhà tên đường)</label>
+    <input type="text" class="form-control" id="detailAddress" name='detailAddress' placeholder="Example input" value='{{order.userInfor.address.detailAddress}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Xã / Phường</label>
+    <input type="text" class="form-control" id="ward" name='ward' placeholder="Example input" value='{{order.userInfor.address.ward}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Quânk / Huyện</label>
+    <input type="text" class="form-control" id="district" name='district' placeholder="Example input" value='{{order.userInfor.address.district}}'>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Tỉnh / Thành phố</label>
+    <input type="text" class="form-control" id="provinces" name='provinces' placeholder="Example input" value='{{order.userInfor.address.provinces}}'>
   </div>
 
 </form>

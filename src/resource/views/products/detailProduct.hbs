@@ -1,17 +1,7 @@
 <div class="detailProduct mt 5 pt-5">
     <div class="row">
         <div class="col-md-7 col-sm-12 detailProduct__img">
-            <div class="detailProduct__img--list">
-                
-                  <button class="btn-open-modal" data-toggle="modal" data-target="#ProductImgZoomModal">
-                                    {{#activeFirstProuctImg}}
-                                         {{productInfor}}
-                                     {{/activeFirstProuctImg}}           
-                 </button>
-             
-
-                   
-            </div>
+        
             <div class="detailProduct__img--main">
                        <div class="btn-open-modal" style="cursor: pointer;" data-toggle="modal" data-target="#ProductImgZoomModal">
                             <img src="{{productInfor.productImg.[0]}}" alt="">
@@ -23,6 +13,18 @@
                             </button>
                         </div>
                     
+            </div>
+
+            <div class="detailProduct__img--list">
+                
+                  <button class="btn-open-modal" data-toggle="modal" data-target="#ProductImgZoomModal">
+                                    {{#activeFirstProuctImg}}
+                                         {{productInfor}}
+                                     {{/activeFirstProuctImg}}           
+                 </button>
+             
+
+                   
             </div>
         </div>
         <div class="col-md-5 col-sm-12 detailProduct__content">
@@ -147,6 +149,18 @@
             
 
         
+        </div>
+        <div class="col-12">
+            <div class="row pt-5">
+                {{#each productInfor.productImg}}
+                <div class="col-12 col-md-6 mb-5">
+                    <img src="{{this}}" style='width:100%' alt="">
+
+                </div>
+                {{/each}}
+
+            </div>
+
         </div>
 
         <div class="col-12 mt-5">

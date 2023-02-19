@@ -1,29 +1,29 @@
 <div class='main'>
   <div class='slider__Img'>
-      <ul class='slider__Img-list'>
-        <li data-index='0' class='slider__Img-item'>
-          <a href='#' class='slider__Img-link'>
-            <img src='/img/Slider_img/slideshow_1.png' alt='' srcset='' />
-          </a>
-        </li>
-        <li data-index='1' class='slider__Img-item'>
-          <a href='#' class='slider__Img-link'>
-            <img src='/img/Slider_img/slideshow_2.png' alt='' srcset='' />
-          </a>
-        </li>
-        <li data-index='2' class='slider__Img-item'>
-          <a href='#' class='slider__Img-link'>
-            <img src='/img/Slider_img/slideshow_3.png' alt='' srcset='' />
-          </a>
-        </li>
-        <li data-index='3' class='slider__Img-item'>
-          <a href='#' class='slider__Img-link'>
-            <img src='/img/Slider_img/slideshow_4.png' alt='' srcset='' />
-          </a>
-        </li>
-       
+      <div class='slider__Img-list'>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_1.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_2.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_3.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_4.webp" alt="">
+            </a>
+          </div>
+        
 
-      </ul>
+      </div>
   </div>
   <div class='main__collection'>
     <div>
@@ -112,15 +112,15 @@
   <div class='main__featured'>
     <div class='container'>
       <div class='row'>
-        <div class='col-md-6'>
+        <div class='col-md-4'>
           <div class='featured__img'>
             <h2><i>NEW</i></h2>
-            <img src='/img/Featured/pro_featured_img.png' alt='' />
+            <img src='{{newestProductAvatar}}' alt='' />
           </div>
         </div>
-        <div class='col-md-6'>
+        <div class='col-md-8'>
           <div class='featured__detail'>
-            <h3>Native Jefferson Print</h3>
+            <h3>{{newestProduct.productName}}</h3>
             <div class='detail__nav'>
               <ui class='detail__nav-list'>
                 <li class='detail__nav-item nav__product-featured active'>
@@ -134,35 +134,28 @@
             <div class='detail__content'>
               <ui class='detail__content-list'>
                 <li class='detail__content-item active'>
-                  <p>27/04/2021, NATIVE SHOES chính thức ra mắt bộ sưu tập rực
-                    rỡ sắc màu hợp tác cùng thương hiệu BÚT MÀU CRAYOLA, USA. Bộ
-                    sưu tập lần này mang đậm nét trẻ trung, năng động và đầy
-                    chất sáng tạo từ những điều thật đơn giản và gần gũi với
-                    tinh thần NATIVE - Luôn đồng hành cùng bạn đi khắp mọi nơi.
-                    <br /><br />
-                    Native Jefferson Print được sản xuất bằng chất liệu nhựa EVA
-                    êm ái, trọng lượng siêu nhẹ, không thấm nước và có thể vệ
-                    sinh một cách dễ dàng.<br />
-                    Bề mặt với thiết kế đục lỗ đặc trưng thương hiệu mang đến sự
-                    thoáng mát, thoải mái.<br />
-                    Sản phẩm có thể có khả năng chống sốc & chống mùi hiệu quả.<br
-                    /><br />
 
-                    Trong sự kết hợp lần này,
-                    <span>NATIVE SHOES x CRAYOLA</span>
-                    mong muốn sẽ cùng bạn khơi gợi nguồn cảm hứng sáng tạo bay
-                    bổng bên trong bạn và làm cho cuộc sống rực rỡ hơn cùng
-                    những sắc màu thời trang.
-                  </p>
+                  {{#each newestProduct.productDescription}}
+                    <p style='margin-bottom:15px;font-size:15px'>
+                      _ {{this.descText}} {{this.emoji}}
+                    </p>
+                  {{/each}}
                 </li>
                 <li class='detail__content-item'>
-                  <p>EU: 24 - 43</p>
+                  <p>EU: {{#each newestProduct.productSize}}
+                    <span style='margin-bottom:15px;font-size:15px'>
+                       - {{this}} 
+                    </span>
+                  {{/each}}</p>
                 </li>
               </ui>
             </div>
             <div class='col-md-12 text-center'>
               <div class='featured__detail-btn'>
+                <a href="/products/{{newestProduct.slug}}">
+                
                   {{> slideBtn title="Xem ngay"}}
+                </a>
               </div>
             </div>
           </div>

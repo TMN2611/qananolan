@@ -11,36 +11,52 @@ function numberToMoney (price) {
 }
 // getProductWithIdInCart
 async function getProductWithIdInCart () {
-
-    const productWithIdInCart = await Promise.all(
-        listCartId.map(async (id) => {
-          const response = await fetch(`/products/infor/${id}`)
-          const todo = await response.json()
-          return todo;
-        })
-      )
-    
-      const newlocalListCart = localListCart.map((item,index)=> {
-        productWithIdInCart.forEach((product)=> {
-            if(product._id == item.cartItemId) {
-                if(product.sale === 0) {
-                    item.cartItemPrice =  product.productPrice;
-                    item.cartItemPriceString =  numberToMoney(product.productPrice);
+    try {
+        const productWithIdInCart = await Promise.all(
+            listCartId.map(async (id) => {
+                try {
+                    const response = await fetch(`/products/infor/${id}`)
+                    const todo = await response.json()
+                    return todo;
+                } catch (error) {
+                         console.log(error)
+                }
+          
+            })
+          )
+        
+          const newlocalListCart = localListCart.map((item,index)=> {
+            
+            productWithIdInCart.forEach((product)=> {
+                if(product._id == item.cartItemId) {
+                    if(product.sale === 0) {
+                        item.cartItemPrice =  product.productPrice;
+                        item.cartItemPriceString =  numberToMoney(product.productPrice);
+                    }
+                    else {
+                        item.cartItemPrice =  product.productSalePrice;
+                        item.cartItemPriceString =   numberToMoney(product.productSalePrice);
+                    }
+                    
                 }
                 else {
-                    item.cartItemPrice =  product.productSalePrice;
-                    item.cartItemPriceString =   numberToMoney(product.productSalePrice);
+                    localStorage.setItem('cartProductList',JSON.stringify([]))
+                   
                 }
-                
-            }
-        })
+            })
+    
+            return item;
+    
+          })
+    
+    
+          localStorage.setItem('cartProductList',JSON.stringify(newlocalListCart))
+    } catch (error) {
+        localStorage.setItem('cartProductList',JSON.stringify([]))
+        
+    }
 
-        return item;
-
-      })
-
-
-      localStorage.setItem('cartProductList',JSON.stringify(newlocalListCart))
+    
 
 }
 

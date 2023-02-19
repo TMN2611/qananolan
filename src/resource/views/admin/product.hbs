@@ -1,0 +1,39 @@
+{{>admin-header}}
+
+<button type='button' class='btn btn-primary add-product'>
+   Thêm sản phẩm
+</button>
+ <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Sản phẩm</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+          {{#each productList}}
+          <tr>
+                <input type="hidden" id='productId' value='{{this._id}}'>
+
+          <td>
+            {{inc @index}}
+          </td>
+
+            <td>
+                {{this.productName}}
+            </td>
+            
+          </tr>
+          {{/each}}
+          
+        </tbody>
+      </table>
+
+<script>
+  document.querySelector('.add-product').addEventListener('click', function(e){
+     const admintoken= JSON.parse(sessionStorage.getItem('admin-token'));
+     window.location.href=`/admin/them-san-pham/${admintoken}`
+  })
+</script>
+{{>admin-footer}}

@@ -10,8 +10,14 @@ class SiteController {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     const isSpecial = true;
     const products = await getProducts(isSpecial);
+
+    const newestProduct = await ProductModel.find().sort({ _id: -1 }).limit(1)
+    const newestProductObject = mongooseToObject(newestProduct[0]);
+    const newestProductAvatar = newestProductObject?.productImg?.[0];
+  
+ 
     res.render('home',
-    {products:mutipleMongooseToObject(products),pageTitle:`QANANOLAN - ${process.env.DOMAINNAME}`});
+    {products:mutipleMongooseToObject(products),pageTitle:`QANANOLAN - ${process.env.DOMAINNAME}`,newestProductAvatar,newestProduct:newestProductObject});
   }
 
 

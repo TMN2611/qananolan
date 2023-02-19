@@ -5,6 +5,9 @@ const { engine } = require('express-handlebars');
 const cors = require('cors');
 var methodOverride = require('method-override');
 require('dotenv').config();
+const bodyParser= require('body-parser')
+
+
 // override with POST having ?_method=DELETE
 const port = process.env.PORT || 3000;
 const app = express();
@@ -93,6 +96,14 @@ Handlebars.registerHelper('activeFirstProuctImg', (productInforObject) => {
   return productImgsHtml.join("").toString();
     
  });
+ Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
+
+
+//CREATE EXPRESS APP
+app.use(bodyParser.urlencoded({extended: true}))
 
  app.listen(port, () => {
   console.log('Listen');

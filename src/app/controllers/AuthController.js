@@ -23,7 +23,7 @@ class AuthCotroller {
     let message= "";
     if(!user) {
        isSuccess = false;
-       message= "Tài khoảng không tồn tại";
+       message= "Tài khoản không tồn tại";
     }
     if(user && phone.length === 0 || password.length === 0) {
        isSuccess = false;
@@ -43,7 +43,13 @@ class AuthCotroller {
             data: new Date()
           }, process.env.AUTH_SECRET_KEY);
 
-           return res.json({isSuccess,message,token});
+          if(user.level === 999) {
+            return res.json({isSuccess,message,token});
+          }
+          else {
+            return res.json({isSuccess,message});
+          }
+
 
         }
         else {
@@ -66,7 +72,7 @@ class AuthCotroller {
   // [ POST ] / admin/handle-signup
   async handleSignup (req, res) {
       console.log(req.body);
-      const {phone, password} = req.body;
+      const {phone, password,retypepassword} = req.body;
 
       const isExist = await  UserModel.findOne({phone: phone})
 
@@ -76,6 +82,10 @@ class AuthCotroller {
       if(phone.length == 0 && password.length == 0) {
         isSuccess = false
           message = "Không được để trống"
+      }
+      if(password !== retypepassword) {
+          isSuccess = false
+          message = "Mật khẩu nhập lại không đúng"
       }
 
       if(isExist) {
@@ -87,7 +97,7 @@ class AuthCotroller {
       var cipherPasswordtext = CryptoJS.AES.encrypt(password, `${process.env.AUTH_SECRET_KEY}`).toString();
 
       if(isSuccess) {
-          UserModel.create({phone,password:cipherPasswordtext});
+          UserModel.create({phone,password:cipherPasswordtext,level:1});
       }
       res.json({isSuccess,message})
   }
