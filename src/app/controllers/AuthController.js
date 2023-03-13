@@ -41,9 +41,7 @@ class AuthCotroller {
 
            const token = jwt.sign({
             data: new Date()
-          }, process.env.AUTH_SECRET_KEY,{
-            expiresIn: process.env.ACCESS_TOKEN_LIFE,
-          });
+          }, process.env.AUTH_SECRET_KEY);
 
           if(user.level === 999) {
             return res.json({isSuccess,message,token});
