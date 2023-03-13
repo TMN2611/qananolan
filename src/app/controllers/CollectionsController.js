@@ -4,6 +4,8 @@ const {
 } = require('../../util/mongoose');
 const ProductModel = require('../../app/models/Product');
 const BrandModel = require('../../app/models/Brand');
+const { filterAvailableProduct} = require('../../util/ignoreProduct')
+
 
 
 function sort (products,sortBy) {
@@ -36,7 +38,9 @@ function getPathName (req) {
 class CollectionsController {
   //  [GET]  /
   async maleProduct(req, res) {
-    let products = await ProductModel.find({ productGender: 'Male' });
+    let productsCollection = await ProductModel.find({ productGender: 'Male' });
+
+    let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
     if(sortBy) {
@@ -52,7 +56,9 @@ class CollectionsController {
     });
   }
   async femaleProduct(req, res) {
-    let products = await ProductModel.find({ productGender: 'Female' });
+    let productsCollection = await ProductModel.find({ productGender: 'Female' });
+    let products = await filterAvailableProduct(productsCollection)
+
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
@@ -67,7 +73,9 @@ class CollectionsController {
     });
   }
   async unisexProduct(req, res) {
-    let products = await ProductModel.find({ productGender: 'Unisex' });
+    let productsCollection = await ProductModel.find({ productGender: 'Unisex' });
+    let products = await filterAvailableProduct(productsCollection)
+
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
@@ -83,7 +91,9 @@ class CollectionsController {
   }
 
   async saleProduct(req, res) {
-    let products = await ProductModel.find();
+    let productsCollection = await ProductModel.find();
+    let products = await filterAvailableProduct(productsCollection)
+
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
@@ -101,7 +111,9 @@ class CollectionsController {
     });
   }
   async allProduct(req, res) {
-    let products = await ProductModel.find({});
+    let productsCollection = await ProductModel.find({});
+    let products = await filterAvailableProduct(productsCollection)
+
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);
@@ -141,7 +153,9 @@ class CollectionsController {
   }
 
   async newArrivalProduct(req, res) {
-    let products = await ProductModel.find();
+    let productsCollection = await ProductModel.find();
+    let products = await filterAvailableProduct(productsCollection);
+
     const {sortBy = 'newest'} = req.query;
 
     if(sortBy) {
@@ -159,7 +173,9 @@ class CollectionsController {
   async brandProduct(req, res) {
     const brandName = req.params.name;
 
-    let products = await ProductModel.find({ brand: brandName});
+    let productsCollection = await ProductModel.find({ brand: brandName});
+    let products = await filterAvailableProduct(productsCollection);
+
     const {sortBy} = req.query;
     if(sortBy) {
       products= sort(products,sortBy);

@@ -9,6 +9,7 @@ router.get('/provinces', ApisController.getProvinces);
 router.post('/calculate-ship-price', ApisController.calculateShipPrice);
 router.post('/get-total-price', ApisController.getTotalPrice);
 router.get('/brand-list', ApisController.getBrandList);
+router.post('/searchOrder', ApisController.searhOrder);
 
 router.get('/token', ApisController.generateToken);
 

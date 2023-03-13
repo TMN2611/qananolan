@@ -101,6 +101,82 @@ Handlebars.registerHelper('activeFirstProuctImg', (productInforObject) => {
     return parseInt(value) + 1;
 });
 
+Handlebars.registerHelper("checkIsTheSameValue", function(value)
+{
+  const brandList = value.data.root.brandList;
+  const branSelected = value.data.root.product.brand;
+  const brandListHTML = brandList.map(data=> {
+      if(branSelected === data.brandName) {
+        return `<option selected value="${data.brandName}">${data.brandName}</option>`
+      }
+      else {
+        return `<option value="${data.brandName}">${data.brandName}</option>`
+      }
+    })
+    return brandListHTML.join("")
+});
+
+Handlebars.registerHelper('checkOrderStatus', function (value) {
+  const status = value.data.root.order.status;
+
+  if(status == 'Cancel') {
+    return  `<div class="p-3 mb-2 bg-danger text-white">${status.toUpperCase()}</div>`;
+  }
+  if(status == 'Confirm') {
+    return  `<div class="p-3 mb-2 bg-success  text-white">${status.toUpperCase()}</div>`;
+  }
+  if(status == 'Waiting') {
+    return  `<div class="p-3 mb-2 bg-warning  text-white">${status.toUpperCase()}</div>`;
+  }
+});
+Handlebars.registerHelper('renderRadioGender', function (value) {
+  const productGender = value.data.root.product.productGender;
+
+    return  `<div class="form-group p-3">
+        <label for="productGenderMale">Nam</label>
+        <input ${productGender=='Male' ? 'checked' : ""} type="radio" class="form-control" id="productGenderMale" name='productGender' placeholder="Màu sắc" value='Male' required>
+      </div>
+
+      <div class="form-group p-3">
+          <label for="productGenderFemale">Nữ</label>
+          <input ${productGender=='Female' ? 'checked' : ""} type="radio" class="form-control" id="productGenderFemale" name='productGender' placeholder="Màu sắc" value='Female'>
+      </div>
+
+      <div class="form-group p-3">
+          <label for="productGenderUnisex">Unisex</label>
+          <input ${productGender=='Unisex' ? 'checked' : ""} type="radio" class="form-control" id="productGenderUnisex" name='productGender' placeholder="Màu sắc" value='Unisex'>
+      </div>`;
+  
+  
+});
+Handlebars.registerHelper('renderRadioSpecical', function (value) {
+  const isSpecial = value.data.root.product.isSpecial;
+  console.log("🚀 ~ file: main.js:154 ~ isSpecial:", isSpecial)
+
+  if(isSpecial) {
+    return  `<div class="form-group p-3">
+    <label for="specialIsTrue">Có</label>
+    <input checked type="radio" class="form-control" id="specialIsTrue" name='isSpecial' value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="specialIsFalse">Không</label>
+        <input  type="radio" class="form-control" id="specialIsFalse" name='isSpecial'  value='false'>
+    </div>`;
+  }
+  else {
+    return  `<div class="form-group p-3">
+    <label for="specialIsTrue">Có</label>
+    <input  type="radio" class="form-control" id="specialIsTrue" name='isSpecial' value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="specialIsFalse">Không</label>
+        <input checked type="radio" class="form-control" id="specialIsFalse" name='isSpecial'  value='false'>
+    </div>`;
+  }
+  
+});
+
+
 
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))

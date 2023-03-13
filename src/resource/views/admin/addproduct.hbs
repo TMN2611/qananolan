@@ -24,6 +24,7 @@
     <input type="text" class="form-control" id="productColor" name='productColor' placeholder="Vui lòng nhập" required>
   </div>
 
+<p>Giới tính</p>
 <div class="d-flex">
     <div class="form-group p-3">
         <label for="productGenderMale">Nam</label>
@@ -37,6 +38,20 @@
         <label for="productGenderUnisex">Unisex</label>
         <input type="radio" class="form-control" id="productGenderUnisex" name='productGender' placeholder="Màu sắc" value='Unisex'>
     </div>
+</div>
+
+<p>Là sản phẩm đặc biệt</p>
+
+<div class="d-flex">
+    <div class="form-group p-3">
+        <label for="specialIsTrue">Có</label>
+        <input type="radio" class="form-control" id="specialIsTrue" name='isSpecial'  value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="specialIsFalse">Không</label>
+        <input type="radio" class="form-control" id="specialIsFalse" name='isSpecial'  value='false'>
+    </div>
+    
 </div>
 
   <div class="form-group">
@@ -92,6 +107,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     // Prevents HTML handling submission
     const productGender = document.querySelector('input[name="productGender"]:checked')?.value || 'Unisex';
+    const isSpecial = document.querySelector('input[name="isSpecial"]:checked')?.value;
     const productName = document.querySelector('input[name="productName"]');
     const productPrice = document.querySelector('input[name="productPrice"]');
     const productDescription = document.querySelector('textarea[name="productDescription"]');
@@ -107,6 +123,7 @@ form.addEventListener('submit', (e) => {
     const formData = new FormData();
      
     formData.append('productGender',productGender);
+    formData.append('isSpecial',isSpecial);
     formData.append('productName',productName.value);
     formData.append('productPrice',productPrice.value);
     formData.append('productDescription',productDescription.value);

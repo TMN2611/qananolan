@@ -3,18 +3,21 @@ const {
   mutipleMongooseToObject,
 } = require('../../util/mongoose');
 const ProductModel = require('../models/Product');
+const OrderModel = require('../models/Order');
+const { filterAvailableProduct} = require('../../util/ignoreProduct')
 
 class SearchsController {
   //  [GET]  / search
   async index(req, res) {
 
-    const {type,text} = req.query; 
+    const {type,text} = req.query;
 
 
     let searchResult ;
     if(type === 'product') {
 
-      const products = await ProductModel.find({});
+      const productsCollection = await ProductModel.find({});
+      let products = await filterAvailableProduct(productsCollection)
 
       const splitTextSearh = text.split(' ');
      
@@ -30,18 +33,41 @@ class SearchsController {
 
 
       searchResult = searchedProduct
+      return  res.render('search',{
+        products:mutipleMongooseToObject(searchResult),
+        quatity:searchResult.length,
+        resultSearchedFor:text,
+        pageTitle:`Kết quả tìm kiếm "${text}" - ${process.env.DOMAINNAME}`
+      });
 
     }
 
+    if(type === 'order') {
+      console.log(text);
+      const order = await OrderModel.findById(text.trim());
+      console.log("🚀 ~ file: SearchController.js:47 ~ SearchsController ~ index ~ order:", order)
 
-    return  res.render('search',{
-      products:mutipleMongooseToObject(searchResult),
-      quatity:searchResult.length,
-      resultSearchedFor:text,
-      pageTitle:`Kết quả tìm kiếm "${text}" - ${process.env.DOMAINNAME}`
-    });
+
+     
+
+
+
+      searchResult = searchedProduct
+      return  res.render('search',{
+        products:mutipleMongooseToObject(searchResult),
+        quatity:searchResult.length,
+        resultSearchedFor:text,
+        pageTitle:`Kết quả tìm kiếm "${text}" - ${process.env.DOMAINNAME}`
+      });
+
+    }
+  
+
+
+    
 
   }
+
 }
 
 module.exports = new SearchsController();

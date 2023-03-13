@@ -10,7 +10,7 @@ const ProductModel = require('../../app/models/Product');
     async productDetail(req, res) {
       const slug = req.params.slug;
       const productInfor = await ProductModel.findOne({slug:slug});
-      console.log("🚀 ~ file: ProductsController.js:13 ~ ProductsController ~ productDetail ~ productInfor", productInfor)
+   
       const productAvatar = mongooseToObject(productInfor)?.productImg?.[0];
   
       res.render('products/detailProduct', {

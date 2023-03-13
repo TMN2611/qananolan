@@ -78,11 +78,9 @@
 /* product__are */
 .product__item {
   width: 100%;  
-  height: 100%;
   margin-top: 0px;
   transition: all 0.3s linear;
   box-shadow: 0 0.5px 2px $border-color;
-
 
 }
 .product__item:hover{
@@ -349,7 +347,12 @@
     .product__rating--icon {
       font-size: 1rem;
     }
+    .product__item  {
+      min-height: 266px!important;
+    }
+   
  }
 
  .slick-slide img {
  }
+

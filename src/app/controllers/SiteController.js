@@ -1,6 +1,7 @@
 const ProductModel = require("../models/Product")
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const { getProducts } = require('../../util/getDataFromDB')
+const { filterAvailableProduct} = require('../../util/ignoreProduct')
 
 
 class SiteController {
@@ -9,9 +10,10 @@ class SiteController {
 
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     const isSpecial = true;
-    const products = await getProducts(isSpecial);
+    const productsCollection = await getProducts(isSpecial);
+    let products = await filterAvailableProduct(productsCollection)
 
-    const newestProduct = await ProductModel.find().sort({ _id: -1 }).limit(1)
+    const newestProduct = await ProductModel.find({isAvailable:true}).sort({ _id: -1}).limit(1)
     const newestProductObject = mongooseToObject(newestProduct[0]);
     const newestProductAvatar = newestProductObject?.productImg?.[0];
   
@@ -30,6 +32,11 @@ class SiteController {
   // [GET] /cart
   checkouts(req, res) {
     res.render('cart',{pageTitle:`Giỏ hàng của bạn - ${process.env.DOMAINNAME}`});
+  }
+
+   //  [GET]  / tra-cuu
+   async searchOrder(req, res) { 
+    res.render('searchOrder')
   }
 }
 

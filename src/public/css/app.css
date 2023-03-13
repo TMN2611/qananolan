@@ -405,7 +405,7 @@ button:focus {
   font-size: 1.3rem;
 }
 
-#search__submit {
+#search__submit, #searchOrder__submit {
   background-color: black;
   padding: 0 15px;
   cursor: pointer;
@@ -649,6 +649,11 @@ button:focus {
   display: none;
 }
 
+@media screen and (max-width: 1280px) {
+  .menu {
+    gap: 0;
+  }
+}
 @media screen and (max-width: 1023.98px) {
   .menu--wrapper.isShow .menu {
     right: 0;
@@ -986,7 +991,6 @@ button:focus {
 /* product__are */
 .product__item {
   width: 100%;
-  height: 100%;
   margin-top: 0px;
   transition: all 0.3s linear;
   box-shadow: 0 0.5px 2px #00000033;
@@ -1279,6 +1283,10 @@ button:focus {
 
   .product__rating--icon {
     font-size: 1rem;
+  }
+
+  .product__item {
+    min-height: 266px !important;
   }
 }
 .collections__type {
@@ -2431,6 +2439,13 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 }
 .productName {
   cursor: pointer;
+}
+
+.order_detail-heading {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 30px !important;
+  color: gray;
 }
 
 .policy {

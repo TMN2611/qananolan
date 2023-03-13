@@ -1,11 +1,13 @@
 const ProductModel = require("../models/Product");
 const BrandModel = require("../models/Brand");
+const OrderModel = require("../models/Order");
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const provincesJSON = require('../../resource/json/provinces.json')
 const { getProducts } = require('../../util/getDataFromDB')
 const axios = require('axios').default;
 var jwt = require('jsonwebtoken');
 const {calculateShipPrice} = require('../../util/calculatePriceBeforeSaveToDB')
+const moment = require('moment');
 
 class ApisController {
   //  [POST]  / products
@@ -14,7 +16,6 @@ class ApisController {
 
     let {gender="",brand="",color="",price=""} = req.body;
 
-    console.log(req.body);
 
 
     let products = await ProductModel.find({});
@@ -124,6 +125,32 @@ class ApisController {
       const brandList =await BrandModel.find({});
 
       res.json(brandList)
+  }
+  // GET /apis/brand-list
+
+  async searhOrder(req, res) {
+    console.log(req.body.orderId)
+    try {
+        const order = await OrderModel.findById(req.body.orderId.trim());
+        if(order.status === "Waiting") {
+          order.status = "Chờ xác nhận"
+        }
+        if(order.status === "Confirm") {
+          order.status = "Đang giao"
+        }
+        if(order.status === "Cancel") {
+          order.status = "Đã hủy"
+        }
+        const sevendaysAfter = moment().subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
+        const orderTime = moment(order.createdAt).format('Do/MM/YYYY, h:mm:ss a')
+ 
+
+        res.json({isSuccess:true,order,sevendaysAfter,orderTime});
+      
+    } catch (error) {
+        res.json({isSuccess:false, message:"Đơn hàng không tồn tại"})
+    }
+
   }
 
 

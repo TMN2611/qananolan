@@ -20,9 +20,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 router.get('/orders/:token',requireAdminToken, AdminController.order);
 router.get('/products/:token',requireAdminToken, AdminController.product);
-router.get('/order-detail/:id/:token', AdminController.orderDetail);
+router.get('/delete-product/:id/:token',requireAdminToken, AdminController.deleteProduct);
+router.get('/toggle-product/:id/:token',requireAdminToken, AdminController.toggleProduct);
+router.get('/edit-product/:id/:token',upload.array("files"), AdminController.editProduct);
+router.post('/edit-product/:id/:token',upload.array("files"), AdminController.editProductHandle);
+
+router.get('/order-detail/:id/:token', requireAdminToken,AdminController.orderDetail);
 router.get('/them-san-pham/:token',requireAdminToken, AdminController.addproductView);
 router.post('/them-san-pham/:token',upload.array("files"),requireAdminToken, AdminController.addproduct);
+router.post('/change-order-infor/:id/:token',requireAdminToken, AdminController.changeOrderInfor);
+router.post('/change-order-status/:id/:token',requireAdminToken, AdminController.changeOrderStatus);
 
 
 module.exports = router;

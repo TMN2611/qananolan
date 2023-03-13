@@ -137,7 +137,7 @@
   padding-left: 10px;
   font-size: 1.3rem;
 }
-#search__submit {
+#search__submit , #searchOrder__submit{
   background-color: black;
   padding: 0 15px;
   cursor: pointer;
@@ -389,8 +389,15 @@
     display: none;
   }
 }
+@media screen and (max-width: 1280px) {
+  .menu {
+    gap:0;
+  }
+}
+
 
 @media screen and (max-width: 1023.98px) {
+
 
   .menu--wrapper {
     &.isShow {
@@ -484,3 +491,4 @@
     }
   }
 }
+

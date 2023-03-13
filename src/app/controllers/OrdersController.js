@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const {calculateShipPrice,getDiscountFromId} = require('../../util/calculatePriceBeforeSaveToDB');
 var nodemailer = require('nodemailer');
 const fs = require('fs');
+const {exportTimeString} = require('../../util/time')
 const hbs = require('nodemailer-express-handlebars')
   const path = require('path')
 
@@ -117,7 +118,7 @@ class OrdersController {
            //  Giá hợp lệ
             
             // Gửi Email
-            function sendEmailAcceptToClient(orderId,orderDate,finalPrice,discount) {
+            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount) {
 
                 
               //  Nodejs Email with nodemailer
@@ -170,6 +171,7 @@ class OrdersController {
                   address: userInfor.address,
                   orderId:orderId,
                   orderDate,
+                  orderTime,
                   finalPrice,
                   discount,
                   productInfor,
@@ -209,20 +211,27 @@ class OrdersController {
 
               OrderModel.create(dataForSave, async function (err, small) {
                 // if (err) console.log(err);
-                // saved!
+                // saved!r3
             
 
-                let date = ("0" + small.createdAt.getDate()).slice(-2);
-                let month = ("0" + (small.createdAt.getMonth() + 1)).slice(-2);
-                let year = small.createdAt.getFullYear();
-                const orderDate = `${date} - ${month} - ${year}  `
+              
+                const {orderDate,orderTime} =  await exportTimeString(small.createdAt)
                 
-                  sendEmailAcceptToClient(small._id,orderDate,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
+                  sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
 
-                  const productHaveOrder = small.productList;
+                  
+                  console.log(productList)
 
-                  productHaveOrder.forEach(product => {
-                    ProductModel.findByIdAndUpdate()
+                  productList.forEach(async product => {
+                    const productCollection = await ProductModel.findById(product.cartItemId);
+
+
+                    productCollection.set({quantitySold:productCollection.quantitySold+ product.cartItemAmount});
+  
+                    await productCollection.save();
+         
+                    
+                
                   })
 
 
