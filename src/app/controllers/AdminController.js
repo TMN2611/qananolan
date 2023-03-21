@@ -14,12 +14,7 @@ const {exportTimeString} = require('../../util/time');
 const { findById } = require("../models/Product");
 
 try {
-  function filterAvailableProduct(products){
-    console.log(products.length);
-      return products.filter(product => {
-          return product.isAvailable? true : false;
-      })
-  }
+
   class AuthCotroller {
     //  [GET]  / admin/order
     async order(req, res) {
@@ -35,7 +30,6 @@ try {
         const b = moment(a).fromNow();
         order.orderTimeFromNow = b;
         const {orderDate} =await exportTimeString(order.createdAt);
-        console.log("🚀 ~ file: AdminController.js:29 ~ AuthCotroller ~ orderList.map ~ orderDate:", orderDate)
         order.orderDate = orderDate;
         return order;
   
@@ -117,7 +111,6 @@ try {
     }
     // [POST]
     async editProductHandle(req, res) {
-      console.log(req.params);
       const {productName,productGender,productPrice,productDescription,sale,productColor,productSize,brand,weight} = req.body;
       const productImg = req.files.map(i=> {
         return `/img/Products/${i.originalname}`
@@ -155,7 +148,6 @@ try {
     }
   
     async deleteProduct(req, res) {
-      console.log(req.params)
       ProductModel.findOneAndDelete({_id: {$gte:req.params.id} }, function (err, docs) {
         if (err){
             console.log(err);
@@ -207,7 +199,6 @@ try {
     async addproduct(req, res) {
       const data = req.body;
       let {productGender,productName,productPrice,productDescription,sale,productColor,productSize,brand,weight,isSpecial} = data;
-      console.log(isSpecial);
       const newProductDescription = await textAreaSpace(productDescription);
       const newProductSize = await inputSpace(productSize);
       const numberOfClicks = 0; 

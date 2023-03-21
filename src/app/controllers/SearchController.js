@@ -43,13 +43,8 @@ class SearchsController {
     }
 
     if(type === 'order') {
-      console.log(text);
       const order = await OrderModel.findById(text.trim());
-      console.log("🚀 ~ file: SearchController.js:47 ~ SearchsController ~ index ~ order:", order)
-
-
      
-
 
 
       searchResult = searchedProduct

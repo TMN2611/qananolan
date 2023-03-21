@@ -151,7 +151,6 @@ Handlebars.registerHelper('renderRadioGender', function (value) {
 });
 Handlebars.registerHelper('renderRadioSpecical', function (value) {
   const isSpecial = value.data.root.product.isSpecial;
-  console.log("🚀 ~ file: main.js:154 ~ isSpecial:", isSpecial)
 
   if(isSpecial) {
     return  `<div class="form-group p-3">
@@ -176,7 +175,9 @@ Handlebars.registerHelper('renderRadioSpecical', function (value) {
   
 });
 
-
+process.on('uncaughtException', function(err) {
+  console.log('Caught exception: ' + err);
+});
 
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))

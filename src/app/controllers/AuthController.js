@@ -13,7 +13,6 @@ class AuthCotroller {
   }
   // [ POST ] / admin/handle-login
   async handleLogin (req, res) {
-    console.log(req.body);
 
     const {phone, password} = req.body;
 
@@ -41,7 +40,7 @@ class AuthCotroller {
 
            const token = jwt.sign({
             data: new Date()
-          }, process.env.AUTH_SECRET_KEY);
+          }, process.env.AUTH_SECRET_KEY,);
 
           if(user.level === 999) {
             return res.json({isSuccess,message,token});
@@ -71,7 +70,6 @@ class AuthCotroller {
   }
   // [ POST ] / admin/handle-signup
   async handleSignup (req, res) {
-      console.log(req.body);
       const {phone, password,retypepassword} = req.body;
 
       const isExist = await  UserModel.findOne({phone: phone})

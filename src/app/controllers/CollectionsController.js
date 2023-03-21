@@ -127,7 +127,6 @@ class CollectionsController {
             uniqueColor.push(c.productColor);
         }
     });
-    console.log(uniqueColor);
     // Price range
     let priceRange = [
       {from:0, to:200000,valueString:"Dưới 200.000đ"},

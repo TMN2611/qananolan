@@ -17,7 +17,6 @@ const payBtn = document.getElementById('pay__btn');
             $('#modalUserInfor').modal('show')
         }
         else {
-            console.log("Đã có");
             if(cartProductList.length === 0) {
                 alert("Giỏ hàng đang trống");
             }

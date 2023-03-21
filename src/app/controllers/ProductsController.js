@@ -12,11 +12,12 @@ const ProductModel = require('../../app/models/Product');
       const productInfor = await ProductModel.findOne({slug:slug});
    
       const productAvatar = mongooseToObject(productInfor)?.productImg?.[0];
-  
+      const hotline = process.env.ADMIN_PHONE;
       res.render('products/detailProduct', {
         productInfor: mongooseToObject(productInfor),
         pageTitle:`${productInfor?.productName}- ${process.env.DOMAINNAME}`,
-        productAvatar
+        productAvatar,
+        hotline
       });
     }
 

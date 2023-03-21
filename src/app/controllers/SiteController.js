@@ -36,7 +36,7 @@ class SiteController {
 
    //  [GET]  / tra-cuu
    async searchOrder(req, res) { 
-    res.render('searchOrder')
+    res.render('searchOrder',{pageTitle:`Tra cứu - ${process.env.DOMAINNAME}`})
   }
 }
 

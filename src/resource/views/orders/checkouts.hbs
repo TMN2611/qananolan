@@ -154,7 +154,7 @@
 										<p>
 												Nội dung chuyển khoản: 
 												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
-												VD: quana#1234__Trần Minh Nhân
+												VD: 641941f3b2aeb427c7e819e3__Trần Minh Nhân
 												
 										</p>
 
@@ -167,9 +167,26 @@
 									<div class="tab__content">
 									{{!-- <h2>Ember</h2> --}}
 										<p>
-											Momo:<span class='font-weight-bold'>0962165085</span> 
+											Momo:<span class='font-weight-bold'>0962165084</span> 
 											
 
+										</p>
+
+										<p>
+												Tên chủ tài khoản: 
+												<span class='font-weight-bold'>Trần Minh Nhân</span>
+												
+										</p>
+										<p>
+												Số điện thoại: 
+												<span class='font-weight-bold'>0962165084</span>
+												
+										</p>
+										<p>
+												Nội dung chuyển khoản: 
+												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
+												VD: 641941f3b2aeb427c7e819e3__Trần Minh Nhân
+												
 										</p>
 										<p>
 											<span class='font-weight-bold'>* Lưu ý:</span>
@@ -372,6 +389,7 @@ getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 			}).then( async data => {
 
 				const {fee,insurance_fee,ship_fee_only} = data.fee;
+				console.log(data)
 				const orderWeight = data.orderWeight / 1000;
 
 				const totalPriceFromFetch =await getTotalPrice();
@@ -401,7 +419,6 @@ getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 
 				const btn = orderBtnDisabled.querySelector('button');
 				btn.removeAttribute('disabled');
-				console.log(productPrice)
 				if(productPrice ===0 ) {
 							orderBtnDisabled.classList.add('disabled');
 
@@ -524,7 +541,6 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 											.then(response => {
 												e.target.disabled = true;
 
-												console.log(response)
 												const {priceWithDiscount} = response
 
 												const {decrease,type,unit,currentPrice,newFee,discountName,message} = priceWithDiscount;
@@ -549,7 +565,6 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 													totalPriceElement.innerHTML = numberToMoney(shipmentFee + productPrice);
 
 													const listUseDiscoutBtn = document.querySelectorAll('.use-discount-btn');
-													console.log("🚀 ~ file: checkouts.hbs:560 ~ changePriceView ~ listUseDiscoutBtn", listUseDiscoutBtn)
 
 													listUseDiscoutBtn.forEach((item)=> {
 														if(item.dataset.discounttype === type ) {
@@ -662,7 +677,6 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 				totalPriceFromClient:totalPriceFromFetch 
 
 			}
-			console.log(orderData);
 
 
 			function order (orderData) {
@@ -677,15 +691,13 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 				.then(response => response.json())
 				.then((response) => {
 
-
 						alert(response.message);
+						console.log(response.isSuccess);
 						if(!response.isError) {
 							window.location.pathname='/home';
 							localStorage.setItem('cartProductList',"[]") 
 							localStorage.setItem('discountCode',"[]")
 						}
-
-
 
 				})
 			}

@@ -14,7 +14,7 @@ const DiscountModel = require('../models/Discount');
       let discountList =await DiscountModel.find({isAvailable:true});
 
       discountList = discountList.filter((item)=> {
-          return item.minOrderPrice < total;
+          return item.minOrderPrice <= total;
       })
 
 
@@ -25,7 +25,6 @@ const DiscountModel = require('../models/Discount');
        const data = req.body;
 
        const priceWithDiscount =  await getDiscountFromId(data,req,res);
-       console.log("🚀 ~ file: DiscountsController.js:28 ~ DiscountsController ~ getDiscountFromId ~ priceWithDiscount", priceWithDiscount)
 
     
       return res.json(priceWithDiscount)

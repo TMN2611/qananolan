@@ -149,7 +149,6 @@
               })
                 .then(response => response.json())
                 .then(result => {
-                  console.log(result);
                   const {isSuccess,message} = result
                   alert(message);
                   if(isSuccess) {

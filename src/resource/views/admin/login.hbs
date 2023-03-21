@@ -34,8 +34,8 @@
       })
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           const {isSuccess,message,token} = result
+       
           alert(message);
           if(isSuccess) {
             if(token) {

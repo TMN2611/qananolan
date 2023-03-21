@@ -38,7 +38,6 @@
   orderLinkList.forEach(function(orderLink) {
 
         orderLink.addEventListener('click', function(e){
-          console.log()
           const orderId = e.currentTarget.dataset.id;
 
           window.location = `/admin/order-detail/${orderId}/${adminToken}` 

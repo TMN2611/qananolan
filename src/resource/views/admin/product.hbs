@@ -27,6 +27,18 @@
                 {{this.productName}}
             </td>
             <td>
+
+                 {{#if this.sale includeZero=false}}
+                        <span class='product__newPrice'>{{number
+                            this.productSalePrice
+                          }}₫</span>
+                        <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
+                        {{else}}
+                        <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
+
+                  {{/if}}
+            </td>
+            <td>
               <button
                 type="button"
                 class="btn btn-warning"
@@ -175,7 +187,6 @@
 
       var serviceId = button.data('whatever');
       const toggleProductBtn = document.querySelector('#toggle-product-btn');
-      console.log(serviceId);
       const formToggleProduct = document.forms['hide-form'];
 
       toggleProductBtn.addEventListener('click', function (event) {

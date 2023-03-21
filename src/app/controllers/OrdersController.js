@@ -19,11 +19,8 @@ class OrdersController {
 
 
   async checkouts(req, res) {
-      const token = req.params;
-      console.log(token,Math.random);
 
-
-      res.render('orders/checkouts')
+      res.render('orders/checkouts',{pageTitle:`Thanh toán - ${process.env.DOMAINNAME}`})
   }
 
   async handleOrder(req, res) {
@@ -118,7 +115,7 @@ class OrdersController {
            //  Giá hợp lệ
             
             // Gửi Email
-            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount) {
+            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount,DOMAINNAME) {
 
                 
               //  Nodejs Email with nodemailer
@@ -157,10 +154,11 @@ class OrdersController {
               //   }
               // });
               // console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
+              const mailList = [`${userInfor.email}`,`${process.env.ADMIN_EMAIL}`]
               
               var mailOptions = {
                 from: `"QANA NOLAN" ${process.env.EMAILADDRESS}`,
-                to: `${userInfor.email}`,
+                to: mailList,
                 subject: 'XÁC NHẬN ĐẶT HÀNG',
                 text: 'Xin chào bạn',
                 // attachments:attachmentList,
@@ -175,6 +173,7 @@ class OrdersController {
                   finalPrice,
                   discount,
                   productInfor,
+                  DOMAINNAME:DOMAINNAME,
                   
                 }
               
@@ -217,10 +216,9 @@ class OrdersController {
               
                 const {orderDate,orderTime} =  await exportTimeString(small.createdAt)
                 
-                  sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount));
+                  sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME);
 
                   
-                  console.log(productList)
 
                   productList.forEach(async product => {
                     const productCollection = await ProductModel.findById(product.cartItemId);

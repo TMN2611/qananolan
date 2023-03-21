@@ -79,7 +79,7 @@
   </body>
   <script>
       var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "102043659334735");
+      chatbox.setAttribute("page_id", "106866848552986");
       chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
@@ -88,7 +88,7 @@
       window.fbAsyncInit = function() {
         FB.init({
           xfbml            : true,
-          version          : 'v14.0'
+          version          : 'v16.0'
         });
       };
 
@@ -121,8 +121,10 @@
 
         $('.main__partner-list').slick({
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1000,
         arows:true,
         prevArrow: '<div class="class-to-style"><span class="fa fa-angle-left"></span><span class="sr-only">Prev</span></div>',
 

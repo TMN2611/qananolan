@@ -9,11 +9,11 @@ async function calculateShipPrice(data) {
   const {address:userAdress,cartProductId} = data;     
 
     const pickAdress = {
-        ward:"Tây Thạnh",
-        district:"Tân Phú",
+        ward:"Bình Hưng Hòa B",
+        district:"Bình Tân",
         provinces:"Hồ Chí Minh",
-        street: "Lê Trọng Tấn",
-        adress: "140 Lê Trọng Tấn",
+        street: "Nguyễn Thị Tú",
+        adress: "67 Nguyễn Thị Tú",
     }
 
 
@@ -53,6 +53,7 @@ async function calculateShipPrice(data) {
     async function  caculateShipPrice (url) {
 
       const res = await axios.get(url,header );
+      console.log(res.data)
       return res.data
     }
     
@@ -71,9 +72,9 @@ async function getDiscountFromId(data,req,res) {
   let isSuccess = true;
 
 
-  const discountDB =(await DiscountModel.find({_id:discountId}))[0];
-
-  let {decrease, type, unit,minOrderPrice,discountName} = discountDB;
+  try {
+     const discountDB =(await DiscountModel.find({_id:discountId}))[0];
+     let {decrease, type, unit,minOrderPrice,discountName} = discountDB;
 
   // 
 
@@ -100,7 +101,7 @@ if( unit==='%') {
   }
   else {
       isSuccess = false;
-      return res.json({message: 'Khuyến mãi không được áp dụng với đơn hàng này'});
+      return res.json({message: 'Khuyến mãi không được áp dụng với đơn hàng này',isError:!isSuccess});
   }
 }
 else if(unit==='vnd') {
@@ -111,7 +112,7 @@ else if(unit==='vnd') {
   }
   else {
     isSuccess = false;
-      return res.json({message: 'Khuyến mãi không được áp dụng với đơn hàng này'});
+      return res.json({message: 'Khuyến mãi không được áp dụng với đơn hàng này',isError:!isSuccess});
   }
 
 }
@@ -123,6 +124,12 @@ else {
 
     return {priceWithDiscount,isSuccess};
 
+    
+  } catch (error) {
+    return res.json({message: 'Mã khuyến mãi không hợp lệ',isError:true});
+  }
+
+  
 
 
 }

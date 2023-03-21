@@ -19,7 +19,6 @@ class ApisController {
 
 
     let products = await ProductModel.find({});
-    console.log(products.length);
 
     let newProducts= [];
     if(gender.length !== 0) {
@@ -86,7 +85,6 @@ class ApisController {
       })
 
     }
-    console.log(newProducts);
   
      res.json({products:newProducts})
      products = [];
@@ -129,7 +127,6 @@ class ApisController {
   // GET /apis/brand-list
 
   async searhOrder(req, res) {
-    console.log(req.body.orderId)
     try {
         const order = await OrderModel.findById(req.body.orderId.trim());
         if(order.status === "Waiting") {
@@ -141,7 +138,7 @@ class ApisController {
         if(order.status === "Cancel") {
           order.status = "Đã hủy"
         }
-        const sevendaysAfter = moment().subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
+        const sevendaysAfter = moment(order.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
         const orderTime = moment(order.createdAt).format('Do/MM/YYYY, h:mm:ss a')
  
 

@@ -383,6 +383,7 @@ button:focus {
   display: flex;
   justify-content: center;
   box-shadow: unset;
+  z-index: 0;
 }
 .form__search.form__search--inSearchPage #search__input {
   width: 400px;
@@ -1381,6 +1382,13 @@ button:focus {
 }
 .promotion__title {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+}
+.promotion__title img {
+  width: 40px;
+  height: 40px;
 }
 .promotion__btn {
   font-size: 1.5rem;
@@ -1781,6 +1789,11 @@ button:focus {
 
   #cartModal .modal-content {
     padding-inline: 10px;
+  }
+
+  .promotion__title img {
+    width: 20px;
+    height: 20px;
   }
 }
 #modalUserInfor .nameAndPhoneInput {

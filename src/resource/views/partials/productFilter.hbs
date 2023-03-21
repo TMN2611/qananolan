@@ -134,7 +134,6 @@
                               const CheckedElement = document.querySelectorAll(`input[name="${param}"]:checked`);
 
                                 return  [...CheckedElement].map((e)=> {
-                                    console.log(e.value)
                                    return e.value;
                                 })
                         }

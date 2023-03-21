@@ -21,7 +21,7 @@ var ProductSchema = mongoose.Schema(
     },
     isSpecial: {type:Boolean, default:false},
     isAvailable:{type:Boolean, default:true},
-    quantitySold:Number,
+    quantitySold:String,
     numberOfClicks:Number,
     brand:String,
     

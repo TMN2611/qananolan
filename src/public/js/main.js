@@ -9,7 +9,7 @@ function numberToMoney (price) {
     const stringPrice = `${price}`;
    return stringPrice.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")  +  '<span class="vnd px-2">đ </span>';
 }
-// getProductWithIdInCart
+// Tự động update giỏ hàng khi giá được thay đổi
 async function getProductWithIdInCart () {
     try {
         const productWithIdInCart = await Promise.all(
@@ -118,7 +118,6 @@ async function getTotalPrice () {
     })
     .then(response => response.json())
     .then((response) => {
-    console.log("🚀 ~ file: main.js:103 ~ .then ~ response", response)
 
         return response;
 
