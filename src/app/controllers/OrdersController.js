@@ -208,13 +208,14 @@ class OrdersController {
                 note        
               }
 
-              OrderModel.create(dataForSave, async function (err, small) {
-                // if (err) console.log(err);
-                // saved!r3
-            
+              console.log(dataForSave);
 
+              OrderModel.create(dataForSave, async function (err, small) {
+                if (err) console.log(err);
+            
+                console.log(small)
               
-                const {orderDate,orderTime} =  await exportTimeString(small.createdAt)
+                const {orderDate,orderTime} =  await exportTimeString(small?.createdAt)
                 
                   sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME);
 

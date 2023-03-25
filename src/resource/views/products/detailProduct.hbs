@@ -48,18 +48,18 @@
             </h1>
 
             <div class="promotion py-3 border-bottom ">
-                <h6 class="promotion__title detailProduct__content--title"> <img src="/img/Icons/loudspeaker.png" alt="">Khuyến mãi :</h6>
+                <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
                 <div class='productColor__content-promotion'>
-                    <p> MIỄN PHÍ SHIP</p>
+                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> MIỄN PHÍ SHIP</p>
                     <ul>
                         <li>
-                            Giảm 100k đơn hàng từ 1.000.000 VND
+                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 100k đơn hàng từ 1.000.000 VND
                         </li>
                         <li>
-                            Giảm 150k đơn hàng từ 1.500.000 VND
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 150k đơn hàng từ 1.500.000 VND
                         </li>
                         <li>
-                            Giảm 200k đơn hàng từ 2.000.000 VND
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 200k đơn hàng từ 2.000.000 VND
                         </li>
                     </ul>
                 </div>
@@ -164,7 +164,7 @@
 
         
         </div>
-        <div class="col-12">
+        {{!-- <div class="col-12">
             <div class="row pt-5">
                 {{#each productInfor.productImg}}
                 <div class="col-12 col-md-6 mb-5">
@@ -175,7 +175,7 @@
 
             </div>
 
-        </div>
+        </div> --}}
 
         <div class="col-12 mt-5">
             <div class="product__desc--tabs">
@@ -198,7 +198,7 @@
                             <p> 
                             {{#if this.emoji}}
                               <span> 
-                                {{this.emoji}}
+                                {{!-- {{this.emoji}} --}}
                               </span>
                             {{/if}}
                               {{this.descText}}
@@ -210,12 +210,82 @@
                 </div>
                 <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
                     <div class="description-productdetail">
-                        <p>Chính sách đổi trả của Công Ty Cổ Phần Thời Trang Hạ Vàng được áp dụng với mong muốn mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất tại website Gosumo.vn và Shooz.vn. Các sản phẩm của Hạ Vàng khi đến với khách hàng luôn được đảm bảo là hàng chính hãng, hàng nguyên mới chưa qua sử dụng, chất lượng và uy tín đến từ các thương hiệu nổi tiếng trên thế giới.</p><p><strong>I. CHÍNH SÁCH TRẢ HÀNG</strong></p><p>· Chỉ áp dụng trả sản phẩm khi sản phẩm bị lỗi chất lượng từ Hạ Vàng.</p><p>· Ngoài ra, không áp dụng trả hàng với bất kỳ lý do nào.</p><p><strong>II. CHÍNH SÁCH ĐỔI HÀNG</strong></p><p>· Không áp dụng cho các mặt hàng Đồ lót, Đồ bơi, Đồ thể thao, Phụ Kiện (đồng hồ, mắt kính, nón, khẩu trang, vớ, trang sức, cài áo, băng đô/kẹp tóc, khăn, nắp túi, chăm sóc/vệ sinh giày…).</p><p>· Chấp nhận đổi size, không đổi kiểu. Chỉ đổi kiểu trong trường hợp sản phẩm đó không còn size trên toàn hệ thống.</p><p>· Áp dụng cho hàng nguyên giá và giảm giá dưới 40%.</p><p>· Trường hợp đổi sản phẩm khác có chênh lệch giá, khách hàng sẽ thanh toán thêm phần chênh lệch thiếu và Hạ Vàng sẽ không hoàn trả phần chênh lệch dư.</p><p>· Trong trường hợp khách hàng không chọn được sản phẩm thay thế khác, Hạ Vàng sẽ gửi cho khách hàng một Coupon tương đương với số tiền đơn hàng khách hàng đã mua trước đó (không bao gồm phí vận chuyển). Thời hạn sử dụng coupon là 30 ngày kể từ ngày phát hành.</p><p>· Giá của sản phẩm đã mua là giá trên hóa đơn, giá của sản phẩm đổi là giá niêm yết tại thời điểm đổi hàng.</p><p><strong>III. THỜI GIAN ĐỔI TRẢ HÀNG</strong></p><p>Trong vòng 7 ngày tính từ ngày khách nhận được hàng, đến ngày Hạ Vàng nhận được sản phẩm từ khách hàng (không tính trên dấu bưu điện hoặc thời gian đăng ký hoàn trả).</p><p><strong>IV. ĐIỀU KIỆN ĐỔI TRẢ HÀNG</strong></p><p>· Sản phẩm còn nguyên tem, nhãn, túi vải và hộp giấy và bao bì có dán mã sản phẩm của Gosumo / Shooz.</p><p>· Sản phẩm không có dấu hiệu đã qua sử dụng hay giặt, không bị dơ bẩn (khi thử sản phẩm giày dép, khách hàng nên mang vớ và thử giày trên bề mặt sạch).</p><p>· Mỗi sản phẩm chỉ được đổi hàng 01 lần.</p><p>· Đối với sản phẩm Furla: 01 sản phẩm chỉ được đổi tối đa 02 sản phẩm khác.</p><p>· Đối với sản phẩm khác: 01 sản phẩm chỉ được đổi 01 sản phẩm.</p><p><strong>V. CHI PHÍ ĐỔI TRẢ HÀNG</strong></p><p>· Hạ Vàng miễn phí đổi hàng nếu do lỗi bị trầy xước khi vận chuyển, giao nhầm sản phẩm.</p><p>· Khách hàng vui lòng thanh toán phí vận chuyển trong các trường hợp đổi sản phẩm vì lí do chủ quan: không vừa size hoặc các lý do phù hợp trong chính sách này.</p><p><strong>VI. PHƯƠNG THỨC HOÀN TIỀN (ÁP DỤNG KHI TRẢ HÀNG)</strong></p><p>· Phương thức 1: Đối với trường hợp Thanh toán online qua ứng dụng ví điện tử OnePay/VN Pay bằng QR Code, ATM nội địa, thẻ Visa, Mastercard, JCB: Hạ Vàng sẽ hoàn trả 07-10 ngày làm việc kể từ lúc nhân viên CSKH xác nhận đơn hàng đã hủy trên hệ thống.</p><p>· Đối với trường hợp Thanh toán COD, chuyển khoản trực tiếp vào tài khoản Công ty: Hạ Vàng sẽ hoàn trả vào tài khoản ngân hàng của khách hàng từ 07-10 ngày làm việc kể từ lúc nhân viên CSKH xác nhận đơn hàng đã hủy trên hệ thống.</p><p>· Đối với trường hợp Coupon: Thanh toán qua hình thức Coupon bằng với giá trị tương đương và Khách hàng đã thanh toán (không bao gồm chi phí giao hàng) với thời hạn sử dụng là 30 ngày kể từ ngày phát hành.</p><p><strong>VII. QUY TRÌNH ĐỔI TRẢ</strong></p><p>· Bước 1: Liên hệ Hotline 1900 63 6641 hoặc Fanpage Gosumo / Shooz để thông báo yêu cầu đổi trả.</p><p>· Bước 2: Hạ Vàng tiếp nhận thông tin và phản hồi trong vòng 24h.</p><p>· Bước 3: Nếu yêu cầu đổi trả được chấp nhận, Khách hàng cung cấp hình ảnh / video clip về tình trạng sản phẩm cho nhân viên tiếp nhận thông tin thông qua Email / Tin nhắn Messenger hoặc Zalo.</p><p>· Bước 4: Khách hàng gửi sản phẩm về địa chỉ được Hạ Vàng cung cấp khi xác nhận thông tin.</p><p>· Bước 5: Hạ Vàng kiểm tra tình trạng sản phẩm khi nhận được hàng.</p><p>· Bước 6: Thông báo đến khách hàng và hoàn tiền theo quy định. Trường hợp sản phẩm không đạt yêu cầu đổi hàng, Hạ Vàng sẽ chuyển hoàn lại địa chỉ đăng ký trên đơn hàng.</p><p><strong>LƯU Ý:</strong></p><p>· Khách hàng chịu trách nhiệm về trạng thái nguyên vẹn của sản phẩm khi gửi về cho Hạ Vàng.</p><p>· Bưu phẩm gửi về cần ghi rõ những thông tin của đơn hàng.</p><p>Công ty luôn cố gắng nỗ lực mang đến sự hài lòng trong mua sắm đến Khách hàng, bảo vệ hình ảnh của sản phẩm, thương hiệu. Tuy nhiên, khi có những trường hợp không như mong muốn xảy ra, quyết định của Công ty là quyết định cuối cùng. Mọi ý kiến đóng góp xin liên hệ:</p><p>Công Ty Cổ Phần Thời Trang Hạ Vàng</p><p>Địa chỉ: 36/9 Nguyễn Gia Trí, Phường 25, Quận Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam</p><p>Hotline: 1900 63 6641</p><p>Giấy CNDKKD: 0303083083, do Sở kế hoạch và Đầu tư TP. HCM cấp ngày 11/09/2003</p>
+                         <h5 class="policy-title">
+                                    Điều kiện đổi , trả
+                                </h5>
+                                <p>
+                                    <ol class="s">
+                                        <li>
+                                                Quý khách có thể đổi trả hàng thoải mái trong vòng <span class="font-weight-bold">7 ngày</span> kể từ ngày nhận hàng .
+                                        </li>
+
+                                        <li>
+                                            Giữ sản phẩm không bị bẩn , hỏng để thuận tiện hơn trong việc đổi trả. Vui lòng quay clip quá trình kiểm tra hàng
+                                        </li>
+
+                                        <li>
+                                            Khi đổi sản phẩm , trường hợp không còn size quý khách được đổi một lần duy nhất sang mẫu giày khác không thấp hơn giá trị sản phẩm đã mua
+                                        </li>
+                                    </ol>
+                                    
+
+                                    
+                                </p>
+                                <h5 class="policy-title">
+                                    Chi phí ship hai chiều
+                                </h5>
+
+                                <p>
+                                    Các lý do như , shop gửi sai màu , sai mẫu , sai số lượng, sai kích thước phí ship đổi trả hoàn toàn do shop chi trả.
+                                </p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pstorageInstructions" role="tabpanel" aria-labelledby="pstorageInstructions-tab">
                     <div class="description-productdetail">
-                        <p style="text-align: justify;"><strong>ĐỐI VỚI GIÀY DA, VẢI</strong></p><p style="text-align: justify;">- Định kỳ vệ sinh giày, khi giày bẩn nên dùng vải sạch thấm nước xà phòng lau nhẹ nhàng, không dùng bàn chải để chà, không sử dụng thuốc tẩy để giặt bạn nên sử dụng các loại xà phòng dịu nhẹ như dầu gội và nước rửa chén,.... Đối với giày da và da lộn nên sửa dụng kem và dụng cụ chùi da giày chuyên dụng.</p><p style="text-align: justify;">- Tránh để nước thấm vào giày, nếu giày bị thấm nước, nên nhét giấy vào trong giày để nước thấm vào trong giấy. Sau đó, phơi giày nơi khô ráo, không phơi giày trước ánh nắng trực tiếp.</p><p style="text-align: justify;">- Khi sử dụng, tránh tiếp xúc đế giày với dầu khí và các loại hóa chất dễ gây hư hỏng giày. Chẳng may giày bị dính, nên rửa ngay bằng nước sạch. Cũng nên tránh để giày tiếp xúc vật nhọn.</p><p style="text-align: justify;">- Dây giày không nên thắt quá chặt và không đè ép giày.</p><p style="text-align: justify;">- Trong thời gian dài không mang, nên vệ sinh giày sạch sẽ, lấy miếng lót giày ra, phơi nơi khô thoáng, gói giày lại bằng giấy và sử dụng cốt giày hoặc giấy độn vào giày để tránh mất form giày.</p><p style="text-align: justify;"><strong>ĐỐI VỚI GIÀY NHỰA:</strong></p><p style="text-align: justify;">- Định kỳ vệ sinh giày, khi giày bẩn nên dùng vải sạch thấm nước xà phòng lau nhẹ nhàng, không dùng bàn chải để chà, không sử dụng thuốc tẩy để giặt bạn nên sử dụng các loại xà phòng dịu nhẹ như dầu gội và nước rửa chén,.... Đối với giày da và da lộn nên sửa dụng kem và dụng cụ chùi da giày chuyên dụng.</p><p>- Khi sử dụng, tránh tiếp xúc đế giày với dầu khí và các loại hóa chất dễ gây hư hỏng giày. Chẳng may giày bị dính, nên rửa ngay bằng nước sạch. Cũng nên tránh để giày tiếp xúc vật nhọn.</p>
+                        <p>
+                              👟👟 Để giày của bạn luôn được giữ gìn và sử dụng lâu dài, dưới đây là một số hướng dẫn bảo quản giày mà bạn có thể tham khảo:
+                        </p>
+                       
+
+                       <p>
+                            ✔️ Đọc kỹ nhãn chỉ dẫn: Mỗi đôi giày đều có những yêu cầu riêng về cách bảo quản và vệ sinh. Hãy đọc kỹ nhãn chỉ dẫn để biết cách chăm sóc giày của bạn đúng cách.
+                       </p>
+
+                        
+                        <p>
+                            ✔️ Làm sạch giày thường xuyên: Nếu để bụi bẩn và mồ hôi tích tụ trên giày, chúng sẽ gây ảnh hưởng đến chất lượng và độ bền của giày. Vì vậy, hãy làm sạch giày của bạn thường xuyên bằng cách lau chùi bằng khăn ẩm hoặc bàn chải mềm.
+
+                        </p>
+
+                        <p>
+                            ✔️ Bảo quản giày ở nơi thoáng mát và khô ráo: Không bao giờ để giày ở nơi ẩm ướt hoặc đầy nắng nóng. Hãy bảo quản giày của bạn ở nơi thoáng mát và khô ráo để tránh tình trạng giày bị nấm mốc hoặc bong tróc.
+                        </p>
+
+                        <p>
+                            ✔️ Sử dụng chất tẩy rửa đúng loại: Khi sử dụng chất tẩy rửa để vệ sinh giày, hãy chọn loại phù hợp với chất liệu của giày. Đừng sử dụng chất tẩy rửa có chứa hoá chất mạnh hoặc tẩy trắng, vì chúng có thể làm hỏng chất liệu và làm giảm độ bền của giày.
+                        </p>
+
+                        <p>
+                             ✔️ Bảo quản giày trong hộp hoặc túi đựng giày: Để bảo vệ giày khỏi bụi bẩn và các tác nhân bên ngoài khác, bạn nên bảo quản giày trong hộp hoặc túi đựng giày sau khi sử dụng.
+                        </p>
+
+                        <p> 
+                            
+                            ✔️ Thay đổi đôi giày: Không nên sử dụng cùng một đôi giày liên tục trong nhiều ngày liên tiếp. Hãy thay đổi đôi giày để giúp chúng được thoải mái và tránh bị hư hỏng.
+                        </p>
+
+                        <p>
+                                   ❤️❤️ Hy vọng những hướng dẫn bảo quản giày trên sẽ giúp bạn giữ cho giày của mình luôn mới và bền bỉ.
+                        </p>
+                        
+                        
+
+                        
+
+                       
+
+
+                    
                     </div>
                 </div>
                 </div>

@@ -83,8 +83,9 @@
 
     &__btn {
         &--list {
-            display:flex;
-            gap:0 8px;
+            display:grid;
+            gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
         &--item {
             padding: 6px 10px;

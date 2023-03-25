@@ -1,10 +1,16 @@
 var mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+const options = {
+  separator: "",
+  lang: "en",
+  truncate: 120
+}
+mongoose.plugin(slug,options);
 
 var ProductSchema = mongoose.Schema(
   {
-    productId: mongoose.Types.ObjectId,
+    idPreword:{type:String, default:'SP'},
+    productCode:{ type: String, slug: `idPreword`, unique: true,slug_padding_size: 4, },
     productName: String,
     productPrice: Number,
     productSalePrice: Number,

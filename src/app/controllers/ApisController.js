@@ -138,8 +138,8 @@ class ApisController {
         if(order.status === "Cancel") {
           order.status = "Đã hủy"
         }
-        const sevendaysAfter = moment(order.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
-        const orderTime = moment(order.createdAt).format('Do/MM/YYYY, h:mm:ss a')
+        const sevendaysAfter = moment(order?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
+        const orderTime = moment(order?.createdAt).format('Do/MM/YYYY, h:mm:ss a')
  
 
         res.json({isSuccess:true,order,sevendaysAfter,orderTime});

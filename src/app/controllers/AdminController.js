@@ -123,8 +123,8 @@ try {
       req.body.productDescription = await textAreaSpace(productDescription);
     
       req.body.productSize = await inputSpace(productSize);
-     
-      req.body.productSalePrice = productPrice - (productPrice * sale) / 100;
+      req.body.productPrice = Number(productPrice).toFixed(0);
+      req.body.productSalePrice = (productPrice - (productPrice * sale) / 100).toFixed(0);
   
       
       try {
@@ -204,8 +204,8 @@ try {
       const numberOfClicks = 0; 
       const quantitySold = 0; 
       const saleNumber = Number(sale);
-      const productPriceNumber = Number(productPrice);
-      const productSalePrice = productPriceNumber - (productPriceNumber * saleNumber) / 100;
+      const productPriceNumber = Number(productPrice).toFixed(0);
+      const productSalePrice = (productPriceNumber - (productPriceNumber * saleNumber) / 100).toFixed(0);
       if(isSpecial === "true")
           isSpecial = true;
       if(isSpecial === "false")

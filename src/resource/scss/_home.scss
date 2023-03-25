@@ -293,6 +293,9 @@
   display: none;
   font-size: 1.4rem;
   font-weight: 450;
+  max-height: 350px;
+  overflow: scroll;
+
 }
 .detail__content-item span {
   font-weight: 600;

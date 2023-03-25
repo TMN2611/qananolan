@@ -1,8 +1,15 @@
 var mongoose = require('mongoose');
 
-
+const slug = require('mongoose-slug-generator');
+const options = {
+  separator: "",
+  lang: "en",
+  truncate: 120
+}
+mongoose.plugin(slug,options);
 var Order = mongoose.Schema(
   {
+    
     price: Number,
     ship: Number,
     finalPrice: Number,

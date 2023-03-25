@@ -240,6 +240,13 @@ body {
   display: inline-block;
 }
 
+.icon-small {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin: 3px;
+}
+
 .btn-primary.focus, .btn-primary:focus {
   box-shadow: none;
 }
@@ -1230,6 +1237,8 @@ button:focus {
   display: none;
   font-size: 1.4rem;
   font-weight: 450;
+  max-height: 350px;
+  overflow: scroll;
 }
 
 .detail__content-item span {
@@ -1400,8 +1409,9 @@ button:focus {
   align-items: center;
 }
 .selectSize__btn--list {
-  display: flex;
-  gap: 0 8px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .selectSize__btn--item {
   padding: 6px 10px;
