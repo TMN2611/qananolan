@@ -22,9 +22,20 @@ class ApisController {
 
     let newProducts= [];
     if(gender.length !== 0) {
-      newProducts = products.filter((product)=> {
-        return gender.includes(product.productGender)
-    })
+       const productWithGender = products.filter((product)=> {
+        return gender.includes(product.productGender)});
+
+        const productUnisex = products.filter((product)=> {
+        return product.productGender === 'Unisex'})
+        if(!gender.includes("Unisex")) {
+
+          newProducts = [...productWithGender,...productUnisex]
+        }
+        else {
+          newProducts = [...productWithGender]
+
+        }
+
     
     }
 
@@ -138,7 +149,7 @@ class ApisController {
         if(order.status === "Cancel") {
           order.status = "Đã hủy"
         }
-        const sevendaysAfter = moment(order?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY')
+        const sevendaysAfter = moment(order?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY');
         const orderTime = moment(order?.createdAt).format('Do/MM/YYYY, h:mm:ss a')
  
 

@@ -3,41 +3,7 @@
     
     <form class='filter'>
 
-        <div class="group__filter">
-
-            <p class="group__filter--title">
-                Giới tính 
-            </p>
-            <ul>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
-                        <label class="form-check-label" for="genderMale">
-                        Nam
-                    </label>
-                    </div>
-                </li>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
-                        <label class="form-check-label" for="genderFeMale">
-                        Nữ
-                    </label>
-                    </div>
-                </li>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
-                        <label class="form-check-label" for="genderUnisex">
-                        Unisex
-                    </label>
-                    </div>
-                </li>
-            </ul>
-
-
-
-        </div>
+        
         <div class="group__filter">
 
             <p class="group__filter--title">
@@ -98,6 +64,41 @@
                 </li>
                 {{/each}}
                 
+            </ul>
+
+
+
+        </div>
+        <div class="group__filter">
+
+            <p class="group__filter--title">
+                Giới tính 
+            </p>
+            <ul>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
+                        <label class="form-check-label" for="genderMale">
+                        Nam
+                    </label>
+                    </div>
+                </li>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
+                        <label class="form-check-label" for="genderFeMale">
+                        Nữ
+                    </label>
+                    </div>
+                </li>
+                <li>  
+                    <div class="form-check">
+                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
+                        <label class="form-check-label" for="genderUnisex">
+                        Unisex
+                    </label>
+                    </div>
+                </li>
             </ul>
 
 
@@ -194,7 +195,7 @@
                             let priceHtml;
 
                             if(isSale) {
-                                saleHtml = `<div            class='product__sale'><span>-${product.sale}%</span>
+                                saleHtml = `<div            class='product__sale'><span>GIẢM ${product.sale}%</span>
                                 </div>`
 
                                 priceHtml = `<div class='product__price'>

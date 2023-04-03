@@ -90,6 +90,7 @@ try {
     
     async editProduct(req, res) {
       const product = await ProductModel.findById(req.params.id);
+      console.log("🚀 ~ file: AdminController.js:93 ~ AuthCotroller ~ editProduct ~ product:", typeof (product.quantitySold))
   
       const isAvailable = product.isAvailable;
   
@@ -97,7 +98,7 @@ try {
   
       const listSize = product.productSize.join(" ");
      
-      
+    
       var data = {
         token:req.params.id,
         layout: false, 
@@ -126,6 +127,7 @@ try {
       req.body.productPrice = Number(productPrice).toFixed(0);
       req.body.productSalePrice = (productPrice - (productPrice * sale) / 100).toFixed(0);
   
+      console.log(req.body)
       
       try {
         // Update the product
@@ -198,11 +200,10 @@ try {
     }
     async addproduct(req, res) {
       const data = req.body;
-      let {productGender,productName,productPrice,productDescription,sale,productColor,productSize,brand,weight,isSpecial} = data;
+      let {productGender,productName,productPrice,productDescription,sale,productColor,productSize,brand,weight,quantitySold,isSpecial} = data;
       const newProductDescription = await textAreaSpace(productDescription);
       const newProductSize = await inputSpace(productSize);
       const numberOfClicks = 0; 
-      const quantitySold = 0; 
       const saleNumber = Number(sale);
       const productPriceNumber = Number(productPrice).toFixed(0);
       const productSalePrice = (productPriceNumber - (productPriceNumber * saleNumber) / 100).toFixed(0);
@@ -227,7 +228,7 @@ try {
         weight:Number(weight),
         productSize:newProductSize,
         numberOfClicks,
-        quantitySold,
+        quantitySold:quantitySold ? quantitySold : 0,
         productImg,
         isSpecial
       }

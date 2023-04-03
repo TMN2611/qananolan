@@ -1038,7 +1038,7 @@ button:focus {
 
 .product__sale {
   position: absolute;
-  top: 5%;
+  bottom: 100%;
   padding: 2px 10px;
   background-color: #d40000;
 }
@@ -1062,7 +1062,7 @@ button:focus {
   left: 100%;
   top: 0;
   border-style: solid;
-  border-width: 12.5px;
+  border-width: 14px;
   border-color: transparent transparent transparent #d40000;
 }
 
@@ -1111,6 +1111,7 @@ button:focus {
 
 .product__oldPrice {
   text-decoration: line-through;
+  font-size: 1.5rem;
 }
 
 .product__originPrice {
@@ -1804,6 +1805,36 @@ button:focus {
   .promotion__title img {
     width: 20px;
     height: 20px;
+  }
+
+  #ProductImgZoom .carousel-indicators li {
+    margin-inline: 3px;
+  }
+}
+@media screen and (max-width: 767.98px) {
+  .detailProduct__img {
+    display: block;
+  }
+
+  .detailProduct__img--main {
+    width: 100%;
+    padding: 0;
+  }
+
+  .detailProduct__img--list {
+    width: 100%;
+  }
+  .detailProduct__img--list button {
+    margin-top: 10px;
+    display: flex;
+    overflow: scroll;
+  }
+
+  .detailProduct__img--item {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    padding: 5px;
   }
 }
 #modalUserInfor .nameAndPhoneInput {

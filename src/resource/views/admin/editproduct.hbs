@@ -63,6 +63,10 @@
     <label for="weight">Cân nặng</label>
       <input type="number" name="weight" id="weight" class='form-control' value = "{{product.weight}}"required>
   </div>
+  <div class="form-group">
+    <label for="quantitySold:">Lượng bán</label>
+      <input type="text" name="quantitySold" id="quantitySold" class='form-control' value = "{{product.quantitySold}}" required>
+  </div>
 
   <div class="form-group">
     <label for="form-select-brand">Thương hiệu</label>
@@ -103,6 +107,8 @@ form.addEventListener('submit', (e) => {
     const brand = document.querySelector('.form-select-brand');
 
     const weight = document.querySelector('input[name="weight"]');
+    const quantitySold = document.querySelector('input[name="quantitySold"]');
+    console.log("🚀 ~ file: editproduct.hbs:111 ~ form.addEventListener ~ quantitySold:", quantitySold.value)
 
     
     const formData = new FormData();
@@ -117,6 +123,7 @@ form.addEventListener('submit', (e) => {
     formData.append('productSize',productSize.value);
     formData.append('brand',brand.value);
     formData.append('weight',weight.value);
+    formData.append('quantitySold',quantitySold.value);
 
 
 

@@ -5,7 +5,7 @@ const {
 const ProductModel = require('../../app/models/Product');
 const BrandModel = require('../../app/models/Brand');
 const { filterAvailableProduct} = require('../../util/ignoreProduct')
-
+const { makeNumberSorter} = require('../../util/makeNumberSorter')
 
 
 function sort (products,sortBy) {
@@ -17,12 +17,13 @@ function sort (products,sortBy) {
   }
   else if(sortBy =='price-ascending') {
     return products.sort(function(a,b) {
-      return a.productPrice - b.productPrice;
+      return a.productSalePrice - b.productSalePrice;
     })
   }
   else if(sortBy =='best-sale') {
     return products.sort(function(a,b) {
-      return b.quantitySold - a.quantitySold;
+          console.log(a.quantitySold,b.quantitySold)
+      return Number(b.quantitySold) - Number(a.quantitySold);
     })
   }
   else {
@@ -38,14 +39,26 @@ function getPathName (req) {
 class CollectionsController {
   //  [GET]  /
   async maleProduct(req, res) {
-    let productsCollection = await ProductModel.find({ productGender: 'Male' });
+    let productsMaleCollection = await ProductModel.find({ productGender: 'Male' });
+    let productsUnisexCollection = await ProductModel.find({ productGender: 'Unisex' });
+
+    let productsCollection = [...productsMaleCollection,...productsUnisexCollection]
 
     let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
+
+    // console.log(products.length)
+
 
    
 
@@ -56,13 +69,23 @@ class CollectionsController {
     });
   }
   async femaleProduct(req, res) {
-    let productsCollection = await ProductModel.find({ productGender: 'Female' });
+    let productsFemaleCollection = await ProductModel.find({ productGender: 'Female' });
+    let productsUnisexCollection = await ProductModel.find({ productGender: 'Unisex' });
+
+    let productsCollection = [...productsFemaleCollection,...productsUnisexCollection]
     let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
+
 
     res.render('collections/femaleProduct', {
       products: mutipleMongooseToObject(products),
@@ -77,16 +100,20 @@ class CollectionsController {
     let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
 
     res.render('collections/unisexProduct', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
       pageTitle:`Sản phẩm Unisex - ${process.env.DOMAINNAME}`
-
-
     });
   }
 
@@ -95,9 +122,15 @@ class CollectionsController {
     let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
     const saleProduct = products.filter(product => {
       return product.sale !== 0;
     });
@@ -106,8 +139,6 @@ class CollectionsController {
       products: mutipleMongooseToObject(saleProduct),
       path:getPathName(req),
       pageTitle:`Khuyến mãi- ${process.env.DOMAINNAME}`
-
-
     });
   }
   async allProduct(req, res) {
@@ -115,9 +146,15 @@ class CollectionsController {
     let products = await filterAvailableProduct(productsCollection)
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
     // Get list brand
     const brandList = await BrandModel.find({});
     //  Get List color
@@ -157,9 +194,15 @@ class CollectionsController {
 
     const {sortBy = 'newest'} = req.query;
 
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
   
     res.render('collections/newArrival', {
       products: mutipleMongooseToObject(products),
@@ -176,9 +219,15 @@ class CollectionsController {
     let products = await filterAvailableProduct(productsCollection);
 
     const {sortBy} = req.query;
+    let newproducts;
+
     if(sortBy) {
-      products= sort(products,sortBy);
+      newproducts= sort(products,sortBy);
     }
+    else {
+      newproducts = products;
+    }
+    products = await makeNumberSorter(newproducts);
 
     res.render('collections/brandProduct', {
       products: mutipleMongooseToObject(products),

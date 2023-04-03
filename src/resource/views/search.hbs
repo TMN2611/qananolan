@@ -54,7 +54,7 @@
                         <img src='{{this.productImg.[0]}}' alt='' />
                         {{#if this.sale includeZero=false}}
                           <div class='product__sale'> 
-                                <span>-{{this.sale}}%</span>
+                                <span>GIẢM {{this.sale}}%</span>
                           </div>
                         {{/if}} 
                       </div>
@@ -97,7 +97,7 @@
                             </div>
                           </div>
                       <div class="product__sold">
-                        <p>Đã bán: <span>10</span></p>
+                        <p>Đã bán: <span>{{this.quantitySold}}</span></p>
                         </div>
                     </div>
 

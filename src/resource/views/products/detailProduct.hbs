@@ -39,7 +39,7 @@
                           }}₫</span>
                         <span class='product__oldPrice detailProduct__price'>{{number productInfor.productPrice}}₫</span>
                         <div class="productDetail__sale--percent p-2 bg-orange">
-                            <span class=''>{{productInfor.sale}} % Giảm</span>
+                            <span class=''>Giảm {{productInfor.sale}} % </span>
                         </div>
                         {{else}}
                         <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫</span>
@@ -62,6 +62,7 @@
                             <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 200k đơn hàng từ 2.000.000 VND
                         </li>
                     </ul>
+                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Miễn phí vệ sinh giày trọn đời</p>
                 </div>
 
                 {{!-- <div class="promotion__content ">
@@ -131,7 +132,7 @@
                                     <ul class="cart__list">
                                     </ul>
                                     <div class="d-flex justify-content-between my-5">
-                                        <span class='font-weight-bold'>TỔNG TIỀN</span> <span class='cart__total--money'>adad</span>
+                                        <span class='font-weight-bold'>TỔNG TIỀN</span> <span class='cart__total--money'></span>
                                     </div>
                                     <div class="cartBtn__container justify-content-between">
                                         <a href="/cart">{{> slideBtn title="Xem giỏ hàng"}}</a>
@@ -150,13 +151,13 @@
                     </div>
                 <!-- modal -->
                 
-                <p class='mt-4'>Đối với các sản phẩm đã hết hàng, bạn có thể liên hệ qua <strong><a href="https://www.facebook.com/profile.php?id=100085568778678" target="_blank" >Fanpage QanaNolan</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
+                <p class='mt-4'>Đối với các sản phẩm đã hết hàng, bạn có thể liên hệ qua <strong><a href="https://www.facebook.com/profile.php?id=100079283596226" target="_blank" >Fanpage Qana Sneaker</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
 
-                <a href='#' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
+                <a href='/policy/chon-size' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
                 <p >
                     
                     Gọi <a href="tel:{{hotline}}">{{hotline}}</a> để mua hàng nhanh hơn
-                    Miễn phí giao hàng từ 800.000VNĐ
+                    Miễn phí giao hàng cho tất cả các đơn hàng
                 </p>
 			</div>
 
@@ -164,18 +165,7 @@
 
         
         </div>
-        {{!-- <div class="col-12">
-            <div class="row pt-5">
-                {{#each productInfor.productImg}}
-                <div class="col-12 col-md-6 mb-5">
-                    <img src="{{this}}" style='width:100%' alt="">
-
-                </div>
-                {{/each}}
-
-            </div>
-
-        </div> --}}
+        
 
         <div class="col-12 mt-5">
             <div class="product__desc--tabs">
@@ -194,18 +184,90 @@
                 <div class="tab-content" id="pills-tabCotent">
                 <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="productDesc-tab">
                     <div class="description-productdetail">
+                             <p>
+                                {{productInfor.productName}}
+                            </p>
+                            <p>SHOP ĐẢM BẢO và CAM KẾT CHO CÁC BẠN</p>
+                            <p>🏆 Về sản phẩm: Cam kết chất lượng sản phẩm tốt nhất trong tầm giá</p>
+                            <p>
+                                🏆 Dịch vụ: Hỗ trợ đổi trả hàng thoải mái trong 7 ngày, dịch vụ vệ giày miễn phí trọn đời
+                            </p>
+
+                            <p>
+                                🏆 Thời gian giao hàng : Hàng luông có sẵn thời gian vận chuyển tối đa 7 ngày kể từ ngày đơn hàng được xác nhận
+                            </p>
+
+                            <p>
+                                ----------------------------------------------------------------------------------------.
+                            </p>
+
+                            <p>
+                                    Tên sản phẩm: <span>
+                                        {{productInfor.productName}}
+                                    </span>
+                            </p>
+            
+     
+                            <p>
+                                ----------------------------------------------------------------------------------------.
+                            </p>
+
+                            <p>
+                                    Thông tin sản phẩm
+                            </p>
+
+                            <p>
+                                ✔️Thương hiệu: <span>{{productInfor.brand}}</span>
+                            </p>
+                            <p>
+                                ✔️Màu sắc: <span>{{productInfor.productColor}}</span>
+                            </p>
+                            
+                            <p>
+                                ✔️Kích thước: <span>
+                                    {{#each productInfor.productSize}}
+                                        {{this}}
+                                    {{/each}}
+                                </span>
+                            </p>
                         {{#each productInfor.productDescription}}
-                            <p> 
-                            {{#if this.emoji}}
-                              <span> 
-                                {{!-- {{this.emoji}} --}}
-                              </span>
-                            {{/if}}
+                            
+                            <p>
                               {{this.descText}}
                             </p>
                             
                             
                         {{/each}}
+                        <p>✔️Đối tượng: Mọi người , phù hợp nhất với các bạn học sinh, sinh viên đam mê sneaker</p>
+                        <p>
+                            ✔️Mùa thích hợp: Thời trang cả năm
+                        </p>
+                        <p>
+                            ✔️Freeship : Miễn phí vận chuyển trên toàn quốc
+                        </p>
+                        <p>
+                            ----------------------------------------------------------------------------------------.
+                        </p>
+
+                        <p>  Qana Sneaker luôn mong muốn mang lại những sản phẩm chất lượng và phù hợp nhất cho khách hàng , Shop sẵn sàng hỗ trợ khách hàng tư vấn để tìm ra nhu cầu của khách để có cho mình sản phẩm phù hợp nhất</p>
+
+                        <p>
+                             🚛 Free Ship - Chất lượng đảm bảo - Phục vụ tận tâm
+                        </p>
+
+                         <p>
+                                {{productInfor.productName}}
+                            </p>
+                         <p>
+                                 Xuất xứ: Trung Quốc
+                         </p>
+
+                         <p>
+                            Cảm ơn quý khách đã ghé thăm và ủng hộ Shop.
+                         </p>
+                         <p>
+                            📣📣📣 Giỏ hàng ở góc trên bên phải còn chần chờ gì nữa mà không chốt đơn ngay thôi nào
+                         </p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
@@ -289,6 +351,15 @@
                     </div>
                 </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row pt-5">
+                {{#each productInfor.productImg}}
+                <div class="col-12 col-md-6 mb-5">
+                    <img src="{{this}}" style='width:100%' alt="">
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>

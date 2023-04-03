@@ -2,6 +2,7 @@ const ProductModel = require("../models/Product")
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const { getProducts } = require('../../util/getDataFromDB')
 const { filterAvailableProduct} = require('../../util/ignoreProduct')
+const { makeNumberSorter} = require('../../util/makeNumberSorter')
 
 
 class SiteController {
@@ -11,7 +12,9 @@ class SiteController {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     const isSpecial = true;
     const productsCollection = await getProducts(isSpecial);
-    let products = await filterAvailableProduct(productsCollection)
+    let products = await filterAvailableProduct(productsCollection);
+    products = await makeNumberSorter(products);
+
 
     const newestProduct = await ProductModel.find({isAvailable:true}).sort({ _id: -1}).limit(1)
     const newestProductObject = mongooseToObject(newestProduct[0]);
@@ -19,7 +22,7 @@ class SiteController {
   
  
     res.render('home',
-    {products:mutipleMongooseToObject(products),pageTitle:`QANANOLAN - ${process.env.DOMAINNAME}`,newestProductAvatar,newestProduct:newestProductObject});
+    {products:mutipleMongooseToObject(products),pageTitle:`QANASNEAKER - ${process.env.DOMAINNAME}`,newestProductAvatar,newestProduct:newestProductObject});
   }
 
 

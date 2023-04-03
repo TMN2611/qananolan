@@ -538,4 +538,31 @@ outline: 0;
         width: 20px;
         height: 20px;
     }
+    #ProductImgZoom .carousel-indicators li {
+        margin-inline: 3px;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .detailProduct__img {
+        display: block
+    }
+    .detailProduct__img--main {
+        width: 100%;
+        padding: 0;
+    }
+    .detailProduct__img--list {
+        width: 100%;
+        button {
+            margin-top: 10px;
+            display:flex;
+            overflow:scroll;
+        }
+    }
+    .detailProduct__img--item {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+        padding: 5px;
+    }
 }

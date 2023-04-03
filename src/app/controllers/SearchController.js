@@ -33,6 +33,7 @@ class SearchsController {
 
 
       searchResult = searchedProduct
+      console.log("🚀 ~ file: SearchController.js:36 ~ SearchsController ~ index ~ searchResult:", searchResult)
       return  res.render('search',{
         products:mutipleMongooseToObject(searchResult),
         quatity:searchResult.length,

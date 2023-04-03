@@ -1,13 +1,11 @@
 const OrderModel = require("../models/Order")
 const ProductModel = require("../models/Product")
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
-const provincesJSON = require('../../resource/json/provinces.json')
 const { numberToMoney } = require('../../util/numberToMoney')
-const axios = require('axios').default;
-const jwt = require('jsonwebtoken');
 const {calculateShipPrice,getDiscountFromId} = require('../../util/calculatePriceBeforeSaveToDB');
 var nodemailer = require('nodemailer');
-const fs = require('fs');
+const moment = require('moment');
+
 const {exportTimeString} = require('../../util/time')
 const hbs = require('nodemailer-express-handlebars')
   const path = require('path')
@@ -115,7 +113,7 @@ class OrdersController {
            //  Giá hợp lệ
             
             // Gửi Email
-            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount,DOMAINNAME) {
+            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount,DOMAINNAME,sevendaysAfter) {
 
                 
               //  Nodejs Email with nodemailer
@@ -174,6 +172,7 @@ class OrdersController {
                   discount,
                   productInfor,
                   DOMAINNAME:DOMAINNAME,
+                  sevendaysAfter
                   
                 }
               
@@ -215,9 +214,10 @@ class OrdersController {
             
                 console.log(small)
               
-                const {orderDate,orderTime} =  await exportTimeString(small?.createdAt)
+                const {orderDate,orderTime} =  await exportTimeString(small?.createdAt);
+                const sevendaysAfter = moment(small?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY');
                 
-                  sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME);
+                  sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME,sevendaysAfter);
 
                   
 

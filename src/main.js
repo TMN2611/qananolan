@@ -175,9 +175,9 @@ Handlebars.registerHelper('renderRadioSpecical', function (value) {
   
 });
 
-process.on('uncaughtException', function(err) {
-  console.log('Caught exception: ' + err);
-});
+// process.on('uncaughtException', function(err) {
+//   console.log('Caught exception: ' + err);
+// });
 
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))
