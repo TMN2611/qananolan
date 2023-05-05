@@ -1978,6 +1978,10 @@ form#modalUserInforForm .address__wrapper input[type=button] {
   #modalUserInfor .addressInput {
     display: block;
   }
+
+  form#modalUserInforForm .address__list {
+    max-height: 200px;
+  }
 }
 .order .container {
   padding-block: 30px;

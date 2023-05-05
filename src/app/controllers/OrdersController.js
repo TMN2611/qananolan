@@ -207,7 +207,6 @@ class OrdersController {
                 note        
               }
 
-              console.log(dataForSave);
 
               OrderModel.create(dataForSave, async function (err, small) {
                 if (err) console.log(err);

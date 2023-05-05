@@ -34,6 +34,7 @@ try {
         return order;
   
       });
+      
   
       const orderWait = orderList.filter((order)=> order.status === 'Waiting');
       const orderConfirm = orderList.filter((order)=> order.status === 'Confirm').reverse();
@@ -57,6 +58,7 @@ try {
         const discountString =await  numberToMoney(order.discount);
         const finalPriceString =await  numberToMoney(order.finalPrice);
         const {orderDate,orderTime} = await exportTimeString(order.createdAt);
+        
         
   
   

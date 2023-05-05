@@ -174,4 +174,7 @@ form#modalUserInforForm {
     display:block;
 
   }
+  form#modalUserInforForm .address__list {
+    max-height: 200px;
+  }
 }

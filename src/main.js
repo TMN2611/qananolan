@@ -6,6 +6,7 @@ const cors = require('cors');
 var methodOverride = require('method-override');
 require('dotenv').config();
 const bodyParser= require('body-parser')
+const {exportTimeString} = require('./util/time');
 
 
 // override with POST having ?_method=DELETE
@@ -178,6 +179,15 @@ Handlebars.registerHelper('renderRadioSpecical', function (value) {
 // process.on('uncaughtException', function(err) {
 //   console.log('Caught exception: ' + err);
 // });
+
+async function logger () {
+
+  console.log(new Date())
+  const {orderDate,orderTime} = await  exportTimeString(new Date());
+  console.log("🚀 ~ file: main.js:183 ~ orderTime:", orderTime)
+  console.log("🚀 ~ file: main.js:183 ~ orderDate:", orderDate)
+}
+// logger()
 
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))
