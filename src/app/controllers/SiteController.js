@@ -22,7 +22,7 @@ class SiteController {
   
  
     res.render('home',
-    {products:mutipleMongooseToObject(products),pageTitle:`QANASNEAKER - ${process.env.DOMAINNAME}`,newestProductAvatar,newestProduct:newestProductObject});
+    {products:mutipleMongooseToObject(products),pageTitle:`QANA SNEAKER - ${process.env.DOMAINNAME}`,newestProductAvatar,newestProduct:newestProductObject});
   }
 
 

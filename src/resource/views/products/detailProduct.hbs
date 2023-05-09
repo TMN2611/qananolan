@@ -32,7 +32,7 @@
             <h1 class="detailProduct__content--name border-bottom">
                 {{productInfor.productName}}
             </h1>
-            <h1 class="detailProduct__content--price border-bottom">
+            <h2 class="detailProduct__content--price border-bottom">
                    {{#if productInfor.sale includeZero=false}}
                         <span class='product__newPrice detailProduct__price' data-price='{{productInfor.productSalePrice}}'>{{number
                             productInfor.productSalePrice
@@ -45,7 +45,7 @@
                         <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫</span>
 
                       {{/if}}
-            </h1>
+            </h2>
 
             <div class="promotion py-3 border-bottom ">
                 <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
@@ -360,6 +360,20 @@
                     <img src="{{this}}" style='width:100%' alt="">
                 </div>
                 {{/each}}
+               
+            </div>
+        </div>
+        <div class="col-12">
+            <h3 class='collection__header-link'>Sản Phẩm Liên Quan</h3>
+            <div class="row mt-5 pt-5 mb-4">
+                
+                {{#each products}}
+
+                    <div class='product__item col-6 col-md-2'>
+                        {{> productItem }}
+                    </div>
+                {{/each}}
+
             </div>
         </div>
     </div>
@@ -395,7 +409,7 @@
                             <img class="d-block" src="{{this}}" alt="First slide">
                         </div>
                     {{/each}}
-              
+         
                 </div>
                 <a class="carousel-control-prev" href="#ProductImgZoom" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

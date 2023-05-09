@@ -65,7 +65,7 @@ class CollectionsController {
     res.render('collections/maleProduct', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      pageTitle:`Sản phẩm Nam - ${process.env.DOMAINNAME}`
+      pageTitle:`Giày Sneaker Nam Chất Lượng Giá Tốt - ${process.env.DOMAINNAME}`
     });
   }
   async femaleProduct(req, res) {
@@ -90,7 +90,7 @@ class CollectionsController {
     res.render('collections/femaleProduct', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      pageTitle:`Sản phẩm Nữ - ${process.env.DOMAINNAME}`
+      pageTitle:`Giày Sneaker Nữ Chất Lượng Giá Tốt- ${process.env.DOMAINNAME}`
 
 
     });
@@ -113,7 +113,7 @@ class CollectionsController {
     res.render('collections/unisexProduct', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      pageTitle:`Sản phẩm Unisex - ${process.env.DOMAINNAME}`
+      pageTitle:`Giày Sneaker Hack Chất Lượng Giá Tốt- ${process.env.DOMAINNAME}`
     });
   }
 
@@ -138,7 +138,7 @@ class CollectionsController {
     res.render('collections/saleProduct', {
       products: mutipleMongooseToObject(saleProduct),
       path:getPathName(req),
-      pageTitle:`Khuyến mãi- ${process.env.DOMAINNAME}`
+      pageTitle:`Giày Sneaker Khuyến mãi Chất Lượng Giá Tốt- ${process.env.DOMAINNAME}`
     });
   }
   async allProduct(req, res) {
@@ -207,7 +207,7 @@ class CollectionsController {
     res.render('collections/newArrival', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      pageTitle:`Hàng mới - ${process.env.DOMAINNAME}`
+      pageTitle:`Giày Sneaker Hàng Mới Về ưu đãi - ${process.env.DOMAINNAME}`
 
     });
   }

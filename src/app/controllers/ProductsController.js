@@ -13,11 +13,31 @@ const ProductModel = require('../../app/models/Product');
    
       const productAvatar = mongooseToObject(productInfor)?.productImg?.[0];
       const hotline = process.env.ADMIN_PHONE;
+
+      const relatedProducts = await ProductModel.find();
+      const randomList = [];
+      for(var i =0;i<6;) {
+
+        const rdnumber = Math.floor(Math.random() * 10)
+        if(randomList.includes(rdnumber)) {
+
+        }
+        else {
+          randomList.push(rdnumber)
+          i++;
+        }
+
+      }
+      const newrelatedProducts = relatedProducts.filter((product,index) => {
+        return randomList.includes(index)
+      })
+
       res.render('products/detailProduct', {
         productInfor: mongooseToObject(productInfor),
         pageTitle:`${productInfor?.productName}- ${process.env.DOMAINNAME}`,
         productAvatar,
-        hotline
+        hotline,
+        products:mutipleMongooseToObject(newrelatedProducts)
       });
     }
 
