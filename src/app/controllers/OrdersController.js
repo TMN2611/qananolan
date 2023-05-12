@@ -219,12 +219,12 @@ class OrdersController {
                   sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME,sevendaysAfter);
 
                   
-
+                  //  Tăng số lượng bán sau khi mua
                   productList.forEach(async product => {
                     const productCollection = await ProductModel.findById(product.cartItemId);
 
 
-                    productCollection.set({quantitySold:productCollection.quantitySold+ product.cartItemAmount});
+                    productCollection.set({quantitySold:Number(productCollection.quantitySold)+ Number(product.cartItemAmount)});
   
                     await productCollection.save();
          

@@ -1717,6 +1717,7 @@ button:focus {
 }
 .ProductImgZoomModal .modal-body {
   overflow: hidden;
+  background-color: #000000;
 }
 .ProductImgZoomModal .modal-content {
   height: 100%;
@@ -1763,10 +1764,11 @@ button:focus {
 .ProductImgZoomModal .closeBtn {
   z-index: 10000;
   position: relative;
-  padding: 50px;
+  padding: 30px;
 }
 .ProductImgZoomModal .closeBtn__icon {
-  font-size: 5rem;
+  font-size: 3rem;
+  color: white;
 }
 
 #ProductImgZoom {

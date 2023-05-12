@@ -4,6 +4,7 @@ const {
   } = require('../../util/mongoose');
 const {getProduct} = require('../../util/getDataFromDB')
 const ProductModel = require('../../app/models/Product');
+const {makeNumberSorter} = require('../../util/makeNumberSorter')
   
   class ProductsController {
     //  [GET]  /products/:slug
@@ -37,7 +38,7 @@ const ProductModel = require('../../app/models/Product');
         pageTitle:`${productInfor?.productName}- ${process.env.DOMAINNAME}`,
         productAvatar,
         hotline,
-        products:mutipleMongooseToObject(newrelatedProducts)
+        products:mutipleMongooseToObject(await makeNumberSorter(newrelatedProducts))
       });
     }
 

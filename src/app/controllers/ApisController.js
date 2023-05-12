@@ -9,6 +9,7 @@ var jwt = require('jsonwebtoken');
 const {calculateShipPrice} = require('../../util/calculatePriceBeforeSaveToDB')
 const moment = require('moment');
 
+const {makeNumberSorter} = require('../../util/makeNumberSorter')
 class ApisController {
   //  [POST]  / products
   async productsWithFilter(req, res) {
@@ -97,7 +98,7 @@ class ApisController {
 
     }
   
-     res.json({products:newProducts})
+     res.json({products:await makeNumberSorter(newProducts)})
      products = [];
     
     // res.render('home',{products:mutipleMongooseToObject(products)});

@@ -431,6 +431,7 @@ outline: 0;
     padding: 0!important;
     & .modal-body {
         overflow:hidden;
+        background-color: #000000;
     }
     & .modal-content {
         height: 100%;
@@ -491,10 +492,10 @@ outline: 0;
     & .closeBtn{
         z-index: 10000;
         position: relative;
-        padding:50px;
+        padding:30px;
         &__icon {
-                font-size: 5rem;
-      
+                font-size: 3rem;
+                color:white;
             }
         }
 }
