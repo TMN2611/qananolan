@@ -10,7 +10,6 @@ const {exportTimeString} = require('./util/time');
 const setTZ = require('set-tz');
 setTZ('Asia/Bangkok')
 
-console.log(new Date().toString())
 
 // override with POST having ?_method=DELETE
 const port = process.env.PORT || 3000;
