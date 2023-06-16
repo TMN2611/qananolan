@@ -40,7 +40,7 @@
                 <a href='/products/{{this.slug}}'>
                   <div class='product__area'>
                     <div class='product__IMG'>
-                      <img src='{{this.productImg.[0]}}' alt='' />
+                      <img src='{{this.productImg.[0]}}' alt='{{this.productName}}' />
                       {{#if this.sale includeZero=false}}
                         <div class='product__sale'> 
                               <span>GIẢM {{this.sale}}%</span>

@@ -38,3 +38,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
+
+.body {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  padding-block: 40px;
+}
+
+@media screen and (max-width: 767.98px) {
+  .body {
+    padding-block: 10px;
+  }
+}

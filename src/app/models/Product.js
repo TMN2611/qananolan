@@ -19,6 +19,7 @@ var ProductSchema = mongoose.Schema(
     productGender:String,
     productSize:[{type:String}],
     productImg:[{type:String}],
+    productVideo:[{type:String}],
     url: String,
     weight:Number,
     sale:{

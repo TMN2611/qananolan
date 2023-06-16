@@ -1,113 +1,120 @@
 <div class="col-md-3 col-sm-12 col-xs-12">
 
     
-    <form class='filter'>
+            <div class="filter-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">     
+                <span class="title">Bộ lọc </span>
+                <span class="accicon">
+                <i class="fa-solid fa-chevron-down rotate-icon"></i></span>
+            </div>
+            <div id="collapseOne" class="collapse" data-parent="#accordionExample">
+                <form class='filter'>
 
         
-        <div class="group__filter">
+                    <div class="group__filter">
 
-            <p class="group__filter--title">
-                Thương hiệu
-            </p>
-            <ul>
+                        <p class="group__filter--title">
+                            Thương hiệu
+                        </p>
+                        <ul>
 
-                {{#each brandList}}
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='brand' value='{{this.brandName}}' id='brand{{this.brandName}}'>
-                        <label class="form-check-label" for="brand{{this.brandName}}">
-                            {{this.brandName}}
-                    </label>
+                            {{#each brandList}}
+                            <li>  
+                                <div class="form-check">
+                                    <input class="form-check-input checkAndRadio" type="checkbox" name='brand' value='{{this.brandName}}' id='brand{{this.brandName}}'>
+                                    <label class="form-check-label" for="brand{{this.brandName}}">
+                                        {{this.brandName}}
+                                </label>
+                                </div>
+                            </li>
+                            {{/each}}
+                            
+                        </ul>
+
+
+
                     </div>
-                </li>
-                {{/each}}
-                
-            </ul>
+                    <div class="group__filter">
+
+                        <p class="group__filter--title">
+                            Giá sản phẩm
+                        </p>
+                        <ul>
+
+                            {{#each priceRange}}
+                                <li>  
+                                    <div class="form-check">
+                                        <input class="form-check-input checkAndRadio" type="radio" name='price' value='{{this.from}}-{{this.to}}' id='range{{this.from}}'>
+                                        <label class="form-check-label" for="range{{this.from}}">
+                                            {{this.valueString}}
+                                        </label>
+                                    </div>
+                                </li>
+                            {{/each}}
+                            
+                        </ul>
 
 
 
-        </div>
-        <div class="group__filter">
-
-            <p class="group__filter--title">
-                Giá sản phẩm
-            </p>
-            <ul>
-
-                {{#each priceRange}}
-                    <li>  
-                        <div class="form-check">
-                            <input class="form-check-input checkAndRadio" type="radio" name='price' value='{{this.from}}-{{this.to}}' id='range{{this.from}}'>
-                            <label class="form-check-label" for="range{{this.from}}">
-                                {{this.valueString}}
-                            </label>
-                        </div>
-                    </li>
-                {{/each}}
-                
-            </ul>
-
-
-
-        </div>
-        <div class="group__filter filter__color">
-
-            <p class="group__filter--title">
-                Màu sắc
-            </p>
-            <ul>
-
-                {{#each listColor}}
-                <li >  
-                        <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
-                        <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
-                </li>
-                {{/each}}
-                
-            </ul>
-
-
-
-        </div>
-        <div class="group__filter">
-
-            <p class="group__filter--title">
-                Giới tính 
-            </p>
-            <ul>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
-                        <label class="form-check-label" for="genderMale">
-                        Nam
-                    </label>
                     </div>
-                </li>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
-                        <label class="form-check-label" for="genderFeMale">
-                        Nữ
-                    </label>
+                    <div class="group__filter filter__color">
+
+                        <p class="group__filter--title">
+                            Màu sắc
+                        </p>
+                        <ul>
+
+                            {{#each listColor}}
+                            <li >  
+                                    <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
+                                    <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
+                            </li>
+                            {{/each}}
+                            
+                        </ul>
+
+
+
                     </div>
-                </li>
-                <li>  
-                    <div class="form-check">
-                        <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
-                        <label class="form-check-label" for="genderUnisex">
-                        Unisex
-                    </label>
+                    <div class="group__filter">
+
+                        <p class="group__filter--title">
+                            Giới tính 
+                        </p>
+                        <ul>
+                            <li>  
+                                <div class="form-check">
+                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
+                                    <label class="form-check-label" for="genderMale">
+                                    Nam
+                                </label>
+                                </div>
+                            </li>
+                            <li>  
+                                <div class="form-check">
+                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
+                                    <label class="form-check-label" for="genderFeMale">
+                                    Nữ
+                                </label>
+                                </div>
+                            </li>
+                            <li>  
+                                <div class="form-check">
+                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
+                                    <label class="form-check-label" for="genderUnisex">
+                                    Unisex
+                                </label>
+                                </div>
+                            </li>
+                        </ul>
+
+
+
                     </div>
-                </li>
-            </ul>
 
-
-
-        </div>
-
-    </form>
-
+                </form>
+            </div>
 </div>
+
 
 <script>
         const allCheckbox = document.querySelectorAll('.group__filter input.checkAndRadio');
@@ -267,4 +274,19 @@
                         console.log(error);
                     })
         }
+
+
+        window.addEventListener("resize",function(event) {
+            checkScreeToShowFilter();  
+        }) 
+        function checkScreeToShowFilter() {
+            if(window.innerWidth > 768) {
+                $('.collapse').collapse();
+            
+            }
+        }
+         
+        checkScreeToShowFilter();
+           
+        
 </script>

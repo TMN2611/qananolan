@@ -55,7 +55,7 @@
 
   
   <div class="form-group">
-    <label for="files">Select files:</label>
+    <label for="files">Nhập ảnh/ video(Không bắt buộc):</label>
       <input type="file" name="file" id="files" multiple class='form-control' > 
 
   </div>
@@ -139,7 +139,22 @@ form.addEventListener('submit', (e) => {
     // Post data to Node and Express server:
     const token = JSON.parse(sessionStorage.getItem('admin-token'));
 
-    fetch(`/admin/edit-product/${id}/${token}`, {
+    // Check have file , if not have file don't delete old file
+    let haveFile = false;
+    
+    for (var i = 0 ; i < files.files.length ; i ++){
+      if(files.files[i].size > 0)
+      {
+            haveFile = true;
+      }
+      else {
+           haveFile = false;
+      }
+  
+    }
+    console.log("🚀 ~ file: editproduct.hbs:144 ~ form.addEventListener ~ haveFile:", haveFile)
+    
+    fetch(`/admin/edit-product/${id}/${token}/${haveFile}`, {
         method: 'POST',
         body: formData, // Payload is formData object
     })

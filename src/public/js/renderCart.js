@@ -45,7 +45,7 @@ function renderListCart (localListCart) {
                             <div class="cart__item--content">
 
                                 <img src="/img/Icons/cancel--black--circle.png" alt="" class="cart__item--deleteItem">
-                                <a href="/products/${item.cartItemSlug}" class="cart__item--title font-weight-bold">
+                                <a href="/products/${item.cartItemSlug}" class="cart__item--title">
                                     ${item.cartItemName}
                                 </a>
                             

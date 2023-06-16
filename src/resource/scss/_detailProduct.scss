@@ -29,9 +29,9 @@
     &__content{
         &--title {
             font-size: 1.7rem;
-            font-weight: bold;
+            font-weight: normal;
             padding: 15px 0;
-            text-transform: uppercase;
+            text-transform: capitalize;
             width: 40%;
 
 
@@ -39,8 +39,8 @@
         &--name {
             padding: 10px 0;
             font-size: 2.4rem;
-            font-weight:bold;
-            margin-bottom: 3rem;
+            font-weight:normal;
+            margin-bottom: 4rem;
         }
         &--price {
             padding: 10px 0;
@@ -92,9 +92,9 @@
             border:1px solid $border-color;
             cursor: pointer;
             &.active {
-                background-color:black;
-                color:white;
+                border-color:orangered;
                 border-radius: 5px;
+                color:orangered;
             }
 
         }
@@ -164,16 +164,20 @@
     float: left;
     -webkit-appearance: none;
 }
-
+.product__desc--tabs .nav-pills .nav-link {
+    border:1px solid $border-color;
+}
 .product__desc--tabs .nav-pills .nav-link.active {
-    background-color: $orange--color;
+    border:1px solid $orange--color;
+    background-color: unset;
+    color:$orange--color;
+    font-weight: bold;
 }
 .description-productdetail {
     margin-top: 20px;
 }
 .description-productdetail p {
     font-size: 14px;
-    font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
@@ -542,6 +546,12 @@ outline: 0;
     #ProductImgZoom .carousel-indicators li {
         margin-inline: 3px;
     }
+    .productColor__content-promotion {
+        font-size: 16px;
+    }
+    .detailProduct__content--title {
+        font-size: 1.4rem;
+      }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -566,4 +576,16 @@ outline: 0;
         object-fit: contain;
         padding: 5px;
     }
+    .extention-tab {
+        display: flex;
+        flex-direction: column;
+        li {
+            margin-bottom: 2px;
+            button {
+                width: 100%;
+            }
+        }
+    }
+
 }
+

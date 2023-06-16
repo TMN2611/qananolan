@@ -8,3 +8,17 @@ button:focus {
 .container {
   max-width:1400px;
 }
+
+.filter-header{
+    cursor: pointer;
+    padding-bottom: 10px;
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+}
+
+.filter-header.collapsed .rotate-icon {
+transform: rotate(180deg);
+}

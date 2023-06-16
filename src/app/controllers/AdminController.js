@@ -3,7 +3,7 @@ const ProductModel = require("../models/Product");
 const BrandModel = require("../models/Brand");
 const moment = require("moment");
 require('moment/locale/vi');
-
+const path = require('path');
 const fs = require('fs');
 
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
@@ -93,7 +93,7 @@ try {
     
     async editProduct(req, res) {
       const product = await ProductModel.findById(req.params.id);
-      console.log("🚀 ~ file: AdminController.js:93 ~ AuthCotroller ~ editProduct ~ product:", typeof (product.quantitySold))
+    
   
       const isAvailable = product.isAvailable;
   
@@ -116,21 +116,32 @@ try {
     // [POST]
     async editProductHandle(req, res) {
       const {productName,productGender,productPrice,productDescription,sale,productColor,productSize,brand,weight} = req.body;
-      const productImg = req.files.map(i=> {
-        return `/img/Products/${i.originalname}`
+      const productImg = [];
+      const productVideo = [];
+      req.files.map(i=> {
+        
+        if(path.extname(i.originalname) === '.mp4') {
+          productVideo.push(`/img/Products/${i.originalname}`)
+        }
+        else {
+          productImg.push(`/img/Products/${i.originalname}`)
+        }
       });
   
   
       if(productImg.length !== 0) {
         req.body.productImg = productImg
       }
+      if(productVideo.length !== 0) {
+        req.body.productVideo = productVideo
+      }
+     
       req.body.productDescription = await textAreaSpace(productDescription);
     
       req.body.productSize = await inputSpace(productSize);
       req.body.productPrice = Number(productPrice).toFixed(0);
       req.body.productSalePrice = (productPrice - (productPrice * sale) / 100).toFixed(0);
   
-      console.log(req.body)
       
       try {
         // Update the product
@@ -153,6 +164,7 @@ try {
     }
   
     async deleteProduct(req, res) {
+      
       ProductModel.findOneAndDelete({_id: {$gte:req.params.id} }, function (err, docs) {
         if (err){
             console.log(err);
@@ -160,18 +172,19 @@ try {
         else{
   
           try {
-              var files = docs.productImg ;
+              var imgs = docs.productImg ;
+              var videos = docs.productVideo ;
         
-      
-
               function deleteFiles(files){
                 for (const file of files) {
                   fs.unlink((`./src/public/${file}`), err => {
-                  });
+                });
                 };
               }
-      
-              deleteFiles(files);
+
+              deleteFiles(imgs);
+              deleteFiles(videos);
+
           } catch (error) {
               console.log(error)
           }
@@ -216,8 +229,16 @@ try {
           isSpecial = false;
   
   
-      const productImg = req.files.map(i=> {
-        return `/img/Products/${i.originalname}`
+      const productImg = [];
+      const productVideo = [];
+      req.files.map(i=> {
+        
+        if(path.extname(i.originalname) === '.mp4') {
+          productVideo.push(`/img/Products/${i.originalname}`)
+        }
+        else {
+          productImg.push(`/img/Products/${i.originalname}`)
+        }
       });
       const dataForSave = {
         productName,
@@ -233,9 +254,10 @@ try {
         numberOfClicks,
         quantitySold:quantitySold ? quantitySold : 0,
         productImg,
+        productVideo,
         isSpecial
       }
-      console.log(dataForSave)
+      
       
       ProductModel.create(dataForSave)
     
