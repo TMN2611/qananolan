@@ -35,7 +35,7 @@
 .slick-dots {
   display: flex;
   position: absolute;
-  bottom: -10%;
+  bottom: -5%;
   transform: translateX(-50%);
   left: 50%;
   cursor: pointer;
@@ -342,6 +342,9 @@
 }
 
 @media screen and (max-width: 576px) {
+      .slick-dots {
+          bottom: -10%;
+      }
      .slick-arrow {
        display: none!important;
      }

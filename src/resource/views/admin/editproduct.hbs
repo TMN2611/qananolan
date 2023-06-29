@@ -60,6 +60,20 @@
 
   </div>
   <div class="form-group">
+    <div class="d-flex">
+        <div class="row">
+            {{#each product.productImg}}
+              <div class="col-1">
+                  <img src="{{this}}" alt="{{product.productName}}">
+              </div>
+
+              {{/each}}
+        </div>
+      
+    </div>
+
+  </div>
+  <div class="form-group">
     <label for="weight">Cân nặng</label>
       <input type="number" name="weight" id="weight" class='form-control' value = "{{product.weight}}"required>
   </div>

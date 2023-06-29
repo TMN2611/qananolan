@@ -35,16 +35,35 @@
         Lưu ý rằng kích thước giày có thể khác nhau tùy thuộc vào kiểu dáng và chất liệu của giày, vì vậy bạn nên kiểm tra kích thước mỗi lần mua giày mới. Nếu bạn đang mua giày trực tuyến, hãy kiểm tra chính sách đổi trả của nhà bán hàng để đảm bảo rằng bạn có thể đổi hoặc trả lại giày nếu chúng không phù hợp.
     </p>
 
+    <h5 class='policy-title'>
+        Mục lục size giày
+    </h5>
+    {{#each sizeList}}
+        <div>
+            <a style='font-weight:500' href="#{{this.title}}" class='p-2'>      {{this.number}}: {{this.title}}
+            </a>
+        </div>
+    {{/each}}
+
 
     <h5 class='policy-title'>
         Bảng chọn size của nhiều thương hiệu
     </h5>
 
-    <img src="/img/size/nike.jpg" alt="">
-    <img src="/img/size/adidas.jpg" alt="">
-    <img src="/img/size/converse.jpg" alt="">
-    <img src="/img/size/newbalance.jpg" alt="">
-    <img src="/img/size/size-giay-mlb-chunky.png" alt="">
+    
+
+
+
+    {{#each sizeList}}
+
+        <h3 id='{{this.title}}'><span>{{this.number}}</span>: <span>{{this.title}}</span></h3>
+        <div class="d-flex justify-content-center">
+            <img src="{{this.img}}" alt="">
+        </div>
+        
+    {{/each}}
+
+   
         
 </div>
 

@@ -17,7 +17,7 @@
 
             <div class="detailProduct__img--list">
                 
-                  <button class="btn-open-modal" data-toggle="modal" data-target="#ProductImgZoomModal">
+                  <button class="btn-open-modal">
                                     {{#activeFirstProuctImg}}
                                          {{productInfor}}
                                      {{/activeFirstProuctImg}}           
@@ -461,17 +461,32 @@
     // Change IMG main
 
     const productImgList = document.querySelectorAll('.detailProduct__img--item');
-   
-    // Active img main
-    productImgList.forEach((item)=> {
-        item.addEventListener('mouseover',(e)=> {
-            e.stopPropagation();
+
+    function changeActiveImg (e) {
             const imgActiveElement = document.querySelector('.detailProduct__img--item.active');
 
             imgActiveElement && imgActiveElement.classList.remove('active');
 
             e.target.classList.add('active');
             document.querySelector('.detailProduct__img--main img').src=e.target.src;
+    }
+
+    productImgList.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            changeActiveImg(e);
+        })
+    })
+    productImgList.forEach((item) => {
+        item.addEventListener('dblclick', (e) => {
+            $('#ProductImgZoomModal').modal('show')
+        })
+    })
+   
+    // Active img main
+    productImgList.forEach((item)=> {
+        item.addEventListener('mouseover',(e)=> {
+            e.stopPropagation();
+            changeActiveImg(e)
 
         })
     })

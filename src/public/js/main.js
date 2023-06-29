@@ -134,3 +134,27 @@ function resetDiscount () {
     localStorage.removeItem('discountCode');
 }
 resetDiscount();
+
+window.addEventListener('scroll',(e)=> {
+    let scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+
+    if(window.pageYOffset >= ((scrollHeight*60)/100)) {
+        document.querySelector('.scroll-to-top').style.opacity = '1';
+    }
+    else {
+        document.querySelector('.scroll-to-top').style.opacity = '0';
+
+    }
+      
+})
+function ScrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+  

@@ -17,8 +17,20 @@ class PolicyCotroller {
   }
   //  [GET]  / policy/sizeguide
   async sizeguide(req, res) {
+    const sizeList = [
+      {number:1,title:"Bảng size giày Nike",description:"",img:'/img/size/nike.jpg'},
+      {number:2,title:"Bảng size giày Jordan",description:"",img:'/img/size/jordan.jpg'},
+      {number:3,title:"Bảng size giày Converse",description:"",img:'/img/size/converse.jpg'},
+      {number:4,title:"Bảng size giày Adidas",description:"",img:'/img/size/adidas.jpg'},
+      {number:5,title:"Bảng size giày Yeezy",description:"",img:'/img/size/yeezy.jpg'},
+      {number:6,title:"Bảng size giày New Balance",description:"",img:'/img/size/newbalance.jpg'},
+      {number:6,title:"Bảng size giày New MLB",description:"",img:'/img/size/mlb.png'},
+      {number:7,title:"Bảng size giày Fila",description:"",img:'/img/size/fila.png'},
+      {number:8,title:"Bảng size giày Puma Nam",description:"",img:'/img/size/puma-nam.jpg'},
+      {number:9,title:"Bảng size giày Puma Nữ",description:"",img:'/img/size/puma-nu.jpg'},
+    ]
     
-    res.render('policy/sizeguide',{pageTitle:`Hướng dẫn chọn size - ${process.env.DOMAINNAME}`})
+    res.render('policy/sizeguide',{sizeList,pageTitle:`Hướng dẫn chọn size - ${process.env.DOMAINNAME}`},)
     
   }
   //  [GET]  / policy/payment

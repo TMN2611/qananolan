@@ -71,6 +71,7 @@ ol {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -921,6 +922,22 @@ button:focus {
   font-size: 1.6rem;
 }
 
+.scroll-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 50px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+  color: black;
+  background-color: #F0E161;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 0;
+}
+
 @media screen and (max-width: 768px) {
   .area_newsletter {
     display: grid;
@@ -987,7 +1004,7 @@ button:focus {
 .slick-dots {
   display: flex;
   position: absolute;
-  bottom: -10%;
+  bottom: -5%;
   transform: translateX(-50%);
   left: 50%;
   cursor: pointer;
@@ -1313,6 +1330,10 @@ button:focus {
 }
 
 @media screen and (max-width: 576px) {
+  .slick-dots {
+    bottom: -10%;
+  }
+
   .slick-arrow {
     display: none !important;
   }
