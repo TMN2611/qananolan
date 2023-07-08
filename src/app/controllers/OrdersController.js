@@ -211,7 +211,6 @@ class OrdersController {
               OrderModel.create(dataForSave, async function (err, small) {
                 if (err) console.log(err);
             
-                console.log(small)
               
                 const {orderDate,orderTime} =  await exportTimeString(small?.createdAt);
                 const sevendaysAfter = moment(small?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY');
@@ -228,12 +227,10 @@ class OrdersController {
   
                     await productCollection.save();
          
-                    
                 
                   })
 
-
-                  res.json({isError:false,message:"Đặt hàng thành công, vui lòng kiểm tra email và chờ CSKH liên hệ"});
+                  res.json({isError:false,orderId:small._id,message:"Đặt hàng thành công, vui lòng kiểm tra email và chờ CSKH liên hệ"});
 
                 
               });

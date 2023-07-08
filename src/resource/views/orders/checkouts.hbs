@@ -112,7 +112,7 @@
 									</div>
 									<div class="tab__item">
 										<i class="tab-icon fas fa-plus-circle"></i>
-										Ví điện tử : Momo, VNpay
+										Ví điện tử : Momo
 										<span class="tab__item--checked">
 											<i class="tab__item--checked-icon fa-solid fa-check"></i>
 										</span>
@@ -131,67 +131,17 @@
 									</p>
 									</div>
 									<div class="tab__content">
-									{{!-- <h2>Angular</h2> --}}
 										<p>
 											Khách hàng Thanh toán qua Ngân hàng Vui lòng chuyển khoản theo thông tin sau:
 										</p>
-										<p>
-												Tên Ngân hàng: 
-												<span class='font-weight-bold'>Ngân hàng TMCP Vietcombank (VCB) </span>
-												- Chi nhánh Đức Phổ
-												
-										</p>
-										<p>
-												Tên chủ tài khoản: 
-												<span class='font-weight-bold'>Trần Minh Nhân</span>
-												
-										</p>
-										<p>
-												Số tài khoản: 
-												<span class='font-weight-bold'>0271001082592</span>
-												
-										</p>
-										<p>
-												Nội dung chuyển khoản: 
-												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
-												VD: 641941f3b2aeb427c7e819e3__Trần Minh Nhân
-												
-										</p>
-
-										<p>
-											<span class='font-weight-bold'>* Lưu ý:</span>
-											Sau khi chuyển khoản quý khách chụp hình lại và gửi inbox cho fanpage <a  class='font-weight-bold' href="https://www.facebook.com/profile.php?id=100085568778678">Quana Nolan</a>
-										</p>
+    									{{>payment-bank}}
+										
 									</div>
 
 									<div class="tab__content">
-									{{!-- <h2>Ember</h2> --}}
-										<p>
-											Momo:<span class='font-weight-bold'>0962165084</span> 
-											
-
-										</p>
-
-										<p>
-												Tên chủ tài khoản: 
-												<span class='font-weight-bold'>Trần Minh Nhân</span>
-												
-										</p>
-										<p>
-												Số điện thoại: 
-												<span class='font-weight-bold'>0962165084</span>
-												
-										</p>
-										<p>
-												Nội dung chuyển khoản: 
-												<span class='font-weight-bold'>Mã đơn __Tên người mua</span>
-												VD: 641941f3b2aeb427c7e819e3__Trần Minh Nhân
-												
-										</p>
-										<p>
-											<span class='font-weight-bold'>* Lưu ý:</span>
-											Sau khi chuyển khoản quý khách chụp hình lại và gửi inbox cho fanpage <a  class='font-weight-bold' href="https://www.facebook.com/profile.php?id=100085568778678">Quana Nolan</a>
-										</p>
+									
+    									{{>payment-momo}}
+										
 									</div>
 							
 								</div>
@@ -693,13 +643,14 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 				})
 				.then(response => response.json())
 				.then((response) => {
+				console.log("🚀 ~ file: checkouts.hbs:646 ~ .then ~ response:", response)
 
 						alert(response.message);
-						console.log(response.isSuccess);
 						if(!response.isError) {
 							window.location.pathname='/home';
 							localStorage.setItem('cartProductList',"[]") 
 							localStorage.setItem('discountCode',"[]")
+						    localStorage.setItem('orderId',response.orderId)
 						}
 
 				})

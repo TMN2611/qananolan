@@ -75,3 +75,16 @@
                 });
       })
     </script>
+
+
+    <script>
+        const currentOrderId = localStorage.getItem('orderId');
+
+
+        if(currentOrderId)
+        {
+          const searchOrderInput = document.querySelector('input[name="orderId"]');
+         searchOrderInput.value = currentOrderId;
+        }
+        
+    </script>
