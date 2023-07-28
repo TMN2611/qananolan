@@ -186,8 +186,6 @@ async function logger () {
 
   console.log(new Date())
   const {orderDate,orderTime} = await  exportTimeString(new Date());
-  console.log("🚀 ~ file: main.js:183 ~ orderTime:", orderTime)
-  console.log("🚀 ~ file: main.js:183 ~ orderDate:", orderDate)
 }
 // logger()
 
