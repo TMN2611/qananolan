@@ -3,6 +3,7 @@
 <button type='button' class='btn btn-primary add-product'>
    Thêm sản phẩm
 </button>
+<button type="button" class="btn btn-success change-all-product">Chỉnh sửa hàng loạt</button>
 
 <input type="hidden" id='token' value='{{token}}'>
  <table class="table table-dark table-striped">
@@ -12,7 +13,8 @@
             <th scope="col">Mã</th>
             <th scope="col">Tên</th>
             <th scope="col">Giới tính</th>
-            <th scope="col">Sale</th>
+            <th scope="col">Pre Order</th>
+            <th scope="col">Giảm giá</th>
     
           </tr>
         </thead>
@@ -23,20 +25,39 @@
                 <input type="hidden" id='productId' value='{{this._id}}'>
 
           <td>
+           {{!-- STT --}}
             {{inc @index}}
           </td>
+
           <td>
+           {{!-- Mã --}}
                 {{this.productCode}}
 
           </td>
 
             <td>
+              {{!-- Tên --}}
+
                 {{this.productName}}
             </td>
+
+
             <td>
+              {{!-- Giới tính --}}
                 {{this.productGender}}
             </td>
             <td>
+              {{!-- Đặt trước --}}
+
+              {{#if this.isPreOrder}}
+                    <bold>Đặt trước</bold>
+              {{/if}}
+
+            </td>
+           
+            <td>
+              {{!-- Giảm giá --}}
+
                 {{this.sale}}
             </td>
             <td>
@@ -232,20 +253,24 @@
 
 
 <script>
+  const admintoken= JSON.parse(sessionStorage.getItem('admin-token'));
   document.querySelector('.add-product').addEventListener('click', function(e){
-     const admintoken= JSON.parse(sessionStorage.getItem('admin-token'));
      window.location.href=`/admin/them-san-pham/${admintoken}`
   })
 
-const editProductBtn = document.querySelectorAll('.edit-product-btn');
-editProductBtn.forEach(e=> {
-  e.addEventListener('click',(e)=> {
-    const productId =  e.target.dataset.id;
-    const token = document.getElementById('token').value;
-    window.location = `/admin/edit-product/${productId}/${token}`;
-   
+  document.querySelector('.change-all-product').addEventListener('click', function(e){
+     window.location.href=`/admin/sua-field-san-pham/${admintoken}`
   })
-})
+
+    const editProductBtn = document.querySelectorAll('.edit-product-btn');
+    editProductBtn.forEach(e=> {
+      e.addEventListener('click',(e)=> {
+        const productId =  e.target.dataset.id;
+        const token = document.getElementById('token').value;
+        window.location = `/admin/edit-product/${productId}/${token}`;
+      
+      })
+    })
 
 </script>
 

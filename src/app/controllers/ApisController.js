@@ -8,6 +8,7 @@ const axios = require('axios').default;
 var jwt = require('jsonwebtoken');
 const {calculateShipPrice} = require('../../util/calculatePriceBeforeSaveToDB')
 const moment = require('moment');
+const { filterAvailableProduct} = require('../../util/ignoreProduct')
 
 const {makeNumberSorter} = require('../../util/makeNumberSorter')
 class ApisController {
@@ -18,8 +19,8 @@ class ApisController {
     let {gender="",brand="",color="",price=""} = req.body;
 
 
-
-    let products = await ProductModel.find({});
+    let productsCollection = await ProductModel.find({});
+    let products = mutipleMongooseToObject(await filterAvailableProduct(productsCollection));
 
     let newProducts= [];
     if(gender.length !== 0) {

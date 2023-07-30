@@ -197,6 +197,13 @@ a:hover {
   color: white;
 }
 
+.bg-green {
+  background-color: #01904a;
+  border-color: #01904a;
+  box-shadow: 1px 2px 5px #01904a;
+  color: white;
+}
+
 .bg-black {
   background-color: black;
   color: white;
@@ -1463,9 +1470,36 @@ button:focus {
 }
 .detailProduct__content--name {
   padding: 10px 0;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: normal;
   margin-bottom: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.detailProduct__content--name-des {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: #071228;
+}
+.detailProduct__content--name-des__wraper {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 1.7rem;
+  display: flex;
+  gap: 5px;
+}
+.detailProduct__content--name-des span {
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detailProduct__content--name-des__content {
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: 400;
 }
 .detailProduct__content--price {
   padding: 10px 0;
@@ -1829,7 +1863,7 @@ button:focus {
   height: 100%;
 }
 .ProductImgZoomModal .carousel-inner {
-  height: 100%;
+  height: 80%;
 }
 .ProductImgZoomModal .carousel-item {
   height: 100%;
@@ -1846,7 +1880,7 @@ button:focus {
 }
 .ProductImgZoomModal .carousel-control-next, .ProductImgZoomModal .carousel-control-prev {
   height: 100px;
-  top: 50%;
+  top: 70%;
 }
 .ProductImgZoomModal .carousel-control-prev-icon {
   background-image: url("/img/Icons/turn.png");
@@ -1918,6 +1952,15 @@ button:focus {
   .detailProduct__content--title {
     font-size: 1.4rem;
   }
+
+  .content-promotion__item {
+    font-size: 1.4rem;
+  }
+
+  .detailProduct__content--name-des__wraper,
+.detailProduct__content--name-des__content {
+    font-size: 1.2rem;
+  }
 }
 @media screen and (max-width: 767.98px) {
   .detailProduct__img {
@@ -1939,8 +1982,9 @@ button:focus {
   }
 
   .detailProduct__img--item {
-    width: 55px;
-    height: 55px;
+    --size:100px;
+    width: var(--size);
+    height: var(--size);
     object-fit: contain;
     padding: 5px;
   }
@@ -2610,17 +2654,6 @@ form#modalUserInforForm .address__wrapper input[type=button] {
     grid-template-columns: 25% 25% 25%;
   }
 }
-.productName {
-  cursor: pointer;
-}
-
-.order_detail-heading {
-  font-weight: bold;
-  margin-bottom: 10px;
-  font-size: 30px !important;
-  color: gray;
-}
-
 .policy {
   line-height: 3rem;
   font-size: 1.6rem;

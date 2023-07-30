@@ -177,6 +177,31 @@ Handlebars.registerHelper('renderRadioSpecical', function (value) {
   }
   
 });
+Handlebars.registerHelper('renderRadioPreOrder', function (value) {
+  const isPreOrder = value.data.root.product.isPreOrder;
+
+  if(isPreOrder) {
+    return  `<div class="form-group p-3">
+    <label for="preOrderIsTrue">Có</label>
+    <input checked type="radio" class="form-control" id="preOrderIsTrue" name='isPreOrder' value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="preOrderIsFalse">Không</label>
+        <input  type="radio" class="form-control" id="preOrderIsFalse" name='isPreOrder'  value='false'>
+    </div>`;
+  }
+  else {
+    return  `<div class="form-group p-3">
+    <label for="preOrderIsTrue">Có</label>
+    <input  type="radio" class="form-control" id="preOrderIsTrue" name='isPreOrder' value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="preOrderIsFalse">Không</label>
+        <input checked type="radio" class="form-control" id="preOrderIsFalse" name='isPreOrder'  value='false'>
+    </div>`;
+  }
+  
+});
 
 // process.on('uncaughtException', function(err) {
 //   console.log('Caught exception: ' + err);

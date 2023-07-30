@@ -38,9 +38,41 @@
         }
         &--name {
             padding: 10px 0;
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight:normal;
             margin-bottom: 4rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            &-des {
+                display: flex;
+                align-items: center;
+                gap:10px;
+                margin-top: 10px;
+                color:#071228;
+                &__wraper{
+                    text-transform: capitalize;
+                    font-weight: 400;
+                    font-size: 1.7rem;
+                    display: flex;
+                    gap:5px;
+
+
+                }
+                span {
+                    margin: 0 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                &__content {
+                    text-transform: uppercase;
+                    font-size: 1.7rem;
+                    font-weight: 400;
+
+                }
+            }
+            
+            
         }
         &--price {
             padding: 10px 0;
@@ -450,7 +482,7 @@ outline: 0;
         height: 100%;
     }
     & .carousel-inner {
-        height: 100%;
+        height: 80%;
       
     }
     & .carousel-item {
@@ -473,7 +505,7 @@ outline: 0;
     }
     & .carousel-control-next, .carousel-control-prev  {
         height: 100px;
-        top:50%
+        top:70%
         
         
     }
@@ -551,7 +583,15 @@ outline: 0;
     }
     .detailProduct__content--title {
         font-size: 1.4rem;
-      }
+    }
+    .content-promotion__item {
+        font-size: 1.4rem;
+
+    }
+    .detailProduct__content--name-des__wraper,
+    .detailProduct__content--name-des__content {
+        font-size: 1.2rem;
+    }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -571,8 +611,9 @@ outline: 0;
         }
     }
     .detailProduct__img--item {
-        width: 55px;
-        height: 55px;
+        --size:100px;
+        width: var(--size);
+        height: var(--size);
         object-fit: contain;
         padding: 5px;
     }

@@ -216,7 +216,7 @@ try {
     }
     async addproduct(req, res) {
       const data = req.body;
-      let {productGender,productName,productPrice,productDescription,sale,productColor,productSize,brand,weight,quantitySold,isSpecial} = data;
+      let {productGender,productName,productPrice,productDescription,sale,productColor,productSize,brand,weight,quantitySold,isSpecial,isPreOrder} = data;
       const newProductDescription = await textAreaSpace(productDescription);
       const newProductSize = await inputSpace(productSize);
       const numberOfClicks = 0; 
@@ -227,6 +227,12 @@ try {
           isSpecial = true;
       if(isSpecial === "false")
           isSpecial = false;
+  
+      console.log(isPreOrder);
+      if(isPreOrder === "true")
+          isPreOrder = true;
+      if(isPreOrder === "false")
+          isPreOrder = false;
   
   
       const productImg = [];
@@ -255,7 +261,8 @@ try {
         quantitySold:quantitySold ? quantitySold : 0,
         productImg,
         productVideo,
-        isSpecial
+        isSpecial,
+        isPreOrder
       }
       
       
@@ -320,6 +327,48 @@ try {
             return res.json({isSuccess:false,message:"Cập nhật thất bại"})
   
         }
+    }
+
+    // update all product FIELD-----------------------------------------
+
+    async updateProductField(req, res) {
+      var data = {
+        layout: false, 
+      };
+      res.render('admin/updateproductfield',data);
+    }
+    // [POST] /admin/them-field-hang-loat
+
+    //  Áp dụng vs NUMBER , STRING , BOOLEAN
+    async addProductField(req, res) {
+
+        let { datatypeValue,fieldnameValue,fieldvalueValue} = req.body;
+        if(datatypeValue === 'number') {
+          fieldvalueValue = Number(fieldvalueValue);
+        }
+        else if(datatypeValue === 'string') {
+          fieldvalueValue = String(fieldvalueValue);
+
+        }
+        else {
+          console.log('haha')
+          fieldvalueValue = Boolean(Number(fieldvalueValue))
+        }
+
+
+        const productList = mutipleMongooseToObject(await ProductModel.find({}));
+        
+        //  Tăng số lượng bán sau khi mua
+        productList.forEach(async product => {
+          const productCollection = await ProductModel.findById(product._id);
+         
+
+          productCollection.set({[fieldnameValue]:fieldvalueValue});
+
+          await productCollection.save();
+        })
+        
+      
     }
   
   

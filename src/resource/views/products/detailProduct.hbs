@@ -31,7 +31,21 @@
             <input type="hidden" id='productId' value='{{productInfor._id}}'>
             <h1 class="detailProduct__content--name border-bottom">
                 {{productInfor.productName}}
+                <div class='detailProduct__content--name-des'>
+                    <div class='detailProduct__content--name-des__wraper'>Thương hiệu:
+                        <h5 class='detailProduct__content--name-des__content'>  {{productInfor.brand}}
+                            
+                        </h5> 
+                        <span>|</span>
+                    </div>
+
+                    <div class='detailProduct__content--name-des__wraper'>Mã SP:<h5 class='detailProduct__content--name-des__content'>{{productInfor.productCode}}</h5> 
+                    </div>
+
+                    
+                </div>
             </h1>
+
             <h2 class="detailProduct__content--price border-bottom">
                    {{#if productInfor.sale includeZero=false}}
                         <span class='product__newPrice detailProduct__price' data-price='{{productInfor.productSalePrice}}'>{{number
@@ -41,8 +55,20 @@
                         <div class="productDetail__sale--percent p-2 bg-orange">
                             <span class=''>Giảm {{productInfor.sale}} % </span>
                         </div>
+                        {{#if productInfor.isPreOrder}}
+                            <div class="productDetail__preOrder bg-green p-2">
+                                <div class="productDetail__sale--percent">
+                                    <span>
+                                        Order
+                                </span>
+                                </div>
+                            </div>
+                        {{/if}}
+                        
                         {{else}}
-                        <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫</span>
+                        <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫
+                            
+                        </span>
 
                       {{/if}}
             </h2>
@@ -51,18 +77,19 @@
                 <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
                 <div class='productColor__content-promotion'>
                     <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> MIỄN PHÍ SHIP</p>
-                    <ul>
-                        <li>
-                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 100k đơn hàng từ 1.000.000 VND
+                    <ul class='content-promotion__list'>
+                        <li class='content-promotion__item'>
+                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 100k</b> đơn hàng từ 1.000.000 VND
                         </li>
-                        <li>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 150k đơn hàng từ 1.500.000 VND
+                        <li class='content-promotion__item'>
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 150k</b>  đơn hàng từ 1.500.000 VND
                         </li>
-                        <li>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Khuyến mãi :</h6> Giảm 200k đơn hàng từ 2.000.000 VND
+                        <li class='content-promotion__item'>
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 200k</b> đơn hàng từ 2.000.000 VND
+
                         </li>
                     </ul>
-                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt="">Miễn phí vệ sinh giày trọn đời</p>
+                    <p class='content-promotion__item'><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""><b>Miễn phí</b> vệ sinh giày trọn đời</p>
                 </div>
 
                 {{!-- <div class="promotion__content ">
@@ -82,11 +109,16 @@
             </div>
 
             <div class="selectSize py-3 border-bottom">
-                <h6 class="selectSize__title detailProduct__content--title">Chọn size</h6>
+                <h6 class="selectSize__title detailProduct__content--title">Chọn size
+                    <p><a href='/policy/chon-size' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
+                <p ></p>
+                </h6>
                 <ul class="selectSize__btn--list">
                     {{#activeFirstSize}}{{productInfor}}{{/activeFirstSize}}
                 </ul>
+                
             </div>
+            
             <div class="productColor py-3 border-bottom d-flex">
                 <h6 class="productColor__title detailProduct__content--title">Màu sắc</h6>
                 <div class="productColor__content">
@@ -153,8 +185,7 @@
                 
                 <p class='mt-4'>Đối với các sản phẩm đã hết hàng, bạn có thể liên hệ qua <strong><a href="https://www.facebook.com/profile.php?id=100079283596226" target="_blank" >Fanpage Qana Sneaker</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
 
-                <a href='/policy/chon-size' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
-                <p >
+              
                     
                     Gọi <a href="tel:{{hotline}}">{{hotline}}</a> để mua hàng nhanh hơn
                     Miễn phí giao hàng cho tất cả các đơn hàng

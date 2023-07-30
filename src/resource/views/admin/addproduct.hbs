@@ -9,15 +9,19 @@
     <label for="productPrice">Giá sản phẩm</label>
     <input type="number" class="form-control" id="productPrice" name='productPrice' placeholder="Vui lòng nhập" required>
   </div>
+
+  <div class="form-group">
+    <label for="sale">Giảm giá bao nhiêu phần trăm</label>
+    <p class='priceSale'></p>
+    <input type="number" class="form-control" id="sale" name='sale' placeholder="Phần trăm giảm giá" min='0' max='100' required>
+  </div>
+  
   <div class="form-group">
     <label for="productDescription">Mô tả sản phẩm</label>
     <textarea  type="text"  class="form-control" id="productDescription" name='productDescription' placeholder="Mỗi mô tả một dòng" rows="10" cols="50" required></textarea>
   </div>
 
-  <div class="form-group">
-    <label for="sale">Giảm giá bao nhiêu phần trăm</label>
-    <input type="number" class="form-control" id="sale" name='sale' placeholder="Phần trăm giảm giá" min='0' max='100' required>
-  </div>
+  
 
    <div class="form-group">
     <label for="productColor">Màu sắc</label>
@@ -54,6 +58,22 @@
     
 </div>
 
+<p>Sản phẩm cần Order trước ?</p>
+
+<div class="d-flex">
+    <div class="form-group p-3">
+        <label for="preOrderIsTrue">Có</label>
+        <input type="radio" class="form-control" id="preOrderIsTrue" name='isPreOrder'  value='true' required>
+    </div>
+    <div class="form-group p-3">
+        <label for="preOrderIsFalse">Không</label>
+        <input type="radio" class="form-control" id="preOrderIsFalse" name='isPreOrder'  value='false'>
+    </div>
+    
+</div>
+
+
+
   <div class="form-group">
     <label for="productSize">Nhập size sản phẩm</label>
     <input  type="text"  class="form-control" id="productSize" name='productSize' placeholder="Sử dụng khoảng trống giữa các size VD: 35 36 37" value='36 37 38 39 40 41 42 43' required>
@@ -87,7 +107,7 @@
 
   <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
 </form>
-
+{{!-- Show brand --}}
 <script>
   const formSelectBrand = document.querySelector('.form-select-brand');
    fetch(`/apis/brand-list`, {
@@ -101,10 +121,34 @@
         formSelectBrand.innerHTML = html.join('');
     });
 </script>
+
+{{!-- Check giá sau khi nhập phần trăm giảm giá --}}
 <script>
+      const productPriceElement = document.querySelector('#productPrice');
+      const priceSaleElement = document.querySelector('.priceSale');
+      const saleElement = document.querySelector('#sale');
+
+      function updateSalePrice () {
+          const salePrice = Number(productPriceElement.value) - (Number(productPriceElement.value) * saleElement.value ) / 100;
+          console.log("🚀 ~ file: addproduct.hbs:114 ~ saleElement.addEventListener ~ salePrice:", salePrice)
+          
+          priceSaleElement.innerHTML = `${salePrice} VND`
+      }
+      saleElement.addEventListener('input', function() {
+
+         updateSalePrice()
+        
+      })
+      productPriceElement.addEventListener('input', function() {
+
+         updateSalePrice()
+        
+      })
+
+</script>
 
 
-
+<script>
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
     
@@ -112,6 +156,7 @@ form.addEventListener('submit', (e) => {
     // Prevents HTML handling submission
     const productGender = document.querySelector('input[name="productGender"]:checked')?.value || 'Unisex';
     const isSpecial = document.querySelector('input[name="isSpecial"]:checked')?.value;
+    const isPreOrder = document.querySelector('input[name="isPreOrder"]:checked')?.value;
     const productName = document.querySelector('input[name="productName"]');
     const productPrice = document.querySelector('input[name="productPrice"]');
     const productDescription = document.querySelector('textarea[name="productDescription"]');
@@ -120,15 +165,13 @@ form.addEventListener('submit', (e) => {
     const productSize = document.querySelector('input[name="productSize"]');
     const files = document.getElementById("files");
     const brand = document.querySelector('.form-select-brand');
-
     const weight = document.querySelector('input[name="weight"]');
     const quantitySold = document.querySelector('input[name="quantitySold"]');
-
-    
     const formData = new FormData();
      
     formData.append('productGender',productGender);
     formData.append('isSpecial',isSpecial);
+    formData.append('isPreOrder',isPreOrder);
     formData.append('productName',productName.value);
     formData.append('productPrice',productPrice.value);
     formData.append('productDescription',productDescription.value);
@@ -138,8 +181,6 @@ form.addEventListener('submit', (e) => {
     formData.append('brand',brand.value);
     formData.append('weight',weight.value);
     formData.append('quantitySold',quantitySold.value);
-
-
 
     // Creates empty formData object
 

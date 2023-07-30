@@ -64,10 +64,10 @@
                         <ul>
 
                             {{#each listColor}}
-                            <li >  
-                                    <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
-                                    <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
-                            </li>
+                                <li >  
+                                        <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
+                                        <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
+                                </li>
                             {{/each}}
                             
                         </ul>
@@ -155,7 +155,7 @@
                       
 
                         const dataForPost =
-                         {
+                        {
                             gender:genderParamString,
                             brand:brandParamString,
                             price:priceParamString,

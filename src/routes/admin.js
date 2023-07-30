@@ -31,10 +31,20 @@ router.get('/edit-product/:id/:token/',upload.array("files"), AdminController.ed
 router.post('/edit-product/:id/:token/:haveFile',requireAdminToken,deleteFile,upload.array("files"), AdminController.editProductHandle);
 
 router.get('/order-detail/:id/:token', requireAdminToken,AdminController.orderDetail);
+
 router.get('/them-san-pham/:token',requireAdminToken, AdminController.addproductView);
 router.post('/them-san-pham/:token',upload.array("files"),requireAdminToken, AdminController.addproduct);
+
 router.post('/change-order-infor/:id/:token',requireAdminToken, AdminController.changeOrderInfor);
 router.post('/change-order-status/:id/:token',requireAdminToken, AdminController.changeOrderStatus);
+
+
+
+
+router.get('/sua-field-san-pham/:token',requireAdminToken, AdminController.updateProductField);
+
+// Chinh sua hang loat
+router.post('/them-field-hang-loat/:token',requireAdminToken, AdminController.addProductField);
 
 
 module.exports = router;
