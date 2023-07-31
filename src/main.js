@@ -9,7 +9,7 @@ const bodyParser= require('body-parser')
 const {exportTimeString} = require('./util/time');
 const setTZ = require('set-tz');
 setTZ('Asia/Bangkok')
-const axios = require('axios');
+const {keepOnlineRenDerApp} = require('./util/keepOnlineRenDerApp')
 
 // override with POST having ?_method=DELETE
 const port = process.env.PORT || 3000;
@@ -212,45 +212,12 @@ async function logger () {
   console.log(new Date())
   const {orderDate,orderTime} = await  exportTimeString(new Date());
 }
-// logger()
 
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))
 
  app.listen(port, () => {
-  // Hàm gọi API
-        async function fetchDataFromAPI() {
-          const apiUrl = 'https://qanasneaker.online';
-
-          try {
-            const response = await axios.get(apiUrl);
-            return response.status;
-          } catch (error) {
-            console.error('Error fetching data:', error.message);
-            throw error;
-          }
-        }
-
-        // Thời gian cách nhau giữa mỗi lần gọi API (đơn vị là milliseconds)
-        const intervalTime = 5000; // Ví dụ: gọi API mỗi 5 giây
-
-      // Hàm bắt đầu gọi API sử dụng setInterval
-      function startAPICalls() {
-        fetchDataFromAPI()
-          .then(data => {
-            console.log(data);
-            // Tiếp tục xử lý dữ liệu ở đây nếu cần thiết
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      }
-
-      // Bắt đầu gọi API ban đầu
-      startAPICalls();
-
-      // Lập lịch gọi API sử dụng setInterval
-      setInterval(startAPICalls, intervalTime);
-
+  
+  keepOnlineRenDerApp();
   console.log('Listen');
 });
