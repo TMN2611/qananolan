@@ -218,5 +218,8 @@ async function logger () {
 app.use(bodyParser.urlencoded({extended: true}))
 
  app.listen(port, () => {
+  setInterval(()=> {
+    console.log('Working...')
+  },1000)
   console.log('Listen');
 });

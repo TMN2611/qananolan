@@ -482,7 +482,7 @@ outline: 0;
         height: 100%;
     }
     & .carousel-inner {
-        height: 80%;
+        height: 100%;
       
     }
     & .carousel-item {
@@ -505,7 +505,7 @@ outline: 0;
     }
     & .carousel-control-next, .carousel-control-prev  {
         height: 100px;
-        top:70%
+        top:50%
         
         
     }
@@ -626,6 +626,14 @@ outline: 0;
                 width: 100%;
             }
         }
+    }
+    .ProductImgZoomModal .carousel-control-next, 
+    .ProductImgZoomModal .carousel-control-prev {
+        height: 100px;
+        top: 70%;
+    }
+    .ProductImgZoomModal .carousel-inner {
+        height: 70%;
     }
 
 }

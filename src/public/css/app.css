@@ -1863,7 +1863,7 @@ button:focus {
   height: 100%;
 }
 .ProductImgZoomModal .carousel-inner {
-  height: 80%;
+  height: 100%;
 }
 .ProductImgZoomModal .carousel-item {
   height: 100%;
@@ -1880,7 +1880,7 @@ button:focus {
 }
 .ProductImgZoomModal .carousel-control-next, .ProductImgZoomModal .carousel-control-prev {
   height: 100px;
-  top: 70%;
+  top: 50%;
 }
 .ProductImgZoomModal .carousel-control-prev-icon {
   background-image: url("/img/Icons/turn.png");
@@ -1998,6 +1998,16 @@ button:focus {
   }
   .extention-tab li button {
     width: 100%;
+  }
+
+  .ProductImgZoomModal .carousel-control-next,
+.ProductImgZoomModal .carousel-control-prev {
+    height: 100px;
+    top: 70%;
+  }
+
+  .ProductImgZoomModal .carousel-inner {
+    height: 70%;
   }
 }
 #modalUserInfor .nameAndPhoneInput {
