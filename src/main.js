@@ -218,6 +218,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 
  app.listen(port, () => {
   
-  // keepOnlineRenDerApp();
+  keepOnlineRenDerApp();
   console.log('Listen');
 });
