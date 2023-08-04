@@ -32,6 +32,7 @@ async function getProduct(serverId) {
     .catch(function (err) {
       console.log(err);
     });
+    
 }
 
 module.exports = { getProducts, getProduct };

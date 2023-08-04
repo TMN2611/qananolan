@@ -127,11 +127,12 @@
                         </li>
 
 
-                          <li class='header__icon-item icon_cart'>
                               <a href='/cart' class='header__icon__link'>
-                                <i class='cart-icon fas fa-shopping-bag'></i>
+                                <li class='header__icon-item icon_cart'>
+                                      <i class='cart-icon fas fa-shopping-bag'></i>
+                                      <div class="number">0</div>
+                                </li>
                               </a>
-                          </li>
 
                       </ul>
                   </div>
@@ -229,4 +230,19 @@ App.start();
       }
     });
   })();
+</script>
+
+{{!-- Cập nhật số lượng trong giỏ hàng --}}
+<script>
+  const cartProductListJson = localStorage.getItem('cartProductList');
+  const cartProductList = JSON.parse(cartProductListJson);
+  const cartNumberElement = document.querySelector('.header__icon-item.icon_cart .number');
+
+  if(cartProductList.length === 0) {
+      cartNumberElement.style.display = 'none';
+  }
+  else {
+      cartNumberElement.innerHTML = cartProductList.length;
+  }
+
 </script>

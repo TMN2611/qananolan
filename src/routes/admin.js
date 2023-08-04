@@ -36,10 +36,8 @@ router.get('/them-san-pham/:token',requireAdminToken, AdminController.addproduct
 router.post('/them-san-pham/:token',upload.array("files"),requireAdminToken, AdminController.addproduct);
 
 router.post('/change-order-infor/:id/:token',requireAdminToken, AdminController.changeOrderInfor);
+
 router.post('/change-order-status/:id/:token',requireAdminToken, AdminController.changeOrderStatus);
-
-
-
 
 router.get('/sua-field-san-pham/:token',requireAdminToken, AdminController.updateProductField);
 

@@ -404,6 +404,26 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+.header__icon-item.icon_cart {
+  position: relative;
+}
+.header__icon-item.icon_cart .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 1px 5px;
+  line-height: 1;
+  font-size: 1.4rem;
+  background: white;
+  box-shadow: 1px 0 1px black;
+  border: 2px solid white;
+  left: 55%;
+  bottom: 75%;
+  color: white;
+  font-weight: bold;
+  background: #cc0e0e;
+}
 
 .header__icon__link {
   line-height: var(--width--height-size);

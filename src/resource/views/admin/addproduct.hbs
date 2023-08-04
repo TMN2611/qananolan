@@ -5,16 +5,28 @@
     <label for="productName">Tên sản phẩm</label>
     <input type="text" class="form-control" id="productName" name='productName' placeholder="Vui lòng nhập" required>
   </div>
+
   <div class="form-group">
     <label for="productPrice">Giá sản phẩm</label>
-    <input type="number" class="form-control" id="productPrice" name='productPrice' placeholder="Vui lòng nhập" required>
+    <input type="text" class="form-control" id="productPrice" name='productPrice'  placeholder="Vui lòng nhập" value='{{product.productPrice}}' required>
+     <div class='updateSalePrice btn btn-primary'>Cập nhật giá sau khi sale</d>
   </div>
 
   <div class="form-group">
     <label for="sale">Giảm giá bao nhiêu phần trăm</label>
     <p class='priceSale'></p>
-    <input type="number" class="form-control" id="sale" name='sale' placeholder="Phần trăm giảm giá" min='0' max='100' required>
+    <input type="text" class="form-control" id="sale" name='sale' placeholder="Phần trăm giảm giá" min='0' max='100' required value='{{product.sale}}'>
+    <div class='updateSalePercent btn btn-primary'>Cập % giảm giá theo giá gốc và giá đã sale</d>
   </div>
+
+  {{!-- Chỉ ở client --}}
+  <div class="form-group">
+    <label for="sale">Giá Sau Khi Sale</label>
+    <input type="number" class="form-control" id="priceAfterSale" name='priceAfterSale' placeholder="Giá sau khi giảm">
+      <div class='updateOriginPrice btn btn-primary'>Cập nhật giá gốc</div>
+  </div>
+  {{!-- Chỉ ở client --}}
+
   
   <div class="form-group">
     <label for="productDescription">Mô tả sản phẩm</label>
@@ -122,28 +134,62 @@
     });
 </script>
 
-{{!-- Check giá sau khi nhập phần trăm giảm giá --}}
 <script>
       const productPriceElement = document.querySelector('#productPrice');
       const priceSaleElement = document.querySelector('.priceSale');
+      const priceAfterSaleInputElement = document.querySelector('#priceAfterSale');
       const saleElement = document.querySelector('#sale');
+
+      const updateSalePercentElement = document.querySelector('.updateSalePercent');
+      const updateOriginPriceElement = document.querySelector('.updateOriginPrice ');
+      const updateSalePriceElement = document.querySelector('.updateSalePrice ')
 
       function updateSalePrice () {
           const salePrice = Number(productPriceElement.value) - (Number(productPriceElement.value) * saleElement.value ) / 100;
           console.log("🚀 ~ file: addproduct.hbs:114 ~ saleElement.addEventListener ~ salePrice:", salePrice)
           
-          priceSaleElement.innerHTML = `${salePrice} VND`
+          priceAfterSaleInputElement.value = salePrice;
       }
-      saleElement.addEventListener('input', function() {
 
-         updateSalePrice()
-        
-      })
-      productPriceElement.addEventListener('input', function() {
+      function updateOriginPrice () {
+          const originPrice = Number(priceAfterSaleInputElement.value)/(1-(Number(saleElement.value)/100))
+          console.log("🚀 ~ file: editproduct.hbs:139 ~ updateOriginPrice ~ originPrice:", Number(saleElement.value))
 
-         updateSalePrice()
-        
+          productPriceElement.value = originPrice;
+      }
+
+
+      function updateSalePercent () {
+            const salePercent = ((Number(productPriceElement.value)-Number(priceAfterSaleInputElement.value))/Number(productPriceElement.value)) * 100;
+
+            saleElement.value = salePercent;
+      }
+
+   
+
+      updateOriginPriceElement.addEventListener('click',function(e) {
+          e.preventDefault();
+          updateOriginPrice()
+
       })
+
+  
+
+      updateSalePercentElement.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          updateSalePercent()
+      })
+
+
+      updateSalePriceElement.addEventListener('click', function(e) {
+          e.preventDefault();
+          updateSalePrice();
+      })
+
+
+
+      
 
 </script>
 
