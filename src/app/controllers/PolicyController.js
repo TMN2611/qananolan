@@ -33,6 +33,12 @@ class PolicyCotroller {
     res.render('policy/sizeguide',{sizeList,pageTitle:`Hướng dẫn chọn size - ${process.env.DOMAINNAME}`},)
     
   }
+  //  [GET]  / policy/sizeguide
+  async orderguide(req, res) {
+    
+    res.render('policy/orderguide',{pageTitle:`Hướng dẫn mua hàng - ${process.env.DOMAINNAME}`},)
+    
+  }
   //  [GET]  / policy/payment
   async payment(req, res) {
     

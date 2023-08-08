@@ -1005,6 +1005,20 @@ button:focus {
     font-size: 1.3rem;
   }
 }
+.address-ggmap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.chung-nhan-bo-cong-thuong {
+  width: 100%;
+  height: 100%;
+}
+.chung-nhan-bo-cong-thuong img {
+  width: 100%;
+  height: 100%;
+}
+
 /* Main */
 /* main__slider */
 .main__slider {
@@ -2687,6 +2701,14 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 .policy {
   line-height: 3rem;
   font-size: 1.6rem;
+}
+.policy.orderguide .policy-title {
+  font-size: 2rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.policy.orderguide p {
+  padding-bottom: 15px;
 }
 .policy-heading {
   text-align: center;
