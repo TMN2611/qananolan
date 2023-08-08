@@ -235,14 +235,14 @@ App.start();
 {{!-- Cập nhật số lượng trong giỏ hàng --}}
 <script>
   const cartProductListJson = localStorage.getItem('cartProductList');
-  const cartProductList = JSON.parse(cartProductListJson);
+  const cartProductListForUpdateCart = JSON.parse(cartProductListJson);
   const cartNumberElement = document.querySelector('.header__icon-item.icon_cart .number');
 
-  if(cartProductList.length === 0) {
+  if(cartProductListForUpdateCart.length === 0) {
       cartNumberElement.style.display = 'none';
   }
   else {
-      cartNumberElement.innerHTML = cartProductList.length;
+      cartNumberElement.innerHTML = cartProductListForUpdateCart.length;
   }
 
 </script>

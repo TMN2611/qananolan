@@ -10,6 +10,7 @@ const DiscountModel = require('../models/Discount');
     //  [GET]  /discount/
     async discount(req, res) {
       const {total} = req.query;
+      console.log("🚀 ~ file: DiscountsController.js:13 ~ DiscountsController ~ discount ~ total:", total)
 
       let discountList =await DiscountModel.find({isAvailable:true});
 
