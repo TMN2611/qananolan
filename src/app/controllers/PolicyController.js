@@ -24,7 +24,7 @@ class PolicyCotroller {
       {number:4,title:"Bảng size giày Adidas",description:"",img:'/img/size/adidas.jpg'},
       {number:5,title:"Bảng size giày Yeezy",description:"",img:'/img/size/yeezy.jpg'},
       {number:6,title:"Bảng size giày New Balance",description:"",img:'/img/size/newbalance.jpg'},
-      {number:6,title:"Bảng size giày New MLB",description:"",img:'/img/size/mlb.png'},
+      {number:6,title:"Bảng size giày MLB",description:"",img:'/img/size/mlb.png'},
       {number:7,title:"Bảng size giày Fila",description:"",img:'/img/size/fila.png'},
       {number:8,title:"Bảng size giày Puma Nam",description:"",img:'/img/size/puma-nam.jpg'},
       {number:9,title:"Bảng size giày Puma Nữ",description:"",img:'/img/size/puma-nu.jpg'},
