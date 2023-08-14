@@ -2044,6 +2044,10 @@ button:focus {
     height: 70%;
   }
 }
+.productDetail__preOrder {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
 #modalUserInfor .nameAndPhoneInput {
   display: grid;
   grid-template-columns: 1fr 1fr;

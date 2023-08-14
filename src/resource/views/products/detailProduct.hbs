@@ -55,15 +55,7 @@
                         <div class="productDetail__sale--percent p-2 bg-orange">
                             <span class=''>Giảm {{productInfor.sale}} % </span>
                         </div>
-                        {{#if productInfor.isPreOrder}}
-                            <div class="productDetail__preOrder bg-green p-2">
-                                <div class="productDetail__sale--percent">
-                                    <span>
-                                        Order
-                                </span>
-                                </div>
-                            </div>
-                        {{/if}}
+                        
                         
                         {{else}}
                         <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫
@@ -71,25 +63,36 @@
                         </span>
 
                       {{/if}}
+
+
+                      {{#if productInfor.isPreOrder}}
+                            <div class="productDetail__preOrder p-2">
+                                <div class="productDetail__sale--percent">
+                                    <span>
+                                        Order
+                                </span>
+                                </div>
+                            </div>
+                        {{/if}}
             </h2>
 
             <div class="promotion py-3 border-bottom ">
                 <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
                 <div class='productColor__content-promotion'>
-                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> MIỄN PHÍ SHIP</p>
+                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> MIỄN PHÍ SHIP đơn hàng từ 1.000.000 VND</p>
                     <ul class='content-promotion__list'>
                         <li class='content-promotion__item'>
-                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 100k</b> đơn hàng từ 1.000.000 VND
+                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 50k</b> đơn hàng từ 1.000.000 VND
                         </li>
                         <li class='content-promotion__item'>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 150k</b>  đơn hàng từ 1.500.000 VND
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 100k</b>  đơn hàng từ 1.500.000 VND
                         </li>
                         <li class='content-promotion__item'>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 200k</b> đơn hàng từ 2.000.000 VND
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 150k</b> đơn hàng từ 2.000.000 VND
 
                         </li>
                     </ul>
-                    <p class='content-promotion__item'><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""><b>Miễn phí</b> vệ sinh giày trọn đời</p>
+                    <p class='content-promotion__item'><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""><b>Miễn phí</b> vệ sinh giày 3 lần cho mỗi đơn hàng</p>
                 </div>
 
                 {{!-- <div class="promotion__content ">
