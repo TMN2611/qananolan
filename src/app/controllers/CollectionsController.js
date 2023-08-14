@@ -6,6 +6,7 @@ const ProductModel = require('../../app/models/Product');
 const BrandModel = require('../../app/models/Brand');
 const { filterAvailableProduct} = require('../../util/ignoreProduct')
 const { makeNumberSorter} = require('../../util/makeNumberSorter')
+const { ArrayObject} = require('../../util/shuffleArr')
 
 
 function sort (products,sortBy) {
@@ -155,6 +156,7 @@ class CollectionsController {
       newproducts = products;
     }
     products = await makeNumberSorter(newproducts);
+    products = await ArrayObject(newproducts);
     // Get list brand
     const brandList = await BrandModel.find({});
     //  Get List color
