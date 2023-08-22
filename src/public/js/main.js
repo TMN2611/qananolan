@@ -142,7 +142,7 @@ window.addEventListener('scroll',(e)=> {
         document.body.clientHeight, document.documentElement.clientHeight
       );
 
-    if(window.pageYOffset >= ((scrollHeight*60)/100)) {
+    if(window.pageYOffset >= ((scrollHeight*40)/100)) {
         document.querySelector('.scroll-to-top').style.opacity = '1';
     }
     else {

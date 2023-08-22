@@ -113,7 +113,7 @@
 
             <div class="selectSize py-3 border-bottom">
                 <h6 class="selectSize__title detailProduct__content--title">Chọn size
-                    <p><a href='/policy/chon-size' class='mt-3 text-danger'>Hướng dẫn chọn size</a>
+                    <p><a href='/policy/chon-size' class='mt-3 text-danger' target="_blank">Hướng dẫn chọn size</a>
                 <p ></p>
                 </h6>
                 <ul class="selectSize__btn--list">
@@ -217,7 +217,7 @@
                 </ul>
                 <div class="tab-content" id="pills-tabCotent">
                 <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="productDesc-tab">
-                    <div class="description-productdetail">
+                    <div class="description-productdetail productDesc hide">
                              <p>
                                 {{productInfor.productName}}
                             </p>
@@ -232,7 +232,7 @@
                             </p>
 
                             <p>
-                                ----------------------------------------------------------------------------------------.
+                                ------------------------------------------------.
                             </p>
 
                             <p>
@@ -243,7 +243,7 @@
             
      
                             <p>
-                                ----------------------------------------------------------------------------------------.
+                                ------------------------------------------------.
                             </p>
 
                             <p>
@@ -280,7 +280,7 @@
                             ✔️Freeship : Miễn phí vận chuyển trên toàn quốc
                         </p>
                         <p>
-                            ----------------------------------------------------------------------------------------.
+                            ----------------------------------------------------.
                         </p>
 
                         <p>  Qana Sneaker luôn mong muốn mang lại những sản phẩm chất lượng và phù hợp nhất cho khách hàng , Shop sẵn sàng hỗ trợ khách hàng tư vấn để tìm ra nhu cầu của khách để có cho mình sản phẩm phù hợp nhất</p>
@@ -302,7 +302,12 @@
                          <p>
                             📣📣📣 Giỏ hàng ở góc trên bên phải còn chần chờ gì nữa mà không chốt đơn ngay thôi nào
                          </p>
+
+                         
                     </div>
+                   
+                 
+                    
                 </div>
                 <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
                     <div class="description-productdetail">
@@ -358,6 +363,10 @@
                     </div>
                 </div>
                 </div>
+
+                <div class='view-more-desc-wrapper'>
+                        <button class='view-more-desc btn btn-outline-secondary'>Xem thêm</button>
+                </div>
             </div>
         </div>
 
@@ -402,6 +411,10 @@
             </div>
         </div>
     </div>
+    <button type="button" class="addToCart-btn addToCart-btn-sticky btn btn-demo btn-lg btn-warning" data-toggle="modal" data-target="#cartModal" data-whatever="{{productInfor}}">
+        <i class="fa-solid fa-cart-plus"></i>
+			Thêm vào giỏ hàng
+	</button>
 </div>
 
 
@@ -451,6 +464,39 @@
 </div>
 
 {{>modalUserInfor}}
+
+{{!-- viewmore --}}
+<script>
+    const descElement = document.querySelector('.productDesc');
+    const viewMoreDescElement = document.querySelector('.view-more-desc');
+
+    let descElementHeight = descElement.offsetHeight;
+    let newDescElementHeight = (descElementHeight*20/100).toFixed();
+
+    descElement.style.height = newDescElementHeight + "px";
+  
+
+   
+    function toggleDescContent() {
+        if(descElement.classList.contains('hide')) {
+             descElement.style.height = descElementHeight + "px";
+        }
+        else {
+             descElement.style.height = newDescElementHeight + "px";
+
+        }
+        descElement.classList.toggle('hide');
+
+    }
+
+    viewMoreDescElement.addEventListener('click',toggleDescContent)
+    descElement.addEventListener('click',toggleDescContent)
+
+  
+
+    
+
+</script>
 
 <script>
 

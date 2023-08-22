@@ -1,5 +1,5 @@
 <div class='header'>
-  <div class="container">
+  <div class="container container-main">
 
   <div class='header__top'>
     <div class='container'>
@@ -230,6 +230,26 @@ App.start();
       }
     });
   })();
+</script>
+
+{{!-- Header Sticky --}}
+<script>
+    
+    const headerTopElement = document.querySelector('.header__top');
+
+    window.addEventListener('scroll', function() {
+        const headerElement = document.querySelector('.header');
+        const heakerElementHeight = headerElement.offsetHeight;
+
+        if(window.scrollY >= heakerElementHeight-10) {
+            headerElement.classList.add('small')
+        }
+        else {
+            headerElement.classList.remove('small')
+
+        }
+    })
+   
 </script>
 
 {{!-- Cập nhật số lượng trong giỏ hàng --}}
