@@ -125,7 +125,7 @@
 
 // Tab select order option
 .tabs {
-    --choicePayObtion--color:#CE7777;
+    --choicePayObtion--color:black;
     display: flex;
     color: var(--choicePayObtion--color);
     position: relative;
@@ -144,7 +144,7 @@
         top:0;
         right:0;
         // background-color: var(--choicePayObtion--color);
-        border:15px solid var(--choicePayObtion--color);
+        border:15px solid $green--color;
         border-bottom-color:transparent;
         border-left-color:transparent;
         transition: all 0.1s linear;
@@ -159,16 +159,18 @@
     }
   }
   .tab__item.active {
-    color: var(--choicePayObtion--color);
-    border:1px solid var(--choicePayObtion--color);
+    color:$green--color;
+    border:1px solid $green--color;
+    background-color: rgba(53, 194, 53, 0.05);
+
     & .tab__item--checked {
         display:block;
     }
     
   }
   .tab__item:hover {
-    background-color: rgba(194, 53, 100, 0.05);
-    border-color: rgba(194, 53, 100, 0.1);
+    background-color: rgba(53, 194, 53, 0.05);
+    border-color: rgba(53, 194, 53, 0.1);
   }
   .tab-icon {
     margin-right: 10px;
@@ -178,7 +180,8 @@
     left: 0;
     bottom: 0;
     height: 6px;
-    background-color: var(--choicePayObtion--color);
+    background-color: #01904b75;
+
     border-radius: 5px;
     transition: all 0.1s linear;
     

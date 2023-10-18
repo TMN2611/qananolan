@@ -74,6 +74,12 @@
     background-color:black;
     color:white;
   }
+  .bg-red {
+    background-color:$background-red;
+    border-color:$background-red;
+    box-shadow: 1px 2px 5px $background-red;
+    color:white;
+  }
 
   
 

@@ -50,7 +50,8 @@
                             </li>
                             <li class='header__navigation-item nav--level1__brand'>
                       <a href='/collections/tat-ca-san-pham' class='header__navigation-link'>Sản phẩm </a>
-                      <i class="fa-solid fa-angle-down"></i>
+                      
+                      <i class="fa-solid fa-angle-down brand-show-icon"></i>
                       <div class=''>
                         <div class='row nav--level2__brand'>
                           <div class='col-md-4 brand__menu'>
@@ -241,11 +242,12 @@ App.start();
         const headerElement = document.querySelector('.header');
         const heakerElementHeight = headerElement.offsetHeight;
 
-        if(window.scrollY >= heakerElementHeight-10) {
+        if(window.scrollY >= (heakerElementHeight * 4 )) {
             headerElement.classList.add('small')
         }
         else {
-            headerElement.classList.remove('small')
+
+            headerElement.classList.remove('small');
 
         }
     })
@@ -265,4 +267,13 @@ App.start();
       cartNumberElement.innerHTML = cartProductListForUpdateCart.length;
   }
 
+</script>
+
+
+<script>
+  const brandShowIcon = document.querySelector('.brand-show-icon');
+  const navLevel2Brand = document.querySelector('.nav--level2__brand');
+  brandShowIcon.addEventListener('click',()=> {
+    navLevel2Brand.classList.toggle('show')
+  })
 </script>

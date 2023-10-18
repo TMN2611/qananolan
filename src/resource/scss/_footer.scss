@@ -89,7 +89,7 @@
 }
 
 .footer_main {
-  padding: 50px 10px 10px;
+  padding: 50px 10px 55px;
   width: 100%;
 }
 
@@ -166,6 +166,10 @@
   .footer_support-item p {
     font-size: 1.3rem;
   }
+  .footer_main {
+    padding: 10px 10px 55px;
+  }
+  
 }
 
 .address-ggmap {

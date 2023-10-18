@@ -5,6 +5,7 @@
   top:0;
   background:white;
   z-index: 1000;
+  scroll-behavior: smooth;
 
   &.small {
     padding: 5px 0 5px;
@@ -16,7 +17,7 @@
      height: 0px;
      overflow: hidden;
      padding: 0;
-    transition: all 0.5s linear;
+    transition: all 0.2s linear;
 
     }
     .header__main {
@@ -244,9 +245,13 @@
   background-color: transparent;
   transform: translate(-50%,-50%);
 }
-.nav--level1__brand:hover .nav--level2__brand {
+
+.nav--level2__brand.show{
   display: flex !important;
   z-index: 2;
+}
+.brand-show-icon {
+  cursor: pointer;
 }
 .icon_search {
   position: relative;
@@ -313,6 +318,12 @@
     padding: 0 5px;
   }
   
+}
+@media screen and (min-width: 1023px) {
+  .nav--level1__brand:hover .nav--level2__brand {
+    display: flex !important;
+    z-index: 2;
+  }
 }
 @media screen and (max-width: 992px) and (min-width: 576px) {
   .header__main {

@@ -110,6 +110,7 @@ body {
 .body {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
   padding-block: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 a:hover {
@@ -206,6 +207,13 @@ a:hover {
 
 .bg-black {
   background-color: black;
+  color: white;
+}
+
+.bg-red {
+  background-color: #ff2323;
+  border-color: #ff2323;
+  box-shadow: 1px 2px 5px #ff2323;
   color: white;
 }
 
@@ -327,6 +335,7 @@ button:focus {
   top: 0;
   background: white;
   z-index: 1000;
+  scroll-behavior: smooth;
 }
 .header.small {
   padding: 5px 0 5px;
@@ -338,7 +347,7 @@ button:focus {
   height: 0px;
   overflow: hidden;
   padding: 0;
-  transition: all 0.5s linear;
+  transition: all 0.2s linear;
 }
 .header.small .header__main {
   margin-block: 5px;
@@ -584,9 +593,13 @@ button:focus {
   transform: translate(-50%, -50%);
 }
 
-.nav--level1__brand:hover .nav--level2__brand {
+.nav--level2__brand.show {
   display: flex !important;
   z-index: 2;
+}
+
+.brand-show-icon {
+  cursor: pointer;
 }
 
 .icon_search {
@@ -650,6 +663,12 @@ button:focus {
 
   .header__navigation-item {
     padding: 0 5px;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .nav--level1__brand:hover .nav--level2__brand {
+    display: flex !important;
+    z-index: 2;
   }
 }
 @media screen and (max-width: 1200px) and (min-width: 991px) {
@@ -946,7 +965,7 @@ button:focus {
 }
 
 .footer_main {
-  padding: 50px 10px 10px;
+  padding: 50px 10px 55px;
   width: 100%;
 }
 
@@ -1033,6 +1052,10 @@ button:focus {
 
   .footer_support-item p {
     font-size: 1.3rem;
+  }
+
+  .footer_main {
+    padding: 10px 10px 55px;
   }
 }
 .address-ggmap {
@@ -1633,9 +1656,10 @@ button:focus {
   align-items: center;
 }
 .productDetail__sale--percent span {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   line-height: 1;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .selector-actions {
@@ -1704,6 +1728,7 @@ button:focus {
 
 .productDesc {
   z-index: 1;
+  cursor: pointer;
 }
 .productDesc.hide {
   -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent);
@@ -2380,7 +2405,7 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 }
 
 .tabs {
-  --choicePayObtion--color:#CE7777;
+  --choicePayObtion--color:black;
   display: flex;
   color: var(--choicePayObtion--color);
   position: relative;
@@ -2399,7 +2424,7 @@ form#modalUserInforForm .address__wrapper input[type=button] {
   position: absolute;
   top: 0;
   right: 0;
-  border: 15px solid var(--choicePayObtion--color);
+  border: 15px solid #01904a;
   border-bottom-color: transparent;
   border-left-color: transparent;
   transition: all 0.1s linear;
@@ -2411,16 +2436,17 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 }
 
 .tab__item.active {
-  color: var(--choicePayObtion--color);
-  border: 1px solid var(--choicePayObtion--color);
+  color: #01904a;
+  border: 1px solid #01904a;
+  background-color: rgba(53, 194, 53, 0.05);
 }
 .tab__item.active .tab__item--checked {
   display: block;
 }
 
 .tab__item:hover {
-  background-color: rgba(194, 53, 100, 0.05);
-  border-color: rgba(194, 53, 100, 0.1);
+  background-color: rgba(53, 194, 53, 0.05);
+  border-color: rgba(53, 194, 53, 0.1);
 }
 
 .tab-icon {
@@ -2432,7 +2458,7 @@ form#modalUserInforForm .address__wrapper input[type=button] {
   left: 0;
   bottom: 0;
   height: 6px;
-  background-color: var(--choicePayObtion--color);
+  background-color: #01904b75;
   border-radius: 5px;
   transition: all 0.1s linear;
 }

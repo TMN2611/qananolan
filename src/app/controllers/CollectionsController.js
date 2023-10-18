@@ -37,6 +37,25 @@ function getPathName (req) {
   return req.originalUrl;
 }
 
+
+function PaginationProducts (req,products) {
+
+      const limit = 10;
+      const page = req.query.page || 1;
+
+      const totalProducts = products.length;
+
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      products = products.slice((page - 1) * limit, page * limit);
+      
+      const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+      const data = {products,pages,page};
+      return data;
+
+}
+
 class CollectionsController {
   //  [GET]  /
   async maleProduct(req, res) {
@@ -143,6 +162,7 @@ class CollectionsController {
     });
   }
   async allProduct(req, res) {
+     
     let productsCollection = await ProductModel.find({});
     let products = await filterAvailableProduct(productsCollection)
 
@@ -156,7 +176,7 @@ class CollectionsController {
       newproducts = products;
     }
     products = await makeNumberSorter(newproducts);
-    products = await ArrayObject(newproducts);
+    // products = await ArrayObject(newproducts);
     // Get list brand
     const brandList = await BrandModel.find({});
     //  Get List color
@@ -174,6 +194,12 @@ class CollectionsController {
       {from:1000000, to:99999999999,valueString:"Trên 1.000.000đ"}
     ];
 
+    const data = PaginationProducts(req,products);
+    products =  data.products;
+
+    const pages = data.pages;
+    const currentPage = data.page;
+
     
 
   
@@ -183,6 +209,8 @@ class CollectionsController {
       brandList:mutipleMongooseToObject(brandList),
       listColor:uniqueColor,
       priceRange,
+      pages,
+      currentPage,
       pageTitle:`Tất cả sản phẩm - ${process.env.DOMAINNAME}`
 
     });
